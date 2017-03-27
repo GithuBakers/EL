@@ -6,12 +6,12 @@ import static Data.CD.SIZE;
  * Created by xuxiangzhe on 2017/3/23.
  */
 public class MapInfor {
-    private static char[][] mapInformation=new char[SIZE][SIZE];
+    private static char[][] mapCharInformation =new char[SIZE][SIZE];
 
     public static char[][] getInformation(){
-        return mapInformation;
+        return mapCharInformation;
     }
     public static void setInformation(char[][] a){
-        mapInformation=a;
+        mapCharInformation =a;
     }
 }

@@ -1,20 +1,19 @@
 package Logic;
 
 import Data.MapInfor;
-import org.omg.PortableInterceptor.ORBInitInfoPackage.DuplicateName;
 
 import java.util.regex.Pattern;
 
 import static Data.CD.SIZE;
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 
 /**
  * Created by xuxiangzhe on 2017/3/23.
  */
 public class Judge {
     private static char toCheck;
-    private static char[][] src= MapInfor.getInformation();
+    private static char[][] src;
     public static boolean judgeMatch3(char a){
+        src=MapInfor.getInformation();
         toCheck=a;
         return judgeRow()||judgeCol();
     }
@@ -38,7 +37,7 @@ public class Judge {
     private static boolean judgeCol(){
         String rePpattern;
         StringBuffer stringBuffer=new StringBuffer();
-        String str=new String();
+        String str;
         Boolean flag=false;
         for(int j=0;j<SIZE;j++){
             for(int i=0;i<SIZE;i++){
