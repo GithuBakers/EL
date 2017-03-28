@@ -1,26 +1,28 @@
 package Logic;
 
-import Data.MapInfor;
+import Data.BoardInfor;
 
 import java.util.regex.Pattern;
 
-import static Data.CD.SIZE;
+import static Data.CD.BOARD_SIZE;
 
 /**
- * Created by xuxiangzhe on 2017/3/23.
+ * Judge class 应当包含所有和"判断是否有能消去情况"有关的静态方法。
  */
 public class Judge {
     private static char toCheck;
     private static char[][] src;
+
+    //This method is used to judge whether there are three same dots or more;
     public static boolean judgeMatch3(char a){
-        src=MapInfor.getInformation();
+        src= BoardInfor.getInformation();
         toCheck=a;
         return judgeRow()||judgeCol();
     }
     private static boolean judgeRow(){
         String rePpattern;
         Boolean flag=false;
-        for(int i=0;i<SIZE;i++){
+        for(int i = 0; i< BOARD_SIZE; i++){
             switch (toCheck){
                 case 'a':rePpattern="aa[bcd]a|a[bcd]aa";break;
                 case 'b':rePpattern="bb[acd]b|b[acd]bb";break;
@@ -39,8 +41,8 @@ public class Judge {
         StringBuffer stringBuffer=new StringBuffer();
         String str;
         Boolean flag=false;
-        for(int j=0;j<SIZE;j++){
-            for(int i=0;i<SIZE;i++){
+        for(int j = 0; j< BOARD_SIZE; j++){
+            for(int i = 0; i< BOARD_SIZE; i++){
                 stringBuffer.append(src[i][j]);
             }
             str=stringBuffer.toString();

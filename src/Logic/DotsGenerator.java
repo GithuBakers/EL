@@ -1,15 +1,16 @@
 package Logic;
 
-import Data.MapInfor;
+import Data.BoardInfor;
 
 import java.util.Random;
 
 import static Data.CD.*;
 
 /**
- * Created by xuxiangzhe on 2017/3/23.
+ *
+ * 所有和填充棋盘有关的方法都在这里
  */
-public class AnimalGenerator {
+public class DotsGenerator {
     private static Random random=new Random();
     private static char generate(){
         int a=random.nextInt(KIND);
@@ -24,28 +25,29 @@ public class AnimalGenerator {
         return b;
 
 
+
     }
     public static void generateOne(int a,int b){
-        char[][] src= MapInfor.getInformation();
+        char[][] src= BoardInfor.getInformation();
         src[a][b]=generate();
-        MapInfor.setInformation(src);
+        BoardInfor.setInformation(src);
     }
     public static void generateSpace(){
-        char[][] src=MapInfor.getInformation();
-        for(int i=0;i<SIZE;i++){
-            for(int j=0;j<SIZE;j++){
+        char[][] src= BoardInfor.getInformation();
+        for(int i = 0; i< BOARD_SIZE; i++){
+            for(int j = 0; j< BOARD_SIZE; j++){
                 src[i][j]=(src[i][j]=='0')? generate():src[i][j];
             }
         }
-        MapInfor.setInformation(src);
+        BoardInfor.setInformation(src);
     }
     public static void generateAll(){
-        char[][] src=MapInfor.getInformation();
-        for(int i=0;i<SIZE;i++){
-            for(int j=0;j<SIZE;j++){
+        char[][] src= BoardInfor.getInformation();
+        for(int i = 0; i< BOARD_SIZE; i++){
+            for(int j = 0; j< BOARD_SIZE; j++){
                 src[i][j]=generate();
             }
         }
-        MapInfor.setInformation(src);
+        BoardInfor.setInformation(src);
     }
 }

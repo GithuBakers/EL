@@ -3,10 +3,11 @@ package Data;
 import java.awt.*;
 
 /**
- * Created by xuxiangzhe on 2017/3/27.
+ * 每个点的抽象
  */
 public class Dot extends Point {
-    private  char kind;
+    private char kind;
+
     public void setKind(char a){
         kind=a;
     }
