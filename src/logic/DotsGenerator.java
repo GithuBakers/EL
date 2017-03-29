@@ -1,10 +1,10 @@
-package Logic;
+package logic;
 
-import Data.BoardInfor;
+import data.BoardInfor;
 
 import java.util.Random;
 
-import static Data.CD.*;
+import static data.CD.*;
 
 /**
  *

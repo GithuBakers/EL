@@ -1,4 +1,4 @@
-package Logic;
+package logic;
 
 /**
  * 呀，对，就是这里，还没写……

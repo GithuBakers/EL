@@ -1,6 +1,6 @@
-import Data.MapInfor;
-import Logic.Judge;
-import Logic.Match;
+import data.BoardInfor;
+import logic.Judge;
+import logic.Match;
 
 import java.util.Arrays;
 
@@ -17,9 +17,8 @@ public class Main {
                 {'d','b','b','b','d','c','d','a'},
                 {'a','b','b','b','c','c','a','d'},
                 {'a','b','b','b','c','c','a','d'}};
-        MapInfor.setInformation(sample);
+        BoardInfor.setInformation(sample);
         System.out.println(Judge.judgeMatch3('b'));
-        Match.match();
-        System.out.println(Arrays.deepToString(MapInfor.getInformation()));
+        System.out.println(Arrays.deepToString(BoardInfor.getInformation()));
     }
 }

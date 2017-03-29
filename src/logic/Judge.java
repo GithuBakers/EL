@@ -1,10 +1,10 @@
-package Logic;
+package logic;
 
-import Data.BoardInfor;
+import data.BoardInfor;
 
 import java.util.regex.Pattern;
 
-import static Data.CD.BOARD_SIZE;
+import static data.CD.BOARD_SIZE;
 
 /**
  * Judge class 应当包含所有和"判断是否有能消去情况"有关的静态方法。

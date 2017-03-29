@@ -1,6 +1,6 @@
-package Data;
+package data;
 
-import static Data.CD.BOARD_SIZE;
+import static data.CD.BOARD_SIZE;
 
 /**
  * 关于棋盘信息
