@@ -1,7 +1,6 @@
 package data;
 
 import java.awt.*;
-import java.util.Arrays;
 
 /**
  * 每个点的抽象
@@ -55,7 +54,6 @@ public class Dot extends Point {
     }
     @Override
     public String toString(){
-        //TODO:
-        return null;
+        return String.valueOf(kind);
     }
 }

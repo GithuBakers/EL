@@ -37,7 +37,7 @@ public class Judge {
         return flag;
     }
     private static boolean judgeCol(){
-        String rePpattern;
+        String rePattern;
         StringBuffer stringBuffer=new StringBuffer();
         String str;
         Boolean flag=false;
@@ -47,13 +47,22 @@ public class Judge {
             }
             str=stringBuffer.toString();
             switch (toCheck){
-                case 'a':rePpattern="aa[bcd]a|a[bcd]aa";break;
-                case 'b':rePpattern="bb[acd]b|b[acd]bb";break;
-                case 'c':rePpattern="cc[abd]c|c[abd]cc";break;
-                case 'd':rePpattern="dd[acb]d|d[acb]dd";break;
-                default:rePpattern=" ";
+                case 'a':
+                    rePattern = "aa[bcd]a|a[bcd]aa";
+                    break;
+                case 'b':
+                    rePattern = "bb[acd]b|b[acd]bb";
+                    break;
+                case 'c':
+                    rePattern = "cc[abd]c|c[abd]cc";
+                    break;
+                case 'd':
+                    rePattern = "dd[acb]d|d[acb]dd";
+                    break;
+                default:
+                    rePattern = " ";
             }
-            Pattern pattern=Pattern.compile(rePpattern);
+            Pattern pattern = Pattern.compile(rePattern);
             flag=flag||pattern.matcher(str).find();
             stringBuffer.setLength(0);
         }
