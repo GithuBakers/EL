@@ -56,5 +56,6 @@ public class Dot extends Point {
     @Override
     public String toString(){
         //TODO:
+        return null;
     }
 }
