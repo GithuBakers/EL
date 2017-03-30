@@ -5,5 +5,5 @@ package logic;
  * 用于模拟下落过程
  */
 public class Move {
-
+    
 }
