@@ -1,6 +1,7 @@
 package data;
 
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * 每个点的抽象
@@ -30,6 +31,10 @@ public class Dot extends Point {
         kind=c;
     }
 
+    public Dot(char model){
+        kind = model;
+    }
+
     public Dot(Point p){
         super(p.x,p.y);
     }
@@ -47,5 +52,9 @@ public class Dot extends Point {
         }else {
             return false;
         }
+    }
+    @Override
+    public String toString(){
+        //TODO:
     }
 }

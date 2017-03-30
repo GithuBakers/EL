@@ -20,17 +20,17 @@ public class Judge {
         return judgeRow()||judgeCol();
     }
     private static boolean judgeRow(){
-        String rePpattern;
+        String regPattern;
         Boolean flag=false;
         for(int i = 0; i< BOARD_SIZE; i++){
             switch (toCheck){
-                case 'a':rePpattern="aa[bcd]a|a[bcd]aa";break;
-                case 'b':rePpattern="bb[acd]b|b[acd]bb";break;
-                case 'c':rePpattern="cc[abd]c|c[abd]cc";break;
-                case 'd':rePpattern="dd[acb]d|d[acb]dd";break;
-                default:rePpattern=" ";
+                case 'a':regPattern="aa[bcd]a|a[bcd]aa";break;
+                 case 'b':regPattern="bb[acd]b|b[acd]bb";break;
+                case 'c':regPattern="cc[abd]c|c[abd]cc";break;
+                case 'd':regPattern="dd[acb]d|d[acb]dd";break;
+                default:regPattern=" ";
             }
-            Pattern pattern=Pattern.compile(rePpattern);
+            Pattern pattern=Pattern.compile(regPattern);
             flag=flag||pattern.matcher(new String(src[i])).find();
 
         }
