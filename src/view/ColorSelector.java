@@ -10,8 +10,8 @@ public class ColorSelector {
 
     public static String getColor(int i,int j){
         char[][] index= BoardInfor.getInformation();
-        char indexColor=index[j][7-i];
-        String finalColor="white";
+        char indexColor=index[7-j][7-i];
+        String finalColor="black";
 
         switch (indexColor){
             case 'a':
