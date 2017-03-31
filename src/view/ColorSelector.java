@@ -3,7 +3,7 @@ package view;
 import data.BoardInfor;
 
 /**
- * Created by 15852 on 2017/3/31 0031.
+ * 必须要很荣幸的说，这个用来判断添加颜色的方法，成功消去了所有颜色.
  */
 public class ColorSelector {
 

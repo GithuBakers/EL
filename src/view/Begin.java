@@ -43,7 +43,6 @@ public class Begin extends Application {
             for(int j=0;j<8;j++){
                 ColorSelector colorSelector=new ColorSelector();
                 Rectangle rect=new Rectangle(80,80,Color.web(colorSelector.getColor(i,j)));
-
                 grid.add(rect,i,j);
             }
         }
