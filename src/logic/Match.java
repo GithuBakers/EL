@@ -5,11 +5,10 @@ import data.BoardInfor;
 import static data.CD.BOARD_SIZE;
 
 /**
- * 呀，对，就是这里，还没写……
+ * 写了！
  */
 public class Match {
     private static char[][] src;
-
     public static void match() {
         src = BoardInfor.getInformation();
         matchRow();
@@ -21,6 +20,7 @@ public class Match {
         for (int i = 0; i < BOARD_SIZE; i++) {
             src[i] = replace(src[i]);
         }
+
     }
 
     //这 个 方 法 ……  也 太 蠢 了  ┻━┻︵╰(‵□′)╯︵┻━┻

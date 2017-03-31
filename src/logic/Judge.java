@@ -2,6 +2,7 @@ package logic;
 
 import data.BoardInfor;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static data.CD.BOARD_SIZE;
@@ -18,6 +19,31 @@ public class Judge {
         src= BoardInfor.getInformation();
         toCheck=a;
         return judgeRow()||judgeCol();
+    }
+
+    //这个方法用来判断有没有能自动消去的
+    public static boolean judgeMatchFinished() {
+        boolean flag = false;
+        src = BoardInfor.getInformation();
+        String s = "aaa+|bbb+|ccc+|ddd+";
+        Pattern pattern = Pattern.compile(s);
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            Matcher matcher = pattern.matcher(src[i].toString());
+            flag = matcher.find() || flag;
+        }
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            StringBuffer stringBuffer = new StringBuffer();
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                stringBuffer.append(src[j][i]);
+            }
+            String string = stringBuffer.toString();
+            Matcher matcher = pattern.matcher(string);
+            flag = matcher.find() || flag;
+        }
+
+        return flag;
     }
     private static boolean judgeRow(){
         String regPattern;
