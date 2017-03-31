@@ -35,15 +35,14 @@ public class Begin extends Application {
         grid.setPadding(new Insets(25,25,25,25));
 
         Scene sceneGrid=new Scene(grid,1000,1000);
-
-
         primaryStage.setTitle("EL version 1.0");
         primaryStage.setScene(sceneGrid);
         primaryStage.show();
 
         for(int i=0;i<8;i++){
             for(int j=0;j<8;j++){
-                Rectangle rect=new Rectangle(80,80,Color.web("blue"));
+                ColorSelector colorSelector=new ColorSelector();
+                Rectangle rect=new Rectangle(80,80,Color.web(colorSelector.getColor(i,j)));
 
                 grid.add(rect,i,j);
             }
