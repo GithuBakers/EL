@@ -29,7 +29,7 @@ public class Judge {
         Pattern pattern = Pattern.compile(s);
 
         for (int i = 0; i < BOARD_SIZE; i++) {
-            Matcher matcher = pattern.matcher(src[i].toString());
+            Matcher matcher = pattern.matcher(new String(src[i]));
             flag = matcher.find() || flag;
         }
 
