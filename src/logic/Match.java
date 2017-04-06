@@ -21,7 +21,7 @@ public class Match {
 
     private static void matchRow() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-//            src[i] = replace(src[i]);
+            src[i] = replace(src[i]);
             src[i] = newReplace(src[i], 'a');
             src[i] = newReplace(src[i], 'b');
             src[i] = newReplace(src[i], 'c');
@@ -39,7 +39,7 @@ public class Match {
             for (int i = 0; i < BOARD_SIZE; i++) {
                 temp[i] = src[i][j];
             }
-            temp = replace(temp);
+//            temp = replace(temp);
 
             temp = newReplace(temp, 'a');
             temp = newReplace(temp, 'b');
@@ -52,7 +52,7 @@ public class Match {
         }
     }
 
-    //这 个 方 法 写 的 实 在 是 太 难 看 了 ……    ⁄(⁄ ⁄ ⁄ω⁄ ⁄ ⁄)⁄
+    //这 个 方 法 已 经 被 废 除 了
     private static char[] replace(char[] chars) {
         return new String(chars).replaceAll("(?i)aaaaa", "AAAAA").replaceAll("(?i)bbbbb", "BBBBB").replaceAll("(?i)ccccc", "CCCCC").
                 replaceAll("(?i)ddddd", "DDDDD").replaceAll("(?i)aaaa", "AAAA").replaceAll("(?i)bbbb", "BBBB").

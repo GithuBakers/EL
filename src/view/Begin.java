@@ -1,28 +1,18 @@
 package view;
 
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.animation.ParallelTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
@@ -104,13 +94,13 @@ public class Begin extends Application {
 
     public void animation(){
         TranslateTransition rect1
-                =new TranslateTransition(Duration.millis(500),changeRect.get(0));
+                = new TranslateTransition(Duration.millis(50), changeRect.get(0));
         rect1.setToX(change.get(2)-change.get(0));
         rect1.setToY(change.get(3)-change.get(1));
         rect1.setCycleCount(0);
 
         TranslateTransition rect2
-                =new TranslateTransition(Duration.millis(500),changeRect.get(1));
+                = new TranslateTransition(Duration.millis(50), changeRect.get(1));
         rect2.setToX(change.get(0)-change.get(2));
         rect2.setToY(change.get(1)-change.get(3));
         rect1.setCycleCount(0);
