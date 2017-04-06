@@ -2,6 +2,7 @@ import data.BoardInfor;
 import logic.Judge;
 import logic.Match;
 import logic.Move;
+import view.Begin;
 
 import java.util.Arrays;
 
@@ -22,6 +23,7 @@ public class Main {
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'd', 'c', 'c', 'a', 'd'}};
         BoardInfor.setInformation(sample);
+        Begin.main(null);
 //        Begin.main(null);
         while (Judge.judgeMatchFinished()) {
             Match.match();

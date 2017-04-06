@@ -1,4 +1,4 @@
-package storyMode.sdata;
+package sdata;
 
 /**
  * Created by xuxiangzhe on 2017/4/6.

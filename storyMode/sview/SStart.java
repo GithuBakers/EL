@@ -1,4 +1,5 @@
-package storyMode.sview;/**
+package sview;
+/**
  * Created by xuxiangzhe on 2017/4/6.
  */
 
