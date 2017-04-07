@@ -47,6 +47,9 @@ public class Begin extends Application {
         primaryStage.setScene(sceneGrid);
         primaryStage.show();
 
+        Music bgm = new Music();
+        bgm.init();
+
         for(i=0;i<8;i++){
             for(j=0;j<8;j++){
                 ColorSelector colorSelector=new ColorSelector();
