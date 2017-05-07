@@ -1,18 +1,19 @@
 package data;
 
-import static data.CD.BOARD_SIZE_X;
-import static data.CD.BOARD_SIZE_Y;
 
 /**
- * 关于棋盘信息
+ * Created by xuxiangzhe on 2017/5/7.
  */
 public class BoardInfor {
-    private static char[][] BoardCharInformation = new char[BOARD_SIZE_X][BOARD_SIZE_Y];
+    private static Diamond[][] board = new Diamond[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
 
-    public static char[][] getInformation(){
-        return BoardCharInformation;
+    public static Diamond[][] getBoardInformation() {
+        return board;
     }
-    public static void setInformation(char[][] a){
-        BoardCharInformation =a;
+
+    public static boolean setBoardInformation(Diamond[][] a) {
+        board = a;
+        return true;
     }
+
 }

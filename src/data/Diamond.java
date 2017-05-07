@@ -10,7 +10,7 @@ public class Diamond {
     private int special = 0;
     private int condition = 0;
 
-    Diamond(char c, int xx, int yy) {
+    public Diamond(char c, int xx, int yy) {
         x = xx;
         y = yy;
         kind = c;
@@ -38,6 +38,11 @@ public class Diamond {
     @Override
     public boolean equals(Object o) {
         return ((Diamond) o).kind == this.kind;
+    }
+
+    @Override
+    public String toString() {
+        return "" + kind + "@" + x + "@" + y + "@" + special + "@" + condition;
     }
 
 }
