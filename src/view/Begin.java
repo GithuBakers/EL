@@ -1,39 +1,86 @@
-//package view;
-//
-//
-//import javafx.animation.ParallelTransition;
-//import javafx.animation.TranslateTransition;
-//import javafx.application.Application;
-//import javafx.geometry.Insets;
-//import javafx.geometry.Pos;
-//import javafx.scene.Scene;
-//import javafx.scene.layout.GridPane;
-//import javafx.scene.paint.Color;
-//import javafx.scene.shape.Rectangle;
-//import javafx.stage.Stage;
-//import javafx.util.Duration;
-//
-//import java.util.ArrayList;
-//
-///**
-// * 写这个完全是为了凸显界面的存在感……(╯°Д°）╯︵ /(.□ . \)←小白
-// */
-//
-//public class Begin extends Application {
-//
-//    int i=0;
-//    int j=0;
-//    int index=0;
-//    static ArrayList<Double> change=new ArrayList<Double>();
-////    ArrayList<String> changeColor=new ArrayList<>();
-//    static ArrayList<Rectangle> changeRect=new ArrayList<>();
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//
-//    @Override
-//    public void start(Stage primaryStage) {
+package view;
+
+
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import jdk.internal.dynalink.beans.StaticClass;
+import view.screensFramework.frameChanger.FramesController;
+
+import java.util.ArrayList;
+
+/**
+ * 写这个完全是为了凸显界面的存在感……(╯°Д°）╯︵ /(.□ . \)←小白
+ */
+
+public class Begin extends Application {
+
+    public static final String classicScreenID="classicScreen";
+    public static final String classicScreenFile="/classic/Classic.fxml";
+    public static final String startScreenID="startScreen";
+    public static final String startScreenFile="/start/start.fxml";
+
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        FramesController framesController=new FramesController();
+        framesController.loadScreen(classicScreenID,classicScreenFile);
+        framesController.loadScreen(startScreenID,startScreenFile);
+
+        framesController.setScreen(classicScreenID);
+
+        Group root=new Group();
+        root.getChildren().addAll(framesController);
+        Scene scene=new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    int i = 0;
+//    int j = 0;
+//    int index = 0;
+//    static ArrayList<Double> change = new ArrayList<Double>();
+//    //    ArrayList<String> changeColor=new ArrayList<>();
+//    static ArrayList<Rectangle> changeRect = new ArrayList<>();
+
+
+
+
+
+
 //
 //        GridPane grid=new GridPane();
 //        grid.setAlignment(Pos.CENTER);
@@ -105,7 +152,6 @@
 //        TranslateTransition rect2
 //                = new TranslateTransition(Duration.millis(50), changeRect.get(1));
 //        rect2.setToX(change.get(0)-change.get(2));
-//
 //        rect2.setToY(change.get(1)-change.get(3));
 //        rect1.setCycleCount(0);
 //
