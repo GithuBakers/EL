@@ -14,17 +14,42 @@ public class Judge {
     private static char toCheck;
     private static char[][] src;
 
+    //这个方法用来判断是不是一次合法的移动
+    public static boolean judgeValid(int x1, int y1, int x2, int y2) {
+        boolean ret = true;
+        if (x1 - x2 > 1 || x2 - x1 > 1 || y1 - y2 > 1 || y2 - y1 > 1) {
+            ret = false;
+        }
+        src = BoardInfor.getInformation();
+        char toMove = src[x1][y1];
+        src[x1][y1] = src[x2][y2];
+        src[x2][y2] = toMove;
+        ret = judgeMatchFinished(toMove, src);
+        return ret;
+
+    }
+
+
     //This method is used to judge whether there are three same dots or more;
-    public static boolean judgeMatch3(char a){
-        src= BoardInfor.getInformation();
+    public static boolean judgeMatch3(char a, char[][]... d) {
+        if (d.length == 0) {
+            src = BoardInfor.getInformation();
+        } else {
+            src = d[0];
+        }
         toCheck=a;
         return judgeRow()||judgeCol();
     }
 
     //这个方法用来判断有没有能自动消去的
-    public static boolean judgeMatchFinished() {
+    //参数c是没有用的，但是我想获取一个可变参数列表，所以……
+    public static boolean judgeMatchFinished(char c, char[][]... d) {
         boolean flag = false;
-        src = BoardInfor.getInformation();
+        if (d.length == 0) {
+            src = BoardInfor.getInformation();
+        } else {
+            src = d[0];
+        }
         String s = "aaa+|bbb+|ccc+|ddd+";
         Pattern pattern = Pattern.compile(s);
 

@@ -105,6 +105,7 @@ public class Begin extends Application {
         TranslateTransition rect2
                 = new TranslateTransition(Duration.millis(50), changeRect.get(1));
         rect2.setToX(change.get(0)-change.get(2));
+
         rect2.setToY(change.get(1)-change.get(3));
         rect1.setCycleCount(0);
 
