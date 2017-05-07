@@ -17,19 +17,23 @@ public class Diamond {
     }
 
     public boolean isSpecial() {
-        return special != 0;
+        return (special != 0) && (special != 3);
     }
 
     public boolean isMatched() {
         return condition != 0;
     }
 
-    public void makeSpecial(int a) {
-        special = a;
+    public int getSpecial() {
+        return special;
     }
 
-    public void matchIt() {
-        condition = 1;
+    public void makeSpecial(int a) {
+        special = special | a;
+    }
+
+    public void matchMe() {
+        condition = condition | 1;
         switch (special) {
             //TODO:different types
         }
