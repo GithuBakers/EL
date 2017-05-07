@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import view.Begin;
 import view.screensFramework.ControlledFrame;
 
 import java.util.HashMap;
@@ -52,30 +53,50 @@ public class FramesController extends StackPane{
             if(!getChildren().isEmpty()){
                 Timeline fade=new Timeline(
                         new KeyFrame(Duration.ZERO,new KeyValue(opacity,1)),
-                        new KeyFrame(Duration.millis(800), new EventHandler<ActionEvent>() {
+                        new KeyFrame(Duration.millis(300), new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
                                 getChildren().remove(0);
+
+                                ControlledPane controlledPane=selectScreen(name);
+                                controlledPane.initMyPane(map.get(name));
+                                controlledPane.adjustMyPane();
+
                                 getChildren().add(0,map.get(name));
 
                                 Timeline fadeIn=new Timeline(
                                         new KeyFrame(Duration.ZERO,new KeyValue(opacity,0)),
-                                        new KeyFrame(Duration.millis(800),new KeyValue(opacity,1)));
+                                        new KeyFrame(Duration.millis(300),new KeyValue(opacity,1)));
                                 fadeIn.play();
                             }
                         },new KeyValue(opacity,0)));
                 fade.play();
             }else {
+                ControlledPane controlledPane=selectScreen(name);
+                controlledPane.initMyPane(map.get(name));
+                controlledPane.adjustMyPane();
+
                 getChildren().add(0,map.get(name));
 
                 Timeline fadeIn=new Timeline(
                         new KeyFrame(Duration.ZERO,new KeyValue(opacity,0)),
-                        new KeyFrame(Duration.millis(800),new KeyValue(opacity,1)));
+                        new KeyFrame(Duration.millis(1000),new KeyValue(opacity,1)));
                 fadeIn.play();
                 System.out.println("???");
             }
         }else{
             System.out.println("fxxk??");
+        }
+
+    }
+
+    public ControlledPane selectScreen(String name){
+        if(name.equals(Begin.startScreenID)){
+            return new StartScreen();
+        }else if(name.equals(Begin.classicScreenID)){
+            return new ClassicScreen();
+        }else {
+            return null;
         }
 
     }
