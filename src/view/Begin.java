@@ -1,22 +1,11 @@
 package view;
 
 
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import jdk.internal.dynalink.beans.StaticClass;
-import view.screensFramework.frameChanger.FramesController;
-
-import java.util.ArrayList;
+import view.screensFramework.FramesController;
 
 /**
  * 写这个完全是为了凸显界面的存在感……(╯°Д°）╯︵ /(.□ . \)←小白
@@ -24,10 +13,10 @@ import java.util.ArrayList;
 
 public class Begin extends Application {
 
-    public static final String classicScreenID="classicScreen";
-    public static final String classicScreenFile="/classic/Classic.fxml";
-    public static final String startScreenID="startScreen";
-    public static final String startScreenFile="/start/start.fxml";
+    public static String classicScreenID="classicScreen";
+    public static String classicScreenFile="Classic.fxml";
+    public static String startScreenID="startScreen";
+    public static String startScreenFile="start.fxml";
 
 
 
@@ -41,7 +30,7 @@ public class Begin extends Application {
         framesController.loadScreen(classicScreenID,classicScreenFile);
         framesController.loadScreen(startScreenID,startScreenFile);
 
-        framesController.setScreen(classicScreenID);
+        framesController.setScreen(startScreenID);
 
         Group root=new Group();
         root.getChildren().addAll(framesController);
