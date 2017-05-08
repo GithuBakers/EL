@@ -13,7 +13,7 @@ public class StartScreenController implements ControlledFrame {
 
     @FXML
     public void toClassic(){
-        framesController.setScreen(Begin.classicScreenID);
+        framesController.setScreen(Begin.startScreenID,Begin.classicScreenID);
     }
 
     @Override

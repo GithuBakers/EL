@@ -16,7 +16,7 @@ public class Begin extends Application {
     public static String classicScreenID="classicScreen";
     public static String classicScreenFile="Classic.fxml";
     public static String startScreenID="startScreen";
-    public static String startScreenFile="start.fxml";
+    public static String startScreenFile="fxmlFiles/start.fxml";
 
 
 
@@ -30,7 +30,7 @@ public class Begin extends Application {
         framesController.loadScreen(classicScreenID,classicScreenFile);
         framesController.loadScreen(startScreenID,startScreenFile);
 
-        framesController.setScreen(startScreenID);
+        framesController.setScreen(classicScreenID);
 
         Group root=new Group();
         root.getChildren().addAll(framesController);
