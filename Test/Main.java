@@ -77,7 +77,7 @@ public class Main {
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
         toTest(sample5);
 
-        System.out.println(xxzNJudge.isFinished());
+        System.out.println(xxzNJudge.isUnfinished());
         xxzNMatch.mark();
         print(BoardInfor.getBoardInformation());
         printProperties(BoardInfor.getBoardInformation());
