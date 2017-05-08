@@ -10,7 +10,8 @@ import data.Diamond;
 public class xxzNJudge {
     private static Diamond[][] src;
 
-    public static boolean judge() {
+    //
+    public static boolean isFinished() {
         src = BoardInfor.getBoardInformation();
         int cnt = 0;
         char state = '0';
