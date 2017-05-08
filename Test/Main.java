@@ -2,6 +2,7 @@ import data.BoardInfor;
 import data.CD;
 import data.Diamond;
 import logic.xxzNJudge;
+import logic.xxzNMatch;
 
 import static data.CD.BOARD_SIZE_X;
 import static data.CD.BOARD_SIZE_Y;
@@ -20,6 +21,7 @@ public class Main {
                 {'a', 'd', 'd', 'd', 'd', 'c', 'd', 'a'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'd', 'c', 'c', 'a', 'd'}};
+        //没有能自动匹配的
         char[][] sample1 = {
                 {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
                 {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
@@ -29,11 +31,56 @@ public class Main {
                 {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
-        toTest(sample1);
+        //测试行特殊匹配5
+        char[][] sample2 = {
+                {'a', 'f', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'c', 'b', 'b', 'b', 'c', 'c', 'd'},
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}
 
+        };
+        //测试行特殊匹配6
+        char[][] sample3 = {
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'b', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'a', 'c', 'f', 'c', 'd'},
+                {'a', 'c', 'c', 'a', 'b', 'b', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
 
-        System.out.println(xxzNJudge.judge());
+        //测试行特殊匹配7
+        char[][] sample4 = {
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
+                {'d', 'a', 'b', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'c', 'b', 'a', 'c', 'f', 'c', 'd'},
+                {'a', 'c', 'b', 'a', 'b', 'b', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
+        //测试一行4／5的单一特效和7的成功消除
+        char[][] sample5 = {
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'b', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'd'},
+                {'a', 'c', 'c', 'c', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
+        toTest(sample5);
+
+        System.out.println(xxzNJudge.isUnfinished());
+        xxzNMatch.mark();
         print(BoardInfor.getBoardInformation());
+        printProperties(BoardInfor.getBoardInformation());
 
     }
 
@@ -52,6 +99,26 @@ public class Main {
         for (int i = 0; i < BOARD_SIZE_X; i++) {
             for (int j = 0; j < BOARD_SIZE_Y; j++) {
                 System.out.print(" " + src[i][j].toString().charAt(0) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("__________________________________");
+    }
+
+    public static void printProperties(Diamond[][] src) {
+        System.out.println("__________________________________");
+        for (int i = 0; i < BOARD_SIZE_X; i++) {
+            for (int j = 0; j < BOARD_SIZE_Y; j++) {
+                System.out.printf("%3x ", Integer.valueOf(src[i][j].toString().split("@")[4]));
+            }
+            System.out.println();
+        }
+        System.out.println("__________________________________");
+
+        System.out.println("__________________________________");
+        for (int i = 0; i < BOARD_SIZE_X; i++) {
+            for (int j = 0; j < BOARD_SIZE_Y; j++) {
+                System.out.printf("%3x ", Integer.valueOf(src[i][j].toString().split("@")[3]));
             }
             System.out.println();
         }

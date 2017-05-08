@@ -10,8 +10,11 @@ import data.Diamond;
 public class xxzNJudge {
     private static Diamond[][] src;
 
-    public static boolean judge() {
-        src = BoardInfor.getBoardInformation();
+    //检查全图中是否可还有可以自动去掉的东西
+    public static boolean isUnfinished(Boolean... x) {
+        if (x.length == 0) {
+            src = BoardInfor.getBoardInformation();
+        }
         int cnt = 0;
         char state = '0';
         Diamond now;
@@ -88,4 +91,22 @@ public class xxzNJudge {
 
         return false;
     }
+
+    //检查一步移动是不是合理
+    public static boolean isVaild(int x1, int y1, int x2, int y2) {
+        boolean ret = false;
+        int deltaX = Math.abs(x1 - x2);
+        int deltaY = Math.abs(y1 - y2);
+        Diamond temp;
+        if ((deltaX + deltaY) == 1) {
+            src = BoardInfor.getBoardInformation();
+            temp = src[x1][y1];
+            src[x1][y1] = src[x2][y2];
+            src[x2][y2] = temp;
+            ret = isUnfinished(false);
+        }
+        return ret;
+    }
+
+
 }
