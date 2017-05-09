@@ -5,19 +5,14 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.screensFramework.FramesController;
+import view.screens.FramesController;
+import view.screens.loader.FramesLoader;
 
 /**
  * 写这个完全是为了凸显界面的存在感……(╯°Д°）╯︵ /(.□ . \)←小白
  */
 
 public class Begin extends Application {
-
-    public static String classicScreenID="classicScreen";
-    public static String classicScreenFile="Classic.fxml";
-    public static String startScreenID="startScreen";
-    public static String startScreenFile="fxmlFiles/start.fxml";
-
 
 
     public static void main(String[] args) {
@@ -26,14 +21,9 @@ public class Begin extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FramesController framesController=new FramesController();
-        framesController.loadScreen(classicScreenID,classicScreenFile);
-        framesController.loadScreen(startScreenID,startScreenFile);
-
-        framesController.setScreen(classicScreenID);
 
         Group root=new Group();
-        root.getChildren().addAll(framesController);
+        root.getChildren().addAll(FramesLoader.loadScreens());
         Scene scene=new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

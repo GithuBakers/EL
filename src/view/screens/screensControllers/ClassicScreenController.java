@@ -1,4 +1,4 @@
-package view.screensFramework;
+package view.screens.screensControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,9 +6,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Mesh;
 import javafx.scene.shape.Rectangle;
 import view.Begin;
+import view.animations.AnimatorSetting;
+import view.screens.FramesController;
+import view.screens.frameInterface.ControlledFrame;
+import view.screens.loader.FramesLoader;
 
 /**
  * Created by 15852 on 2017/5/7 0007.
@@ -46,7 +49,7 @@ public class ClassicScreenController implements ControlledFrame {
     }
 
     public void toStart(){
-        framesController.setScreen(Begin.classicScreenID,Begin.startScreenID);
+        framesController.setScreen(FramesLoader.classicScreenID,FramesLoader.startScreenID,AnimatorSetting.ANIMATOR_SLIDEINRIGHT);
     }
 
     @Override
