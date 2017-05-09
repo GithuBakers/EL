@@ -1,9 +1,11 @@
-package view.screensFramework;
+package view.screens.screensControllers;
 
 import javafx.fxml.FXML;
 import view.Begin;
-import view.screensFramework.ControlledFrame;
-import view.screensFramework.FramesController;
+import view.animations.AnimatorSetting;
+import view.screens.FramesController;
+import view.screens.frameInterface.ControlledFrame;
+import view.screens.loader.FramesLoader;
 
 /**
  * Created by 15852 on 2017/5/7 0007.
@@ -13,7 +15,7 @@ public class StartScreenController implements ControlledFrame {
 
     @FXML
     public void toClassic(){
-        framesController.setScreen(Begin.startScreenID,Begin.classicScreenID);
+        framesController.setScreen(FramesLoader.startScreenID,FramesLoader.classicScreenID,AnimatorSetting.ANIMATOR_SLIDEINLEFT);
     }
 
     @Override
