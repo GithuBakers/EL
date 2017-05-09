@@ -93,7 +93,7 @@ public class xxzNJudge {
     }
 
     //检查一步移动是不是合理
-    public static boolean isVaild(int x1, int y1, int x2, int y2) {
+    public static boolean isValid(int x1, int y1, int x2, int y2) {
         boolean ret = false;
         int deltaX = Math.abs(x1 - x2);
         int deltaY = Math.abs(y1 - y2);
@@ -108,5 +108,10 @@ public class xxzNJudge {
         return ret;
     }
 
-
+    //检查是否是一张合理的地图
+    public static boolean isMapValid() {
+        boolean ret = false;
+        //TODO:unfinished
+        return ret;
+    }
 }

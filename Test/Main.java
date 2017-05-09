@@ -75,7 +75,17 @@ public class Main {
                 {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
-        toTest(sample5);
+        //列特殊匹配4／5／7
+        char[][] sample11 = {
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'b', 'b', 'b', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'a', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'b', 'c', 'a', 'c', 'f', 'c', 'd'},
+                {'a', 'b', 'c', 'a', 'b', 'f', 'a', 'd'},
+                {'d', 'b', 'c', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'b', 'c', 'd', 'c', 'f', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
+        toTest(sample11);
 
         System.out.println(xxzNJudge.isUnfinished());
         xxzNMatch.mark();
