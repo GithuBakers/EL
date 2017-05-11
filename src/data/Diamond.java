@@ -1,6 +1,6 @@
 package data;
 
-import logic.DiamondGenerator;
+import logic.BoardManager;
 
 /**
  * Created by xuxiangzhe on 2017/5/7.
@@ -19,7 +19,7 @@ public class Diamond {
     }
 
     public boolean isSpecial() {
-        return (special != 0) && (special != 3);
+        return (special != 0);
     }
 
     public boolean isMatched() {
@@ -35,79 +35,90 @@ public class Diamond {
     }
 
     public void matchMe() {
-        condition = condition | 1;
-        int temp = special & 0xff0;
-        special &= 0x0f;
-        switch (temp) {
-            case 0x210: {
-                Diamond[][] src = BoardInfor.getBoardInformation();
-                boolean xzf = (x == 0), yzf = (y == 0);
-                boolean xof = (x == CD.BOARD_SIZE_X - 1), yof = (y == CD.BOARD_SIZE_Y - 1);
-                //upper-left
-                if ((!yzf) && (!xzf)) {
-                    src[x - 1][y - 1].matchMe();
+        if (condition == 0) {
+            int temp = special & 0xff0;
+            special &= 0x0f;
+            switch (temp) {
+                case 0x210: {
+                    Diamond[][] src = BoardInfor.getBoardInformation();
+                    boolean xzf = (x == 0), yzf = (y == 0);
+                    boolean xof = (x == CD.BOARD_SIZE_X - 1), yof = (y == CD.BOARD_SIZE_Y - 1);
+                    //upper-left
+                    if ((!yzf) && (!xzf)) {
+                        src[x - 1][y - 1].matchMe();
+                    }
+                    //up
+                    if (!xzf) {
+                        src[x - 1][y].matchMe();
+                    }
+                    //upper-right
+                    if ((!yof) && (!xzf)) {
+                        src[x - 1][y + 1].matchMe();
+                    }
+                    //left
+                    if (!yzf) {
+                        src[x][y - 1].matchMe();
+                    }
+                    //right
+                    if (!yof) {
+                        src[x][y + 1].matchMe();
+                    }
+                    //downer-right
+                    if ((!yof) && (!xof)) {
+                        src[x + 1][y + 1].matchMe();
+                    }
+                    //down
+                    if (!xof) {
+                        src[x + 1][y].matchMe();
+                    }
+                    //downer-left
+                    if ((!yzf) && (!xof)) {
+                        src[x + 1][y - 1].matchMe();
+                    }
+                    break;
                 }
-                //up
-                if (!xzf) {
-                    src[x - 1][y].matchMe();
-                }
-                //upper-right
-                if ((!yof) && (!xzf)) {
-                    src[x - 1][y + 1].matchMe();
-                }
-                //left
-                if (!yzf) {
-                    src[x][y - 1].matchMe();
-                }
-                //right
-                if (!yof) {
-                    src[x][y + 1].matchMe();
-                }
-                //downer-right
-                if ((!yof) && (!xof)) {
-                    src[x + 1][y + 1].matchMe();
-                }
-                //down
-                if (!xof) {
-                    src[x + 1][y].matchMe();
-                }
-                //downer-left
-                if ((!yzf) && (!xof)) {
-                    src[x + 1][y - 1].matchMe();
-                }
-                break;
-            }
-            case 0x220: {
-                Diamond[][] src = BoardInfor.getBoardInformation();
-                for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
-                    src[i][y].matchMe();
-                }
+                case 0x220: {
+                    Diamond[][] src = BoardInfor.getBoardInformation();
+                    for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+                        src[i][y].matchMe();
+                    }
 
-                for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
-                    src[x][i].matchMe();
+                    for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
+                        src[x][i].matchMe();
+                    }
+                    break;
                 }
-                break;
-            }
-            case 0x30:
-            case 0x230: {
-                DiamondGenerator.generateAll();
-                break;
-            }
-            case 0x40: {
-                Diamond[][] src = BoardInfor.getBoardInformation();
-                for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
-                    src[i][y].matchMe();
+                case 0x30:
+                case 0x230: {
+                    BoardManager.generateAll();
+                    break;
                 }
-                break;
-            }
-            case 0x240: {
-                Diamond[][] src = BoardInfor.getBoardInformation();
-                for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
-                    src[x][i].matchMe();
+                case 0x40: {
+                    Diamond[][] src = BoardInfor.getBoardInformation();
+                    for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+                        src[i][y].matchMe();
+                    }
+                    break;
                 }
-                break;
+                case 0x240: {
+                    Diamond[][] src = BoardInfor.getBoardInformation();
+                    for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
+                        src[x][i].matchMe();
+                    }
+                    break;
+                }
             }
         }
+        condition = condition | 1;
+    }
+
+    public void changeLocation(int xx, int yy) {
+        x = xx;
+        y = yy;
+    }
+
+    public void cleanMatch() {
+        condition = 0;
     }
 
     @Override

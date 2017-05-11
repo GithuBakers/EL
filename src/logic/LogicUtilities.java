@@ -22,4 +22,6 @@ public class LogicUtilities {
         dy=(y/INTERVAL) + Math.round( (y%INTERVAL) / (INTERVAL*0.5F) );
         return new Point(dx,dy);
     }
+
+
 }

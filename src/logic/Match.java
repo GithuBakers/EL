@@ -70,7 +70,6 @@ public class Match {
 
                 case 4: {
                     if (now.kind == state) {
-                        cnt++;
                         loc[4] = i;
                         cnt = 9;
                     } else {
@@ -153,7 +152,6 @@ public class Match {
 
                 case 4: {
                     if (now.kind == state) {
-                        cnt++;
                         loc[4] = i;
                         cnt = 9;
                     } else {
@@ -297,7 +295,7 @@ public class Match {
         }
     }
 
-    public static void mark4C(int x, int y) {
+    private static void mark4C(int x, int y) {
         int cnt;
         boolean zf, onef, lastf, last2f;
         for (int i = 3; i >= 0; i--) {
@@ -531,7 +529,6 @@ public class Match {
 
     }
 
-
     //markSingle Column
     public static void markSingleColumn(int y) {
         int cnt = 0;
@@ -578,7 +575,7 @@ public class Match {
                             mark4C(i, y);
                         }
                     } else {
-                        mark4C(i - 1, y);
+                        mark3C(i - 1, y);
                         cnt = 1;
                         state = now.kind;
                         temp[0] = now;

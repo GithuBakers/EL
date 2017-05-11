@@ -1,6 +1,7 @@
 import data.BoardInfor;
 import data.CD;
 import data.Diamond;
+import logic.BoardManager;
 import logic.Judge;
 import logic.Match;
 
@@ -105,20 +106,25 @@ public class Main {
                 {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'d', 'd', 'd', 'a', 'c', 'd', 'd', 'd'}};
-        toTest(sample21);
+        toTest(sample3);
 
         //测试特效
-        Diamond[][] src = BoardInfor.getBoardInformation();
+//        Diamond[][] src = BoardInfor.getBoardInformation();
 //        src[0][0].makeSpecial(CD.L);
 //        src[7][0].makeSpecial(CD.L);
-        src[0][7].makeSpecial(CD.L);
+//        src[0][7].makeSpecial(CD.L);
 //        src[7][7].makeSpecial(CD.L);
 
         System.out.println(Judge.isUnfinished());
+        printProperties(BoardInfor.getBoardInformation());
         Match.mark();
+        printProperties(BoardInfor.getBoardInformation());
         print(BoardInfor.getBoardInformation());
         printProperties(BoardInfor.getBoardInformation());
-
+        BoardManager.clean();
+        print(BoardInfor.getBoardInformation());
+        BoardManager.generateSpace();
+        print(BoardInfor.getBoardInformation());
     }
 
     public static void toTest(char[][] c) {
@@ -135,7 +141,11 @@ public class Main {
         System.out.println("__________________________________");
         for (int i = 0; i < BOARD_SIZE_X; i++) {
             for (int j = 0; j < BOARD_SIZE_Y; j++) {
-                System.out.print(" " + src[i][j].toString().charAt(0) + " ");
+                if (src[i][j] != null) {
+                    System.out.print(" " + src[i][j].toString().charAt(0) + " ");
+                } else {
+                    System.out.print(" " + "#" + " ");
+                }
             }
             System.out.println();
         }
