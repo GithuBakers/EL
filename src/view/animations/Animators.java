@@ -90,6 +90,9 @@ public class Animators {
         return  slideInRight;
     }
 
+
+
+
     public Timeline fadeIn(Node screen1,Node screen2,int durMillis){
         Timeline fadeIn=new Timeline(
                 new KeyFrame(Duration.millis(durMillis),new KeyValue(screen1.opacityProperty(),0)),

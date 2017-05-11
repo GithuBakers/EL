@@ -11,11 +11,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.StartScreenController">
    <children>
-      <ImageView fitHeight="808.0" fitWidth="2108.0" layoutX="-61.0" layoutY="-8.0">
-         <image>
-            <Image url="@cinemagraph-gifs-highway.gif" />
-         </image>
-      </ImageView>
-      <Button layoutX="80.0" layoutY="556.0" mnemonicParsing="false" onMouseClicked="#toClassic" text="Button" />
+      <Button layoutX="660.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#toClassic" style="-fx-background-color: transparent;" styleClass="start-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="200.0">
+               <image>
+                  <Image url="@../../resources/startButtonsBlack.PNG" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>

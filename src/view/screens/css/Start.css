@@ -1,0 +1,6 @@
+.start-button{
+    -fx-graphic: url("/view/resources/startButtonsBlack.PNG");
+}
+.start-button:hover{
+    -fx-graphic: url("/view/resources/startButtonsBlackFinal.gif");
+}

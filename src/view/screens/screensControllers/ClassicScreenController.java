@@ -1,7 +1,11 @@
 package view.screens.screensControllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.*;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -12,6 +16,9 @@ import view.animations.AnimatorSetting;
 import view.screens.FramesController;
 import view.screens.frameInterface.ControlledFrame;
 import view.screens.loader.FramesLoader;
+import view.screens.stars.StarSelecter;
+
+import java.awt.*;
 
 /**
  * Created by 15852 on 2017/5/7 0007.
@@ -37,6 +44,16 @@ public class ClassicScreenController implements ControlledFrame {
 
     public void setFuck(){
         fuck.setText("fuckfuck");
+        Image fuck= StarSelecter.getImage('a');
+        ImageView imageView=new ImageView(fuck);
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                imageView.setImage(StarSelecter.getModifiedImage('a'));
+            }
+        });
+        classicGrid.add(imageView,0,0);
+
     }
 
     public void miaomiaomiao(){
