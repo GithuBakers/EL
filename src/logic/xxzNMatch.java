@@ -13,6 +13,7 @@ public class xxzNMatch {
     public static void mark() {
         src = BoardInfor.getBoardInformation();
         markLine();
+        markColumn();
         BoardInfor.setBoardInformation(src);
     }
 
@@ -99,6 +100,88 @@ public class xxzNMatch {
 
     }
 
+    //标记x这行从y开始向右5个（包括）
+    private static int markAdjacentR(int x, int y) {
+        int cnt;
+        char state = src[x][y].kind;
+        Integer[] loc = new Integer[5];
+        Diamond now;
+        cnt = 0;
+        for (int i = 0; i < 5; i++) {
+            now = src[x][y + i];
+            switch (cnt) {
+                case 0: {
+                    loc[0] = i;
+                    cnt++;
+                    break;
+                }
+
+                case 1: {
+                    if (now.kind == state) {
+                        cnt++;
+                        loc[1] = i;
+                    } else {
+                        cnt = 1;
+                        loc[0] = i;
+                        state = now.kind;
+                    }
+                    break;
+                }
+
+                case 2: {
+                    if (now.kind == state) {
+                        cnt++;
+                        loc[2] = i;
+                    } else {
+                        cnt = 1;
+                        loc[1] = null;
+                        loc[0] = i;
+                        state = now.kind;
+                    }
+                    break;
+                }
+
+                case 3: {
+                    if (now.kind == state) {
+                        cnt++;
+                        loc[3] = i;
+                    } else {
+                        cnt = 9;
+                    }
+                    break;
+                }
+
+                case 4: {
+                    if (now.kind == state) {
+                        cnt++;
+                        loc[4] = i;
+                        cnt = 9;
+                    } else {
+                        cnt = 9;
+                    }
+                    break;
+                }
+
+                case 9: {
+                    break;
+                }
+            }
+        }
+        if (cnt == 9) {
+            cnt = 0;
+            for (int i = 0; i < 5; i++) {
+                if (loc[i] != null) {
+                    src[x][y + i].matchMe();
+                    cnt++;
+                }
+            }
+        } else {
+            cnt = 0;
+        }
+
+        return cnt;
+    }
+
     private static void mark3R(int x, int y) {
         int cnt;
         boolean zf, onef, lastf, last2f;
@@ -138,7 +221,46 @@ public class xxzNMatch {
         }
     }
 
-    public static void mark4R(int x, int y) {
+    private static void mark3C(int x, int y) {
+        int cnt;
+        boolean zf, onef, lastf, last2f;
+        for (int i = 2; i >= 0; i--) {
+
+            src[x - i][y].matchMe();
+            //查看是否能形成L等图形
+            zf = (y == 0);
+            onef = (y == 1);
+            lastf = (y == (CD.BOARD_SIZE_Y - 1));
+            last2f = (y == (CD.BOARD_SIZE_Y - 2));
+            if (zf) {
+                cnt = markAdjacentR(x - i, y);
+            } else if (onef) {
+                cnt = markAdjacentR(x - i, y - 1);
+            } else if (last2f) {
+                cnt = markAdjacentR(x - i, y - 3);
+            } else if (lastf) {
+                cnt = markAdjacentR(x - i, y - 4);
+            } else {
+                cnt = markAdjacentR(x - i, y - 2);
+            }
+
+            switch (cnt) {
+                case 3:
+                    src[x - i][y].makeSpecial(CD.L);
+                    break;
+                case 4:
+                    src[x - i][y].makeSpecial(CD.ST);
+                    break;
+                case 5:
+                    src[x - i][y].makeSpecial(CD.LTC);
+                    break;
+                case 0:
+                    break;
+            }
+        }
+    }
+
+    private static void mark4R(int x, int y) {
         int cnt = 0;
         boolean zf, onef, lastf, last2f;
         for (int i = 3; i >= 0; i--, cnt = 0) {
@@ -175,7 +297,45 @@ public class xxzNMatch {
         }
     }
 
-    public static void mark5R(int x, int y) {
+    public static void mark4C(int x, int y) {
+        int cnt;
+        boolean zf, onef, lastf, last2f;
+        for (int i = 3; i >= 0; i--) {
+            if ((src[x - i][y].getSpecial() & 0xf) == 1) {
+                src[x][y - i].makeSpecial(CD.FOURC);
+            }
+            src[x - i][y].matchMe();
+            //查看是否能形成L等图形
+            zf = (y == 0);
+            onef = (y == 1);
+            lastf = (y == (CD.BOARD_SIZE_Y - 1));
+            last2f = (y == (CD.BOARD_SIZE_Y - 2));
+            if (zf) {
+                cnt = markAdjacentR(x - i, y);
+            } else if (onef) {
+                cnt = markAdjacentR(x - i, y - 1);
+            } else if (last2f) {
+                cnt = markAdjacentR(x - i, y - 3);
+            } else if (lastf) {
+                cnt = markAdjacentR(x - i, y - 4);
+            } else {
+                cnt = markAdjacentR(x - i, y - 2);
+            }
+
+            switch (cnt) {
+                case 3:
+                    src[x - i][y].makeSpecial(CD.ST);
+                    break;
+                case 4:
+                    src[x - i][y].makeSpecial(CD.LTC);
+                    break;
+                case 0:
+                    break;
+            }
+        }
+    }
+
+    private static void mark5R(int x, int y) {
         int cnt = 0;
         boolean zf, onef, lastf, last2f;
         for (int i = 4; i >= 0; i--, cnt = 0) {
@@ -202,8 +362,40 @@ public class xxzNMatch {
                 case 3:
                     src[x][y - i].makeSpecial(CD.LTR);
                     break;
-                case 4:
-                    src[x][y - i].makeSpecial(CD.LTR);
+                case 0:
+                    break;
+            }
+        }
+    }
+
+    private static void mark5C(int x, int y) {
+        int cnt;
+        boolean zf, onef, lastf, last2f;
+        for (int i = 4; i >= 0; i--) {
+            if ((src[x - i][y].getSpecial() & 0xf) == 1) {
+                src[x][y - i].makeSpecial(CD.FIVE);
+            }
+            src[x - i][y].matchMe();
+            //查看是否能形成L等图形
+            zf = (y == 0);
+            onef = (y == 1);
+            lastf = (y == (CD.BOARD_SIZE_Y - 1));
+            last2f = (y == (CD.BOARD_SIZE_Y - 2));
+            if (zf) {
+                cnt = markAdjacentR(x - i, y);
+            } else if (onef) {
+                cnt = markAdjacentR(x - i, y - 1);
+            } else if (last2f) {
+                cnt = markAdjacentR(x - i, y - 3);
+            } else if (lastf) {
+                cnt = markAdjacentR(x - i, y - 4);
+            } else {
+                cnt = markAdjacentR(x - i, y - 2);
+            }
+
+            switch (cnt) {
+                case 3:
+                    src[x - i][y].makeSpecial(CD.LTC);
                     break;
                 case 0:
                     break;
@@ -211,9 +403,15 @@ public class xxzNMatch {
         }
     }
 
-    public static void markMoreR(int len, int x, int y) {
+    private static void markMoreR(int len, int x, int y) {
         for (int i = len - 1; i >= 0; i--) {
             src[x][y - i].matchMe();
+        }
+    }
+
+    private static void markMoreC(int len, int x, int y) {
+        for (int i = len - 1; i >= 0; i--) {
+            src[x - i][y].matchMe();
         }
     }
 
@@ -224,8 +422,14 @@ public class xxzNMatch {
         }
     }
 
+    private static void markColumn() {
+        for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
+            markSingleColumn(i);
+        }
+    }
+
     //markSingle Line
-    private static void markSingleLine(int x) {
+    public static void markSingleLine(int x) {
         int cnt = 0;
         char state = '0';
         Diamond[] temp = new Diamond[CD.BOARD_SIZE_Y];
@@ -311,6 +515,93 @@ public class xxzNMatch {
         }
 
 
+    }
+
+    //markSingle Column
+    public static void markSingleColumn(int y) {
+        int cnt = 0;
+        char state = '0';
+        Diamond[] temp = new Diamond[CD.BOARD_SIZE_Y];
+        Diamond now;
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            now = src[i][y];
+            switch (cnt) {
+                case 0: {
+                    cnt++;
+                    state = now.kind;
+                    temp[0] = now;
+                    break;
+                }
+                case 1: {
+                    if (now.kind == state) {
+                        temp[cnt++] = now;
+                    } else {
+                        cnt = 1;
+                        state = now.kind;
+                        temp[0] = now;
+                    }
+                    break;
+                }
+                case 2: {
+                    if (now.kind == state) {
+                        temp[cnt++] = now;
+
+                    } else {
+                        cnt = 1;
+                        state = now.kind;
+                        temp[0] = now;
+                    }
+                    break;
+                }
+                case 3: {
+                    if (now.kind == state) {
+                        temp[cnt++] = now;
+                    } else {
+                        mark3C(i - 1, y);
+                        cnt = 1;
+                        state = now.kind;
+                        temp[0] = now;
+                    }
+                    break;
+                }
+                case 4: {
+                    if (now.kind == state) {
+                        temp[cnt++] = now;
+                    } else {
+                        mark4C(i - 1, y);
+                        cnt = 1;
+                        state = now.kind;
+                        temp[3] = null;
+                        temp[0] = now;
+                    }
+                    break;
+                }
+                case 5: {
+                    if (now.kind == state) {
+                        temp[cnt++] = now;
+                    } else {
+                        mark5C(i - 1, y);
+                        cnt = 1;
+                        state = now.kind;
+                        temp[3] = null;
+                        temp[4] = null;
+                        temp[0] = now;
+                    }
+                    break;
+                }
+                default: {
+                    if (now.kind == state) {
+                        temp[cnt++] = now;
+                    } else {
+                        markMoreC(cnt, i - 1, y);
+                        temp = new Diamond[CD.BOARD_SIZE_Y];
+                        temp[0] = now;
+                        cnt = 1;
+                        state = now.kind;
+                    }
+                }
+            }
+        }
     }
 
 
