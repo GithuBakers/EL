@@ -7,7 +7,7 @@ import data.Diamond;
 /**
  * Created by xuxiangzhe on 2017/5/7.
  */
-public class xxzNMatch {
+public class Match {
     private static Diamond src[][];
 
     public static void mark() {
@@ -599,6 +599,22 @@ public class xxzNMatch {
                         cnt = 1;
                         state = now.kind;
                     }
+                }
+            }
+        }
+    }
+
+    //mark special five
+    public static void markFive(Diamond diamond) {
+        markFive(diamond.kind);
+    }
+
+    public static void markFive(char kind) {
+        Diamond[][] special = BoardInfor.getBoardInformation();
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                if (src[i][j].kind == kind) {
+                    src[i][j].matchMe();
                 }
             }
         }

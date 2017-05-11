@@ -7,7 +7,7 @@ import data.Diamond;
 /**
  * Created by xuxiangzhe on 2017/5/7.
  */
-public class xxzNJudge {
+public class Judge {
     private static Diamond[][] src;
 
     //检查全图中是否可还有可以自动去掉的东西
@@ -100,10 +100,13 @@ public class xxzNJudge {
         Diamond temp;
         if ((deltaX + deltaY) == 1) {
             src = BoardInfor.getBoardInformation();
+            if (((src[x1][y1].getSpecial() & 0xf0) == 0x50) || ((src[x2][y2].getSpecial() & 0xf0) == 0x50)) {
+                ret = true;
+            }
             temp = src[x1][y1];
             src[x1][y1] = src[x2][y2];
             src[x2][y2] = temp;
-            ret = isUnfinished(false);
+            ret = ret || isUnfinished(false);
         }
         return ret;
     }

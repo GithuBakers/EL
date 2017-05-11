@@ -1,8 +1,8 @@
 import data.BoardInfor;
 import data.CD;
 import data.Diamond;
-import logic.xxzNJudge;
-import logic.xxzNMatch;
+import logic.Judge;
+import logic.Match;
 
 import static data.CD.BOARD_SIZE_X;
 import static data.CD.BOARD_SIZE_Y;
@@ -85,10 +85,20 @@ public class Main {
                 {'d', 'b', 'c', 'd', 'd', 'f', 'd', 'a'},
                 {'a', 'b', 'c', 'd', 'c', 'f', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
-        toTest(sample11);
+        //L/T/LT
+        char[][] sample12 = {
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'a', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'c', 'a', 'a', 'c', 'f', 'c', 'd'},
+                {'c', 'c', 'c', 'a', 'b', 'b', 'a', 'd'},
+                {'d', 'b', 'c', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
+        toTest(sample12);
 
-        System.out.println(xxzNJudge.isUnfinished());
-        xxzNMatch.mark();
+        System.out.println(Judge.isUnfinished());
+        Match.mark();
         print(BoardInfor.getBoardInformation());
         printProperties(BoardInfor.getBoardInformation());
 

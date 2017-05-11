@@ -1,5 +1,7 @@
 package data;
 
+import logic.DiamondGenerator;
+
 /**
  * Created by xuxiangzhe on 2017/5/7.
  */
@@ -34,8 +36,77 @@ public class Diamond {
 
     public void matchMe() {
         condition = condition | 1;
-        switch (special) {
-            //TODO:different types
+        int temp = special & 0xf0;
+        special &= 0x0f;
+        switch (temp) {
+            case 0x210: {
+                Diamond[][] src = BoardInfor.getBoardInformation();
+                boolean xzf = (x == 0), yzf = (y == 0);
+                boolean xof = (x == CD.BOARD_SIZE_X), yof = (y == CD.BOARD_SIZE_Y);
+                //upper-left
+                if ((!yzf) && (!xzf)) {
+                    src[x - 1][y - 1].matchMe();
+                }
+                //up
+                if (!xzf) {
+                    src[x - 1][y].matchMe();
+                }
+                //upper-right
+                if ((!yof) && (!xzf)) {
+                    src[x - 1][y + 1].matchMe();
+                }
+                //left
+                if (!yzf) {
+                    src[x][y - 1].matchMe();
+                }
+                //right
+                if (!yof) {
+                    src[x][y + 1].matchMe();
+                }
+                //downer-right
+                if ((!yof) && (!xof)) {
+                    src[x + 1][y + 1].matchMe();
+                }
+                //down
+                if (!xof) {
+                    src[x + 1][y].matchMe();
+                }
+                //downer-left
+                if ((!yzf) && (!xof)) {
+                    src[x + 1][y - 1].matchMe();
+                }
+                break;
+            }
+            case 0x220: {
+                Diamond[][] src = BoardInfor.getBoardInformation();
+                for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+                    src[i][y].matchMe();
+                }
+
+                for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
+                    src[x][i].matchMe();
+                }
+                break;
+            }
+            case 0x30:
+            case 0x230: {
+                DiamondGenerator.generateAll();
+                break;
+            }
+            case 0x40: {
+                Diamond[][] src = BoardInfor.getBoardInformation();
+                for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+                    src[i][y].matchMe();
+                }
+                break;
+            }
+            case 0x240: {
+                Diamond[][] src = BoardInfor.getBoardInformation();
+                for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
+                    src[x][i].matchMe();
+                }
+                break;
+            }
         }
     }
 

@@ -32,7 +32,7 @@ public class CD {
     //4消，整行整列
     public final static int FOURC = 0x4 << 4;
     public final static int FOURR = 0x24 << 4;
-    //5消，清楚场上所有同色宝石
+    //5消，清楚场上所有同色宝石,并且可以和任意宝石消除
     public final static int FIVE = 0x5 << 4;
 
 }
