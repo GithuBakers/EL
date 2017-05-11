@@ -653,10 +653,11 @@ public class Match {
         Diamond[][] special = BoardInfor.getBoardInformation();
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
-                if (src[i][j].kind == kind) {
-                    src[i][j].matchMe();
+                if (special[i][j].kind == kind) {
+                    special[i][j].matchMe();
                 }
             }
+            BoardInfor.setBoardInformation(special);
         }
     }
 
