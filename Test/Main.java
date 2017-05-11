@@ -95,7 +95,24 @@ public class Main {
                 {'d', 'b', 'c', 'd', 'd', 'f', 'd', 'a'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
-        toTest(sample12);
+        //测试特效
+        char[][] sample21 = {
+                {'b', 'c', 'd', 'e', 'c', 'f', 'f', 'f'},
+                {'a', 'd', 'b', 'b', 'b', 'c', 'a', 'd'},
+                {'d', 'b', 'a', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'a', 'f', 'f', 'f', 'f'},
+                {'a', 'c', 'c', 'a', 'b', 'b', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'d', 'd', 'd', 'a', 'c', 'd', 'd', 'd'}};
+        toTest(sample21);
+
+        //测试特效
+        Diamond[][] src = BoardInfor.getBoardInformation();
+//        src[0][0].makeSpecial(CD.L);
+//        src[7][0].makeSpecial(CD.L);
+        src[0][7].makeSpecial(CD.L);
+//        src[7][7].makeSpecial(CD.L);
 
         System.out.println(Judge.isUnfinished());
         Match.mark();

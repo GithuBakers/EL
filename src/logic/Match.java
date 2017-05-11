@@ -427,7 +427,6 @@ public class Match {
             markSingleColumn(i);
         }
     }
-
     //markSingle Line
     public static void markSingleLine(int x) {
         int cnt = 0;
@@ -456,6 +455,9 @@ public class Match {
                 case 2: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (j == CD.BOARD_SIZE_Y - 1) {
+                            mark3R(x, j);
+                        }
 
                     } else {
                         cnt = 1;
@@ -467,6 +469,9 @@ public class Match {
                 case 3: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (j == CD.BOARD_SIZE_Y - 1) {
+                            mark4R(x, j);
+                        }
                     } else {
                         mark3R(x, j - 1);
                         cnt = 1;
@@ -478,6 +483,9 @@ public class Match {
                 case 4: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (j == CD.BOARD_SIZE_Y - 1) {
+                            mark5R(x, j);
+                        }
                     } else {
                         mark4R(x, j - 1);
                         cnt = 1;
@@ -488,21 +496,27 @@ public class Match {
                     break;
                 }
                 case 5: {
-                    if (now.kind == state) {
-                        temp[cnt++] = now;
-                    } else {
+                    if (now.kind != state) {
                         mark5R(x, j - 1);
                         cnt = 1;
                         state = now.kind;
                         temp[3] = null;
                         temp[4] = null;
                         temp[0] = now;
+                    } else {
+                        temp[cnt++] = now;
+                        if (j == CD.BOARD_SIZE_Y - 1) {
+                            markMoreR(cnt, x, j);
+                        }
                     }
                     break;
                 }
                 default: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (j == CD.BOARD_SIZE_Y - 1) {
+                            markMoreR(cnt, x, j);
+                        }
                     } else {
                         markMoreR(cnt, x, j - 1);
                         temp = new Diamond[CD.BOARD_SIZE_Y];
@@ -516,6 +530,7 @@ public class Match {
 
 
     }
+
 
     //markSingle Column
     public static void markSingleColumn(int y) {
@@ -545,6 +560,9 @@ public class Match {
                 case 2: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (i == CD.BOARD_SIZE_X - 1) {
+                            mark3C(i, y);
+                        }
 
                     } else {
                         cnt = 1;
@@ -556,8 +574,11 @@ public class Match {
                 case 3: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (i == CD.BOARD_SIZE_X - 1) {
+                            mark4C(i, y);
+                        }
                     } else {
-                        mark3C(i - 1, y);
+                        mark4C(i - 1, y);
                         cnt = 1;
                         state = now.kind;
                         temp[0] = now;
@@ -567,6 +588,9 @@ public class Match {
                 case 4: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (i == CD.BOARD_SIZE_X - 1) {
+                            mark5C(i, y);
+                        }
                     } else {
                         mark4C(i - 1, y);
                         cnt = 1;
@@ -577,21 +601,26 @@ public class Match {
                     break;
                 }
                 case 5: {
-                    if (now.kind == state) {
-                        temp[cnt++] = now;
-                    } else {
+                    if (now.kind != state) {
                         mark5C(i - 1, y);
                         cnt = 1;
                         state = now.kind;
                         temp[3] = null;
                         temp[4] = null;
                         temp[0] = now;
+                    } else {
+                        if (i == CD.BOARD_SIZE_X - 1) {
+                            markMoreR(cnt, i, y);
+                        }
                     }
                     break;
                 }
                 default: {
                     if (now.kind == state) {
                         temp[cnt++] = now;
+                        if (i == CD.BOARD_SIZE_Y - 1) {
+                            markMoreR(cnt, i, y);
+                        }
                     } else {
                         markMoreC(cnt, i - 1, y);
                         temp = new Diamond[CD.BOARD_SIZE_Y];

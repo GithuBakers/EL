@@ -36,13 +36,13 @@ public class Diamond {
 
     public void matchMe() {
         condition = condition | 1;
-        int temp = special & 0xf0;
+        int temp = special & 0xff0;
         special &= 0x0f;
         switch (temp) {
             case 0x210: {
                 Diamond[][] src = BoardInfor.getBoardInformation();
                 boolean xzf = (x == 0), yzf = (y == 0);
-                boolean xof = (x == CD.BOARD_SIZE_X), yof = (y == CD.BOARD_SIZE_Y);
+                boolean xof = (x == CD.BOARD_SIZE_X - 1), yof = (y == CD.BOARD_SIZE_Y - 1);
                 //upper-left
                 if ((!yzf) && (!xzf)) {
                     src[x - 1][y - 1].matchMe();
