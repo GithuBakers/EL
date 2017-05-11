@@ -12,8 +12,22 @@ public class Match {
 
     public static void mark() {
         src = BoardInfor.getBoardInformation();
-        markLine();
+        markRow();
         markColumn();
+        BoardInfor.setBoardInformation(src);
+    }
+
+    public static void mark(int x1, int y1, int x2, int y2) {
+        src = BoardInfor.getBoardInformation();
+        if (x1 == x2) {
+            markSingleRow(x1);
+            markSingleColumn(y1);
+            markSingleColumn(y2);
+        } else if (y1 == y2) {
+            markSingleColumn(y1);
+            markSingleRow(x1);
+            markSingleRow(x2);
+        }
         BoardInfor.setBoardInformation(src);
     }
 
@@ -262,7 +276,7 @@ public class Match {
         int cnt = 0;
         boolean zf, onef, lastf, last2f;
         for (int i = 3; i >= 0; i--, cnt = 0) {
-            if ((src[x][y - i].getSpecial() & 0xf) == 1) {
+            if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FOURR);
             }
             src[x][y - i].matchMe();
@@ -299,7 +313,7 @@ public class Match {
         int cnt;
         boolean zf, onef, lastf, last2f;
         for (int i = 3; i >= 0; i--) {
-            if ((src[x - i][y].getSpecial() & 0xf) == 1) {
+            if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FOURC);
             }
             src[x - i][y].matchMe();
@@ -337,7 +351,7 @@ public class Match {
         int cnt = 0;
         boolean zf, onef, lastf, last2f;
         for (int i = 4; i >= 0; i--, cnt = 0) {
-            if ((src[x][y - i].getSpecial() & 0xf) == 1) {
+            if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FIVE);
             }
             src[x][y - i].matchMe();
@@ -370,7 +384,7 @@ public class Match {
         int cnt;
         boolean zf, onef, lastf, last2f;
         for (int i = 4; i >= 0; i--) {
-            if ((src[x - i][y].getSpecial() & 0xf) == 1) {
+            if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FIVE);
             }
             src[x - i][y].matchMe();
@@ -414,9 +428,9 @@ public class Match {
     }
 
     //如果一列发生移动，则只需要考虑行匹配
-    private static void markLine() {
+    private static void markRow() {
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
-            markSingleLine(i);
+            markSingleRow(i);
         }
     }
 
@@ -426,7 +440,7 @@ public class Match {
         }
     }
     //markSingle Line
-    public static void markSingleLine(int x) {
+    private static void markSingleRow(int x) {
         int cnt = 0;
         char state = '0';
         Diamond[] temp = new Diamond[CD.BOARD_SIZE_Y];
@@ -530,7 +544,7 @@ public class Match {
     }
 
     //markSingle Column
-    public static void markSingleColumn(int y) {
+    private static void markSingleColumn(int y) {
         int cnt = 0;
         char state = '0';
         Diamond[] temp = new Diamond[CD.BOARD_SIZE_Y];
