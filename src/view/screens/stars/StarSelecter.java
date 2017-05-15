@@ -31,7 +31,7 @@ public class StarSelecter {
                 myImage=new Image("/view/resources/starBrown1.PNG");
                 break;
             default:
-                myImage=new Image("/view/resources/starBlack.PNG");
+                myImage=new Image("/view/resources/starBlackSpecial.PNG");
                 break;
         }
         return myImage;
@@ -58,7 +58,7 @@ public class StarSelecter {
                 myImage=new Image("/view/resources/starBrown2.PNG");
                 break;
             default:
-                myImage=new Image("/view/resources/starBlack.PNG");
+                myImage=new Image("/view/resources/starBlackSpecial.PNG");
                 break;
         }
         return myImage;

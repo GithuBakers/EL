@@ -39,7 +39,7 @@ public class StartScreenController implements ControlledFrame {
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                imageView.setImage(StarSelecter.getModifiedImage('a'));
+                imageView.setImage(StarSelecter.getModifiedImage('m'));
             }
         });
         imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
