@@ -5,8 +5,6 @@ import data.CD;
 import data.Diamond;
 import javafx.geometry.Point2D;
 
-import static data.CD.INTERVAL;
-
 /**
  * 这个类用来写逻辑层的一些好用的快捷方法
  * All the methods should be static.
@@ -20,8 +18,19 @@ public class LogicUtilities {
         int x = (int) (point.getX() - CD.LAYOUT_INTERVAL);
         int y = (int) (point.getY() - CD.LAYOUT_INTERVAL);
         int dx,dy;
-        dx=(x/INTERVAL) + Math.round( (x%INTERVAL) / (INTERVAL*0.5F) );
-        dy=(y/INTERVAL) + Math.round( (y%INTERVAL) / (INTERVAL*0.5F) );
+        int smallInterval = CD.DIAMOND_SIZE + CD.INTERVAL;
+//        if(x%smallInterval-0.5F*(float)smallInterval<0.0){
+//            dx=x/smallInterval;
+//        }else {
+//            dx=x/smallInterval+1;
+//        }
+        dx = x / smallInterval;
+//        if(y%smallInterval-0.5F*(float)smallInterval<0.0){
+//            dy=y/smallInterval;
+//        }else {
+//            dy=y/smallInterval+1;
+//        }
+        dy = y / smallInterval;
         return new Point2D(dx, dy);
     }
 
