@@ -3,6 +3,7 @@ package view.screens.screensControllers;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
@@ -30,6 +31,8 @@ public class ClassicScreenController implements ControlledFrame {
     @FXML
     Button backButton;
 
+    @FXML
+    AnchorPane classicPane;
 
     @FXML
     Pane pane12;
@@ -45,13 +48,15 @@ public class ClassicScreenController implements ControlledFrame {
 
     public void playMusic(){
 //    播放
-
+        GaussianBlur gaussianBlur=new GaussianBlur();
+        gaussianBlur.setRadius(10);
+        classicPane.setEffect(gaussianBlur);
 
     }
 
     public void stop(){
 //    停止
-
+        classicPane.setEffect(null);
 
     }
 

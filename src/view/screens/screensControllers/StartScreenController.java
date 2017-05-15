@@ -33,43 +33,7 @@ public class StartScreenController implements ControlledFrame {
         AnchorPane anchorPane=(AnchorPane) framesController.getScreen(FramesLoader.classicScreenID);
         AnchorPane grid=(AnchorPane)anchorPane.lookup("#grid");
 
-        Image fuck= StarSelecter.getImage('a');
-        javafx.scene.image.ImageView imageView=new javafx.scene.image.ImageView(fuck);
 
-        imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setImage(StarSelecter.getModifiedImage('m'));
-            }
-        });
-        imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setImage(StarSelecter.getImage('a'));
-            }
-        });
-        imageView.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-//                imageView.setImage(StarSelecter.getImage('m'));
-            }
-        });
-        imageView.setOnMouseDragOver(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-//                imageView.setImage(StarSelecter.getImage('m'));
-            }
-        });
-
-        imageView.setLayoutX(20);
-        imageView.setLayoutY(20);
-        grid.getChildren().add(imageView);
-
-
-        System.out.printf("%f%f",imageView.getLayoutX(),imageView.getLayoutY());
-
-
-        framesController.setScreen(FramesLoader.startScreenID,FramesLoader.classicScreenID,AnimatorSetting.ANIMATOR_SLIDEINLEFT);
     }
 
 //    public void larger(){

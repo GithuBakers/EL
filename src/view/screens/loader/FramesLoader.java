@@ -11,11 +11,14 @@ public class FramesLoader {
     public static String classicScreenFile="fxmlFiles/Classic.fxml";
     public static String startScreenID="startScreen";
     public static String startScreenFile="fxmlFiles/Start.fxml";
+    public static String settingScreenID="sittingScreen";
+    public static String settingScreenFile="fxmlFiles/Start.fxml";
 
     public static FramesController loadScreens(){
         FramesController framesController=new FramesController();
         framesController.loadScreen(classicScreenID,classicScreenFile);
         framesController.loadScreen(startScreenID,startScreenFile);
+        framesController.loadScreen(settingScreenID,settingScreenFile);
 
         framesController.setScreen(startScreenID);
         return framesController;
