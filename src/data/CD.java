@@ -17,7 +17,7 @@ public class CD {
     public final static int BOARD_SIZE_X = 8;
     public final static int BOARD_SIZE_Y = 8;
     public final static int KIND=4;
-    public final static int LAYOUT_INTERVAL = 20;
+    public final static int LAYOUT_INTERVAL = 25;
     public final static int DIAMOND_SIZE = 50;
     public final static int INTERVAL = 10;
     public final static int DELETE = -1;

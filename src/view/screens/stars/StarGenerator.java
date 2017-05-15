@@ -1,12 +1,13 @@
 package view.screens.stars;
 
-import javafx.event.EventHandler;
+import data.BoardInfor;
+import data.CD;
+import data.Diamond;
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import view.animations.AnimatorSetting;
-import view.screens.loader.FramesLoader;
+import logic.LogicUtilities;
 
 /**
  * Created by Bay on 2017/5/15 0015.
@@ -20,35 +21,30 @@ public class StarGenerator {
         go();
     }
 
-    public void go(){
-        Image fuck= StarSelecter.getImage('a');
-        ImageView imageView=new ImageView(fuck);
+    public void go() {
+        Diamond[][] src = BoardInfor.getBoardInformation();
+        ImageView[][] starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
+        //TODO:        Button refresh=new Button("Refresh");
+        //        anchorPane.getChildren().add(refresh);
+        //*********************
 
-        imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setImage(StarSelecter.getModifiedImage('m'));
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                Image image = StarSelecter.getImage(src[i][j].kind);
+                starViews[i][j] = new ImageView(image);
+                starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
+                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                anchorPane.getChildren().add(starViews[i][j]);
             }
+        }
+        anchorPane.setOnDragDetected(drag -> {
+            anchorPane.startFullDrag();
         });
-        imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setImage(StarSelecter.getImage('a'));
-            }
+        anchorPane.setOnMouseDragged(drag -> {
+            LogicUtilities.mouseMagnet(new Point2D(drag.getX(), drag.getY()));
         });
-
-        imageView.setLayoutX(20);
-        imageView.setLayoutY(20);
-        anchorPane.getChildren().add(imageView);
-
-
-        System.out.printf("%f%f",imageView.getLayoutX(),imageView.getLayoutY());
 
     }
-
-
-
-
 
 
 }
