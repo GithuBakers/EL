@@ -30,6 +30,9 @@ public class StarSelecter {
             case 'f':
                 myImage=new Image("/view/resources/starBrown1.PNG");
                 break;
+            default:
+                myImage=new Image("/view/resources/starBlack.PNG");
+                break;
         }
         return myImage;
     }
@@ -53,6 +56,9 @@ public class StarSelecter {
                 break;
             case 'f':
                 myImage=new Image("/view/resources/starBrown2.PNG");
+                break;
+            default:
+                myImage=new Image("/view/resources/starBlack.PNG");
                 break;
         }
         return myImage;

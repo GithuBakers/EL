@@ -17,7 +17,7 @@ public class FramesLoader {
         framesController.loadScreen(classicScreenID,classicScreenFile);
         framesController.loadScreen(startScreenID,startScreenFile);
 
-        framesController.setScreen(classicScreenID);
+        framesController.setScreen(startScreenID);
         return framesController;
     }
 }

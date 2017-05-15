@@ -22,10 +22,12 @@ import java.util.HashMap;
 public class FramesController extends StackPane{
 
     private static HashMap<String,Node> map=new HashMap<>();
+    private static HashMap<String,FXMLLoader> loaderHashMap=new HashMap<>();
 
     public Node getScreen(String name){
         return map.get(name);
     }
+    public FXMLLoader getFXMLLoader(String name){ return loaderHashMap.get(name); }
 
     public void addMap(String name,Node pane){
         map.put(name,pane);
@@ -42,6 +44,7 @@ public class FramesController extends StackPane{
 //            controlledFrame
             System.out.println("anybody?");
             addMap(name,pane);
+            loaderHashMap.put(name,loader);
 
         }catch (Exception e){
             System.out.println("fxxk");

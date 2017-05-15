@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -29,41 +30,58 @@ public class ClassicScreenController implements ControlledFrame {
     @FXML
     Button backButton;
 
-    @FXML
-    GridPane classicGrid;
 
     @FXML
     Pane pane12;
 
     @FXML
-    AnchorPane classicAnchor;
+    AnchorPane grid;
 
     @FXML
     Button fuck;
 
 
-    public void setFuck(){
-        fuck.setText("fuckfuck");
-        Image fuck= StarSelecter.getImage('a');
-        ImageView imageView=new ImageView(fuck);
-        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setImage(StarSelecter.getModifiedImage('a'));
-            }
-        });
-        classicGrid.add(imageView,0,0);
+//    辣鸡一舟，完成下面四个方法
+
+    public void playMusic(){
+//    播放
+
 
     }
 
-    public void miaomiaomiao(){
-        Rectangle rectangle= new Rectangle(50,50);
-        rectangle.setFill(Color.BLUE);
+    public void stop(){
+//    停止
 
-        pane12.getChildren().add(rectangle);
-        System.out.println(rectangle.getScene().xProperty());
 
     }
+
+    public void upper(){
+//    增大音量
+
+
+
+    }
+
+    public void lower(){
+//    减小音量
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void toStart(){
         framesController.setScreen(FramesLoader.classicScreenID,FramesLoader.startScreenID,AnimatorSetting.ANIMATOR_SLIDEINRIGHT);
