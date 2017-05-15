@@ -12,6 +12,7 @@ import view.animations.AnimatorSetting;
 import view.screens.FramesController;
 import view.screens.frameInterface.ControlledFrame;
 import view.screens.loader.FramesLoader;
+import view.screens.stars.StarGenerator;
 import view.screens.stars.StarSelecter;
 
 import javax.swing.text.html.ImageView;
@@ -32,7 +33,9 @@ public class StartScreenController implements ControlledFrame {
     public void toClassic(){
         AnchorPane anchorPane=(AnchorPane) framesController.getScreen(FramesLoader.classicScreenID);
         AnchorPane grid=(AnchorPane)anchorPane.lookup("#grid");
+        new StarGenerator(grid);
 
+        framesController.setScreen(FramesLoader.startScreenID,FramesLoader.classicScreenID,AnimatorSetting.ANIMATOR_SLIDEINLEFT);
 
     }
 
