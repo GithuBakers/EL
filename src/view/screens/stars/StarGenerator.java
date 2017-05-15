@@ -2,6 +2,7 @@ package view.screens.stars;
 
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import view.animations.AnimatorSetting;
@@ -21,7 +22,7 @@ public class StarGenerator {
 
     public void go(){
         Image fuck= StarSelecter.getImage('a');
-        javafx.scene.image.ImageView imageView=new javafx.scene.image.ImageView(fuck);
+        ImageView imageView=new ImageView(fuck);
 
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
