@@ -1,33 +1,23 @@
 package view.screens.screensControllers;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.*;
-import javafx.scene.image.Image;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import view.Begin;
+import javafx.scene.media.MediaPlayer;
 import view.animations.AnimatorSetting;
 import view.screens.FramesController;
 import view.screens.frameInterface.ControlledFrame;
 import view.screens.loader.FramesLoader;
-import view.screens.stars.StarSelecter;
-
-import java.awt.*;
 
 /**
  * Created by 15852 on 2017/5/7 0007.
  */
 public class ClassicScreenController implements ControlledFrame {
     private FramesController framesController;
-
+    String uri=this.getClass().getClassLoader().getResource("music/DISC2_15.mp3").toString();
+    javafx.scene.media.Media media=new javafx.scene.media.Media(uri);
+    MediaPlayer player=new MediaPlayer(media);
     @FXML
     Button backButton;
 
@@ -44,32 +34,34 @@ public class ClassicScreenController implements ControlledFrame {
     Button fuck;
 
 
-//    辣鸡一舟，完成下面四个方法
+//    辣鸡小白
+
 
     public void playMusic(){
 //    播放
-        GaussianBlur gaussianBlur=new GaussianBlur();
-        gaussianBlur.setRadius(10);
-        classicPane.setEffect(gaussianBlur);
+        player.play();
+        player.setVolume(0.5);
 
     }
 
     public void stop(){
 //    停止
-        classicPane.setEffect(null);
+        player.stop();
 
     }
 
     public void upper(){
 //    增大音量
 
-
+        double vol=player.getVolume();
+        player.setVolume(vol+0.05);
 
     }
 
     public void lower(){
 //    减小音量
-
+        double vol=player.getVolume();
+        player.setVolume(vol-0.05);
 
     }
 
