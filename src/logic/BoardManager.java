@@ -15,7 +15,7 @@ public class BoardManager {
     private static Random random = new Random();
 
     private static char generate() {
-        int a = random.nextInt(KIND);
+        int a = random.nextInt(KIND + 1);
         char b;
         switch (a) {
             case 0:
