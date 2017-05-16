@@ -40,15 +40,19 @@ public class LogicUtilities {
             //标记操作当前操作的，并mark，可以识别五连的特效
             src[ax][ay].makeSpecial(CD.FIRED);
             src[bx][by].makeSpecial(CD.FIRED);
-            if ((src[ax][ay].getSpecial() & 0xf0) == 0x50) {
+            if ((src[ax][ay].getSpecial() & 0xf000) == CD.FIVE) {
+                src[ax][ay].makeSpecial(true, 0);
+                src[ax][ay].matchMe();
                 Match.markFive(src[bx][by]);
-            } else if ((src[bx][by].getSpecial() & 0xf0) == 0x50) {
+            } else if ((src[bx][by].getSpecial() & 0xf000) == CD.FIVE) {
+                src[bx][by].makeSpecial(true, 0);
+                src[bx][by].matchMe();
                 Match.markFive(src[ax][ay]);
             } else {
                 Match.mark(ax, ay, bx, by);
             }
-            src[ax][ay].makeSpecial(true, 0xff0);
-            src[bx][by].makeSpecial(true, 0xff0);
+            src[ax][ay].makeSpecial(true, 0xfff0);
+            src[bx][by].makeSpecial(true, 0xfff0);
             BoardInfor.setBoardInformation(src);
         }
 
@@ -74,15 +78,19 @@ public class LogicUtilities {
             //标记操作当前操作的，并mark，可以识别五连的特效
             src[ax][ay].makeSpecial(CD.FIRED);
             src[bx][by].makeSpecial(CD.FIRED);
-            if ((src[ax][ay].getSpecial() & 0xf0) == 0x50) {
+            if ((src[ax][ay].getSpecial() & 0xf000) == CD.FIVE) {
+                src[ax][ay].makeSpecial(true, 0);
+                src[ax][ay].matchMe();
                 Match.markFive(src[bx][by]);
-            } else if ((src[bx][by].getSpecial() & 0xf0) == 0x50) {
+            } else if ((src[bx][by].getSpecial() & 0xf000) == CD.FIVE) {
+                src[bx][by].makeSpecial(true, 0);
+                src[bx][by].matchMe();
                 Match.markFive(src[ax][ay]);
             } else {
                 Match.mark(ax, ay, bx, by);
             }
-            src[ax][ay].makeSpecial(true, 0xff0);
-            src[bx][by].makeSpecial(true, 0xff0);
+            src[ax][ay].makeSpecial(true, 0xfff0);
+            src[bx][by].makeSpecial(true, 0xfff0);
 
         }
         return ret;

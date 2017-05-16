@@ -117,7 +117,7 @@ public class Main {
                 {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'd'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
-        toTest(samplex);
+        toTest(sample3);
 
         //测试特效
 //        Diamond[][] src = BoardInfor.getBoardInformation();

@@ -53,7 +53,7 @@ public class StarGenerator {
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
-                Image image = StarSelecter.getImage(src[i][j].kind);
+                Image image = StarSelector.getImage(src[i][j].kind);
                 starViews[i][j] = new ImageView(image);
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
@@ -75,10 +75,11 @@ public class StarGenerator {
 
     private void fresh() {
         src = BoardInfor.getBoardInformation();
+
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 anchorPane.getChildren().remove(starViews[i][j]);
-                Image image = StarSelecter.getImage(src[i][j].kind);
+                Image image = StarSelector.getImage(src[i][j].kind);
                 starViews[i][j] = new ImageView(image);
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
@@ -128,6 +129,8 @@ public class StarGenerator {
                 BoardManager.clean();
                 print(src);
                 BoardManager.generateSpace();
+                printProperties(src);
+                System.out.println("one step is over");
                 print(src);
                 fresh();
             });
@@ -162,6 +165,26 @@ public class StarGenerator {
             }
         }
         BoardInfor.setBoardInformation(diamonds);
+    }
+
+    public static void printProperties(Diamond[][] src) {
+        System.out.println("__________________________________");
+        for (int i = 0; i < BOARD_SIZE_X; i++) {
+            for (int j = 0; j < BOARD_SIZE_Y; j++) {
+                System.out.printf("%3x ", Integer.valueOf(src[i][j].toString().split("@")[4]));
+            }
+            System.out.println();
+        }
+        System.out.println("__________________________________");
+
+        System.out.println("__________________________________");
+        for (int i = 0; i < BOARD_SIZE_X; i++) {
+            for (int j = 0; j < BOARD_SIZE_Y; j++) {
+                System.out.printf("%3x ", Integer.valueOf(src[i][j].toString().split("@")[3]));
+            }
+            System.out.println();
+        }
+        System.out.println("__________________________________");
     }
 
 }

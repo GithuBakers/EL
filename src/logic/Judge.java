@@ -102,7 +102,7 @@ public class Judge {
         Diamond temp;
         if ((deltaX + deltaY) == 1) {
             src = BoardInfor.getBoardInformation();
-            if (((src[x1][y1].getSpecial() & 0xf0) == 0x50) || ((src[x2][y2].getSpecial() & 0xf0) == 0x50)) {
+            if (((src[x1][y1].getSpecial() & 0xf000) == CD.FIVE) || ((src[x2][y2].getSpecial() & 0xf000) == CD.FIVE)) {
                 ret = true;
             }
             temp = src[x1][y1];

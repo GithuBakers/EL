@@ -34,7 +34,7 @@ public class CD {
     public final static int FOURC = 0x4 << 4;
     public final static int FOURR = 0x24 << 4;
     //5消，清楚场上所有同色宝石,并且可以和任意宝石消除
-    public final static int FIVE = 0x5 << 4;
+    public final static int FIVE = 0x5 << 12;
     //正在操作的
     public final static int FIRED = 1;
 

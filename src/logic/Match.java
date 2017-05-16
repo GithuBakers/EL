@@ -200,7 +200,7 @@ public class Match {
         for (int i = 2; i >= 0; i--) {
             cnt = 0;
             src[x][y - i].matchMe();
-            src[x][y - i].makeSpecial(true, 0xff0);
+            src[x][y - i].makeSpecial(true, 0xfff0);
             //查看纵向是否能形成L等图形
             zf = (x == 0);
             onef = (x == 1);
@@ -240,7 +240,7 @@ public class Match {
         for (int i = 2; i >= 0; i--) {
 
             src[x - i][y].matchMe();
-            src[x - i][y].makeSpecial(true, 0xff0);
+            src[x - i][y].makeSpecial(true, 0xfff0);
             //查看是否能形成L等图形
             zf = (y == 0);
             onef = (y == 1);
@@ -280,7 +280,7 @@ public class Match {
         for (int i = 3; i >= 0; i--, cnt = 0) {
             if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FOURR);
-                src[x][y - i].makeSpecial(true, 0xff0);
+                src[x][y - i].makeSpecial(true, 0xfff0);
             }
             src[x][y - i].matchMe();
             zf = (x == 0);
@@ -318,7 +318,7 @@ public class Match {
         for (int i = 3; i >= 0; i--) {
             if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
                 src[x - i][y].makeSpecial(CD.FOURC);
-                src[x - i][y].makeSpecial(true, 0xff0);
+                src[x - i][y].makeSpecial(true, 0xfff0);
             }
             src[x - i][y].matchMe();
             //查看是否能形成L等图形
@@ -357,7 +357,7 @@ public class Match {
         for (int i = 4; i >= 0; i--, cnt = 0) {
             if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FIVE);
-                src[x][y - i].makeSpecial(true, 0xff0);
+                src[x][y - i].makeSpecial(true, 0xfff0);
             }
             src[x][y - i].matchMe();
             zf = (x == 0);
@@ -391,7 +391,7 @@ public class Match {
         for (int i = 4; i >= 0; i--) {
             if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
                 src[x - i][y].makeSpecial(CD.FIVE);
-                src[x - i][y].makeSpecial(true, 0xff0);
+                src[x - i][y].makeSpecial(true, 0xfff0);
             }
             src[x - i][y].matchMe();
             //查看是否能形成L等图形
@@ -424,14 +424,14 @@ public class Match {
     private static void markMoreR(int len, int x, int y) {
         for (int i = len - 1; i >= 0; i--) {
             src[x][y - i].matchMe();
-            src[x][y - i].makeSpecial(true, 0xff0);
+            src[x][y - i].makeSpecial(true, 0xfff0);
         }
     }
 
     private static void markMoreC(int len, int x, int y) {
         for (int i = len - 1; i >= 0; i--) {
             src[x - i][y].matchMe();
-            src[x - i][y].makeSpecial(true, 0xff0);
+            src[x - i][y].makeSpecial(true, 0xfff0);
         }
     }
 

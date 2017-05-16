@@ -41,7 +41,7 @@ public class Diamond {
     public void matchMe() {
         if (condition == 0) {
             int temp = special & 0xff0;
-            special &= 0x0f;
+            special &= 0xf00f;
             switch (temp) {
                 case 0x210: {
                     Diamond[][] src = BoardInfor.getBoardInformation();
