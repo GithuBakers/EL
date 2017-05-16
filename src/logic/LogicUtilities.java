@@ -19,21 +19,42 @@ public class LogicUtilities {
         int y = (int) (point.getY() - CD.LAYOUT_INTERVAL);
         int dx,dy;
         int smallInterval = CD.DIAMOND_SIZE + CD.INTERVAL;
-//        if(x%smallInterval-0.5F*(float)smallInterval<0.0){
-//            dx=x/smallInterval;
-//        }else {
-//            dx=x/smallInterval+1;
-//        }
         dx = x / smallInterval;
-//        if(y%smallInterval-0.5F*(float)smallInterval<0.0){
-//            dy=y/smallInterval;
-//        }else {
-//            dy=y/smallInterval+1;
-//        }
         dy = y / smallInterval;
         return new Point2D(dx, dy);
     }
 
+    public static boolean move(int x1, int y1, int x2, int y2) {
+        int ax = x1, ay = y1;
+        int bx = x2, by = y2;
+        boolean ret = Judge.isValid(ax, ay, bx, by);
+        if (ret) {
+            //交换
+            Diamond[][] src = BoardInfor.getBoardInformation();
+            Diamond temp;
+            temp = src[ax][ay];
+            src[ax][ay] = src[bx][by];
+            src[bx][by] = temp;
+            BoardInfor.setBoardInformation(src);
+
+            //标记操作当前操作的，并mark，可以识别五连的特效
+            src[ax][ay].makeSpecial(CD.FIRED);
+            src[bx][by].makeSpecial(CD.FIRED);
+            if ((src[ax][ay].getSpecial() & 0xf0) == 0x50) {
+                Match.markFive(src[bx][by]);
+            } else if ((src[bx][by].getSpecial() & 0xf0) == 0x50) {
+                Match.markFive(src[ax][ay]);
+            } else {
+                Match.mark(ax, ay, bx, by);
+            }
+            src[ax][ay].makeSpecial(true, 0xff0);
+            src[bx][by].makeSpecial(true, 0xff0);
+            BoardInfor.setBoardInformation(src);
+        }
+
+        return ret;
+
+    }
     //界面调用这个方法之后，如果可以移动，会生成标记后的地图，如果不可以移动，则返回false
     public static boolean move(Point2D a, Point2D b) {
         a = mouseMagnet(a);

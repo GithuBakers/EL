@@ -52,7 +52,7 @@ public class Main {
                 {'d', 'b', 'b', 'b', 'b', 'f', 'd', 'a'},
                 {'a', 'c', 'c', 'a', 'c', 'f', 'c', 'd'},
                 {'a', 'c', 'c', 'a', 'b', 'b', 'a', 'd'},
-                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'd'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
 
@@ -106,7 +106,18 @@ public class Main {
                 {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'a'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'d', 'd', 'd', 'a', 'c', 'd', 'd', 'd'}};
-        toTest(sample3);
+
+        //tm列匹配有毒？？？
+        char[][] samplex = {
+                {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
+                {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
+                {'d', 'b', 'a', 'b', 'b', 'f', 'd', 'a'},
+                {'a', 'c', 'c', 'a', 'c', 'f', 'c', 'a'},
+                {'a', 'c', 'c', 'a', 'b', 'b', 'a', 'd'},
+                {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'd'},
+                {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
+                {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
+        toTest(samplex);
 
         //测试特效
 //        Diamond[][] src = BoardInfor.getBoardInformation();
@@ -116,11 +127,11 @@ public class Main {
 //        src[7][7].makeSpecial(CD.L);
 
         System.out.println(Judge.isUnfinished());
-        printProperties(BoardInfor.getBoardInformation());
+//        printProperties(BoardInfor.getBoardInformation());
         Match.mark();
         printProperties(BoardInfor.getBoardInformation());
-        print(BoardInfor.getBoardInformation());
-        printProperties(BoardInfor.getBoardInformation());
+//        print(BoardInfor.getBoardInformation());
+//        printProperties(BoardInfor.getBoardInformation());
         BoardManager.clean();
         print(BoardInfor.getBoardInformation());
         BoardManager.generateSpace();

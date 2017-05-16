@@ -20,6 +20,7 @@ public class Judge {
         Diamond now;
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            cnt = 0;
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 now = src[i][j];
                 switch (cnt) {
@@ -32,7 +33,7 @@ public class Judge {
                         if (now.kind == state) {
                             cnt++;
                         } else {
-                            cnt = 0;
+                            cnt = 1;
                             state = now.kind;
                         }
                         break;
@@ -41,7 +42,7 @@ public class Judge {
                         if (now.kind == state) {
                             cnt++;
                         } else {
-                            cnt = 0;
+                            cnt = 1;
                             state = now.kind;
                         }
                         break;
@@ -55,6 +56,7 @@ public class Judge {
         }
 
         for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+            cnt = 0;
             for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
                 now = src[i][j];
                 switch (cnt) {
@@ -67,7 +69,7 @@ public class Judge {
                         if (now.kind == state) {
                             cnt++;
                         } else {
-                            cnt = 0;
+                            cnt = 1;
                             state = now.kind;
                         }
                         break;
@@ -76,7 +78,7 @@ public class Judge {
                         if (now.kind == state) {
                             cnt++;
                         } else {
-                            cnt = 0;
+                            cnt = 1;
                             state = now.kind;
                         }
                         break;
@@ -107,6 +109,9 @@ public class Judge {
             src[x1][y1] = src[x2][y2];
             src[x2][y2] = temp;
             ret = ret || isUnfinished(false);
+            temp = src[x1][y1];
+            src[x1][y1] = src[x2][y2];
+            src[x2][y2] = temp;
         }
         return ret;
     }
