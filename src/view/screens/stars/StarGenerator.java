@@ -24,8 +24,9 @@ import static data.CD.BOARD_SIZE_Y;
 public class StarGenerator {
     private AnchorPane anchorPane;
     private Point2D begin, end;
-    Diamond[][] src = BoardInfor.getBoardInformation();
-    ImageView[][] starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
+    private Diamond[][] src;
+    private Diamond[][] old_information;
+    private ImageView[][] starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
 
     public StarGenerator(AnchorPane anchorPane){
         this.anchorPane=anchorPane;
@@ -78,9 +79,17 @@ public class StarGenerator {
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                //如果被消除了或不存在
+                if (src[i][j] == null || src[i][j].isMatched()) {
+                    anchorPane.getChildren().remove(starViews[i][j]);
+                    starViews[i][j] = new ImageView(StarSelector.getImage('x'));
+                    starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
+                    starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                    anchorPane.getChildren().add(starViews[i][j]);
+                    continue;
+                }
                 anchorPane.getChildren().remove(starViews[i][j]);
-                Image image = StarSelector.getImage(src[i][j].kind);
-                starViews[i][j] = new ImageView(image);
+                starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
                 anchorPane.getChildren().add(starViews[i][j]);
@@ -126,13 +135,16 @@ public class StarGenerator {
             parallelTransition.setOnFinished(event ->
             {
                 fresh();
+                //TODO:Animator here,record boardInformation
+                moveAnimator();
                 BoardManager.clean();
-                print(src);
-                BoardManager.generateSpace();
-                printProperties(src);
-                System.out.println("one step is over");
-                print(src);
                 fresh();
+//                print(src);
+//                BoardManager.generateSpace();
+//                printProperties(src);
+//                System.out.println("one step is over");
+//                print(src);
+//                fresh();
             });
 
 //            print(src);
@@ -141,6 +153,9 @@ public class StarGenerator {
         }
     }
 
+    private void moveAnimator() {
+
+    }
     //下面几个方法都是测试用的
     public static void print(Diamond[][] src) {
         System.out.println("__________________________________");

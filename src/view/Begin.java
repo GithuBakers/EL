@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.BoardManager;
 import view.screens.loader.FramesLoader;
 
 /**
@@ -21,7 +20,6 @@ public class Begin extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        BoardManager.generateAll();
         Group root=new Group();
         root.getChildren().addAll(FramesLoader.loadScreens());
         Scene scene=new Scene(root);

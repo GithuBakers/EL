@@ -125,10 +125,10 @@ public class Diamond {
         condition = 0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return ((Diamond) o).kind == this.kind;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        return ((Diamond) o).kind == this.kind;
+//    }
 
     @Override
     public String toString() {
