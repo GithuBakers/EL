@@ -57,7 +57,7 @@ public class StarGenerator {
                 Image image = StarSelector.getImage(src[i][j].kind);
                 starViews[i][j] = new ImageView(image);
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                 anchorPane.getChildren().add(starViews[i][j]);
             }
         }
@@ -84,14 +84,14 @@ public class StarGenerator {
                     anchorPane.getChildren().remove(starViews[i][j]);
                     starViews[i][j] = new ImageView(StarSelector.getImage('x'));
                     starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                    starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                    starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                     anchorPane.getChildren().add(starViews[i][j]);
                     continue;
                 }
                 anchorPane.getChildren().remove(starViews[i][j]);
                 starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                 anchorPane.getChildren().add(starViews[i][j]);
             }
         }
@@ -110,22 +110,22 @@ public class StarGenerator {
         int x2 = (int) end.getX(), y2 = (int) end.getY();
         int dx = (int) (end.getX() - begin.getX()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
         int dy = (int) (end.getY() - begin.getY()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
-        TranslateTransition translate1 = new TranslateTransition(Duration.seconds(2), starViews[x1][y1]);
-        TranslateTransition translate2 = new TranslateTransition(Duration.seconds(2), starViews[x2][y2]);
-        translate1.setFromX(starViews[x1][y1].getX());
-        translate1.setFromY(starViews[x1][y1].getY());
+        TranslateTransition translate1 = new TranslateTransition(Duration.seconds(2), starViews[x1][CD.BOARD_SIZE_Y - 1 - y1]);
+        TranslateTransition translate2 = new TranslateTransition(Duration.seconds(2), starViews[x2][CD.BOARD_SIZE_Y - 1 - y2]);
+        translate1.setFromX(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].getX());
+        translate1.setFromY(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].getY());
         translate1.setByX(dx);
         translate1.setByY(dy);
 //        translate1.play();
-        translate2.setFromX(starViews[x2][y2].getX());
-        translate2.setFromY(starViews[x2][y2].getY());
+        translate2.setFromX(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].getX());
+        translate2.setFromY(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].getY());
         translate2.setByX(-dx);
         translate2.setByY(-dy);
         translate1.setInterpolator(Interpolator.SPLINE(.7, .1, .7, .1));
 //        translate2.play();
         ParallelTransition parallelTransition = new ParallelTransition(translate1, translate2);
         print(src);
-        if (!LogicUtilities.move(x1, y1, x2, y2)) {
+        if (!LogicUtilities.move(x1, CD.BOARD_SIZE_Y - 1 - y1, x2, CD.BOARD_SIZE_Y - 1 - y2)) {
             System.out.println("here");
             parallelTransition.setAutoReverse(true);
             parallelTransition.setCycleCount(2);
@@ -139,12 +139,12 @@ public class StarGenerator {
                 moveAnimator();
                 BoardManager.clean();
                 fresh();
-//                print(src);
-//                BoardManager.generateSpace();
-//                printProperties(src);
-//                System.out.println("one step is over");
-//                print(src);
-//                fresh();
+                print(src);
+                BoardManager.generateSpace();
+                printProperties(src);
+                System.out.println("one step is over");
+                print(src);
+                fresh();
             });
 
 //            print(src);
@@ -154,7 +154,14 @@ public class StarGenerator {
     }
 
     private void moveAnimator() {
+        old_information = src;
+        BoardManager.clean();
+        src = BoardInfor.getBoardInformation();
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
 
+            }
+        }
     }
     //下面几个方法都是测试用的
     public static void print(Diamond[][] src) {
