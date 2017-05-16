@@ -10,7 +10,7 @@
 <AnchorPane maxWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.SettingInGameScreenController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="800.0" layoutX="600.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
-      <Button layoutX="764.0" layoutY="631.0" mnemonicParsing="false" text="BACKTOSTART" />
+      <Button layoutX="764.0" layoutY="631.0" mnemonicParsing="false" onMouseClicked="#backToStart" text="BACKTOSTART" />
       <Button layoutX="765.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#backToGame" text="BACKTOGAME" />
       <Button layoutX="773.0" layoutY="330.0" mnemonicParsing="false" text="BGMMUSIC" />
       <Button layoutX="769.0" layoutY="431.0" mnemonicParsing="false" text="STARSMUSIC" />

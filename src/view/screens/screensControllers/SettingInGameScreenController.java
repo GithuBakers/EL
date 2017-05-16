@@ -21,6 +21,7 @@ public class SettingInGameScreenController implements ControlledFrame {
 
     public void backToStart(){
         framesController.removeScreen(FramesLoader.classicScreenID,FramesLoader.settingInGameScreenID, AnimatorSetting.ANIMATOR_SLIDETORIGHT);
+//        framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.rejudgeScreenID,AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
 
     }
 }
