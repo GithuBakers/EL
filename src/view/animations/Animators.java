@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.effect.GaussianBlur;
 import javafx.util.Duration;
 
 /**
@@ -16,7 +17,10 @@ public class Animators {
     private boolean isSlideInLeft=false;
     private boolean isSlideInRight=false;
     private boolean isFadeIn=false;
-
+    private boolean isSlideFromUp=false;
+    private boolean isSlideToDown=false;
+    private boolean isSlideFromRight=false;
+    private boolean isSlideToRight=true;
 
     public void setAnimation(AnimatorSetting as){
         switch (as){
@@ -29,6 +33,17 @@ public class Animators {
             case ANIMATOR_FADEIN:
                 isFadeIn=true;
                 break;
+            case ANIMATOR_SLIDEINFROMUP:
+                isSlideFromUp=true;
+                break;
+            case ANIMATOR_SLIDEINTODOWN:
+                isSlideToDown=true;
+                break;
+            case ANIMATOR_SLIDEFROMRIGHT:
+                isSlideFromRight=true;
+                break;
+            case ANIMATOR_SLIDETORIGHT:
+                isSlideToRight=true;
             default:
                 break;
         }
@@ -43,6 +58,14 @@ public class Animators {
             show=slideInRight(screen1,screen2,durMillis);
         }else if(isFadeIn){
             show=fadeIn(screen1,screen2,durMillis);
+        }else if(isSlideFromUp){
+            show=slideInFromUp(screen1,screen2,durMillis);
+        }else if(isSlideToDown){
+            show=slideInToDown(screen1,screen2,durMillis);
+        }else if(isSlideFromRight){
+            show=slideFromRight(screen1,screen2,durMillis);
+        }else if(isSlideToRight){
+            show=slideToRight(screen1,screen2,durMillis);
         }
 
         return show;
@@ -52,21 +75,21 @@ public class Animators {
 
 
 
-    public Timeline slideInLeft(Node screen1,Node screen2,int durMillis){
 
+
+    public Timeline slideInLeft(Node screen1,Node screen2,int durMillis){
+        screen2.translateXProperty().set(1000);
         Timeline slideInLeft=new Timeline(
 
-                new KeyFrame(Duration.millis(durMillis), new KeyValue(screen1.translateXProperty(), -1000, Interpolator.SPLINE(0.5, .5, 0, 0))),
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(screen1.translateXProperty(), -1000),
+                        new KeyValue(screen2.translateXProperty(),0)),
 
-                new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(screen1.translateXProperty(),0),
+                        new KeyValue(screen2.translateXProperty(),1000))
+        );
 
-                        Timeline slideIn=new Timeline(
-                                new KeyFrame(Duration.ZERO,new KeyValue(screen2.translateXProperty(),1000,Interpolator.EASE_OUT)),
-                                new KeyFrame(Duration.millis(durMillis),new KeyValue(screen2.translateXProperty(),0)));
-                        slideIn.play();
-                    }},new KeyValue(screen1.translateXProperty(),0, Interpolator.EASE_IN)));
         return  slideInLeft;
     }
 
@@ -74,42 +97,101 @@ public class Animators {
 
 
     public Timeline slideInRight(Node screen1,Node screen2,int durMillis){
-
+        screen2.translateXProperty().set(-1000);
         Timeline slideInRight=new Timeline(
 
-                new KeyFrame(Duration.millis(durMillis),new KeyValue(screen1.translateXProperty(),1000)),
-                new KeyFrame(Duration.millis(0), new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-
-                        Timeline slideIn=new Timeline(
-                                new KeyFrame(Duration.ZERO,new KeyValue(screen2.translateXProperty(),-1000,Interpolator.EASE_OUT)),
-                                new KeyFrame(Duration.millis(durMillis),new KeyValue(screen2.translateXProperty(),0)));
-                        slideIn.play();
-                    }},new KeyValue(screen1.translateXProperty(),0,Interpolator.EASE_IN)));
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(screen1.translateXProperty(),1000),
+                        new KeyValue(screen2.translateXProperty(),0)),
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(screen1.translateXProperty(),0),
+                        new KeyValue(screen2.translateXProperty(),-1000))
+        );
         return  slideInRight;
     }
 
 
+    public Timeline slideFromRight(Node screen1,Node screen2,int durMillis){
+        screen2.translateXProperty().set(1000);
+        GaussianBlur gaussianBlur=new GaussianBlur();
+        gaussianBlur.setRadius(0);
+        screen1.setEffect(gaussianBlur);
+        Timeline slideFromRight=new Timeline(
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(gaussianBlur.radiusProperty(),10),
+                        new KeyValue(screen2.translateXProperty(),0)),
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(gaussianBlur.radiusProperty(),0),
+                        new KeyValue(screen2.translateXProperty(),1000,Interpolator.TANGENT(Duration.millis(95),10)))
+        );
+        return slideFromRight;
+    }
+
+
+    public Timeline slideToRight(Node screen1,Node screen2,int durMillis){
+//        screen2.translateXProperty().set(0);
+        GaussianBlur gaussianBlur=new GaussianBlur();
+        screen1.setEffect(gaussianBlur);
+        Timeline slideToRight=new Timeline(
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(gaussianBlur.radiusProperty(),0),
+                        new KeyValue(screen2.translateXProperty(),1000,Interpolator.TANGENT(Duration.millis(95),10))),
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(gaussianBlur.radiusProperty(),10),
+                        new KeyValue(screen2.translateXProperty(),0))
+        );
+        return slideToRight;
+    }
+
 
 
     public Timeline fadeIn(Node screen1,Node screen2,int durMillis){
+        screen2.opacityProperty().set(0);
         Timeline fadeIn=new Timeline(
-                new KeyFrame(Duration.millis(durMillis),new KeyValue(screen1.opacityProperty(),0)),
-
-                new KeyFrame(Duration.ZERO, new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-
-                        Timeline fadeIn=new Timeline(
-                                new KeyFrame(Duration.ZERO,new KeyValue(screen2.opacityProperty(),0)),
-                                new KeyFrame(Duration.millis(durMillis),new KeyValue(screen2.opacityProperty(),1)));
-                        fadeIn.play();
-                    }
-                },new KeyValue(screen1.opacityProperty(),1)));
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(screen1.opacityProperty(),0),
+                        new KeyValue(screen2.opacityProperty(),1)),
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(screen1.opacityProperty(),1),
+                        new KeyValue(screen2.opacityProperty(),0))
+        );
         return fadeIn;
-
-
     }
+
+
+
+    public Timeline slideInFromUp(Node screen1,Node screen2,int durMillis){
+        screen2.translateYProperty().set(-600);
+
+        GaussianBlur gaussianBlur=new GaussianBlur();
+        screen1.setEffect(gaussianBlur);
+
+        Timeline slideInFromUp=new Timeline(
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(screen2.translateYProperty(),0),
+                        new KeyValue(gaussianBlur.radiusProperty(),10)),
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(screen2.translateYProperty(),-600,Interpolator.TANGENT(Duration.millis(95),10)),
+                        new KeyValue(gaussianBlur.radiusProperty(),0))
+        );
+        return slideInFromUp;
+    }
+
+    public Timeline slideInToDown(Node screen1,Node screen2,int durMillis){
+        GaussianBlur gaussianBlur=new GaussianBlur();
+        screen1.setEffect(gaussianBlur);
+
+        Timeline slideInToDown=new Timeline(
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(screen2.translateYProperty(),0),
+                        new KeyValue(gaussianBlur.radiusProperty(),10)),
+                new KeyFrame(Duration.millis(durMillis),
+                        new KeyValue(screen2.translateYProperty(),1000,Interpolator.TANGENT(Duration.millis(95),10)),
+                        new KeyValue(gaussianBlur.radiusProperty(),0))
+        );
+        return slideInToDown;
+    }
+
+
 
 }

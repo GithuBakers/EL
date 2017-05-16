@@ -19,5 +19,6 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button layoutX="740.0" layoutY="504.0" mnemonicParsing="false" onMouseClicked="#toSetting" text="Setting" />
    </children>
 </AnchorPane>

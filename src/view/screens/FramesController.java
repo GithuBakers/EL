@@ -126,6 +126,34 @@ public class FramesController extends StackPane{
     }
 
 
+    public void addScreen(String name1,String name2,AnimatorSetting as){
+        Animators animator=new Animators();
+        animator.setAnimation(as);
+        Timeline timeline=animator.showTime(map.get(name1),map.get(name2),400);
+
+        getChildren().add(map.get(name2));
+        timeline.play();
+    }
+
+    public void removeScreen(String name1,String name2,AnimatorSetting as){
+        Animators animators=new Animators();
+        animators.setAnimation(as);
+        Timeline timeline=animators.showTime(map.get(name1),map.get(name2),400);
+
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        getChildren().remove(map.get(name2));
+
+                        System.out.println("DA♂RK");
+                    }
+                })
+        );
+        timeline.play();
+    }
+
+
 
 
 

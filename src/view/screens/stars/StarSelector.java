@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 /**
  * Created by 15852 on 2017/5/11 0011.
  */
-public class StarSelecter {
+public class StarSelector {
 
     private static Image myImage;
 

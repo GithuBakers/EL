@@ -1,26 +1,16 @@
 package view.screens.screensControllers;
 
-import javafx.event.EventHandler;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.*;
-import javafx.scene.image.Image;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import view.Begin;
 import view.animations.AnimatorSetting;
+import view.animations.Animators;
 import view.screens.FramesController;
 import view.screens.frameInterface.ControlledFrame;
 import view.screens.loader.FramesLoader;
-import view.screens.stars.StarSelecter;
-
-import java.awt.*;
 
 /**
  * Created by 15852 on 2017/5/7 0007.
@@ -56,7 +46,6 @@ public class ClassicScreenController implements ControlledFrame {
 
     public void stop(){
 //    停止
-        classicPane.setEffect(null);
 
     }
 
@@ -64,12 +53,15 @@ public class ClassicScreenController implements ControlledFrame {
 //    增大音量
 
 
+//        Animators animator=new Animators();
+//        animator.setAnimation();
+//        Timeline timeline=animator.showTime(framesController.getScreen(FramesLoader.settingScreenID),300);
+//        timeline.play();
 
     }
 
     public void lower(){
 //    减小音量
-
 
     }
 
@@ -89,7 +81,8 @@ public class ClassicScreenController implements ControlledFrame {
 
 
     public void toStart(){
-        framesController.setScreen(FramesLoader.classicScreenID,FramesLoader.startScreenID,AnimatorSetting.ANIMATOR_SLIDEINRIGHT);
+//        framesController.setScreen(FramesLoader.classicScreenID,FramesLoader.startScreenID,AnimatorSetting.ANIMATOR_FADEIN);
+        framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.settingInGameScreenID,AnimatorSetting.ANIMATOR_SLIDEFROMRIGHT);
     }
 
     @Override

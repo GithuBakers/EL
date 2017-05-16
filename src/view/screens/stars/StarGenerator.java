@@ -33,7 +33,7 @@ public class StarGenerator {
         print(src);
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
-                Image image = StarSelecter.getImage(src[i][j].kind);
+                Image image = StarSelector.getImage(src[i][j].kind);
                 starViews[i][j] = new ImageView(image);
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
