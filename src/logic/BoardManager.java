@@ -80,10 +80,9 @@ public class BoardManager {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 if ((!src[i][j].isMatched()) || src[i][j].isSpecial()) {
                     temp[cnt++] = src[i][j];
-                }
-                if (src[i][j].isSpecial()) {
                     src[i][j].cleanMatch();
                 }
+
             }
             for (int j = 0; j < cnt; j++) {
                 temp[j].changeLocation(i, j);

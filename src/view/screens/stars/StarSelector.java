@@ -1,6 +1,5 @@
 package view.screens.stars;
 
-import data.BoardInfor;
 import javafx.scene.image.Image;
 
 /**

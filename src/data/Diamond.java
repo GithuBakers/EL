@@ -41,7 +41,7 @@ public class Diamond {
     public void matchMe() {
         if (condition == 0) {
             int temp = special & 0xff0;
-            special = 0x0f;
+            special &= 0xf00f;
             switch (temp) {
                 case 0x210: {
                     Diamond[][] src = BoardInfor.getBoardInformation();
@@ -125,10 +125,10 @@ public class Diamond {
         condition = 0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return ((Diamond) o).kind == this.kind;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        return ((Diamond) o).kind == this.kind;
+//    }
 
     @Override
     public String toString() {
