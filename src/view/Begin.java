@@ -27,7 +27,7 @@ public class Begin extends Application {
         root.getChildren().addAll(FramesLoader.loadScreens());
         Scene scene=new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+//        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 
