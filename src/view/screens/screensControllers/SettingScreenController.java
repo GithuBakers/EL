@@ -17,6 +17,6 @@ public class SettingScreenController implements ControlledFrame {
     }
 
     public void back(){
-        framesController.removeScreen(FramesLoader.startScreenID,FramesLoader.settingScreenID, AnimatorSetting.ANIMATOR_SLIDEINTODOWN);
+//        framesController.removeScreen(FramesLoader.startScreenID,FramesLoader.settingScreenID, AnimatorSetting.ANIMATOR_SLIDEINTODOWN);
     }
 }
