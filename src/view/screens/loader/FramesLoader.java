@@ -20,7 +20,7 @@ public class FramesLoader {
     public static String settingInGameScreenID="settingInGame";
     public static String settingInGameScreenFile="fxmlFiles/SettingInGame.fxml";
     public static String rejudgeScreenID="rejudge";
-    public static String rejudgeScreenFile="fxmlFiles/RejudgeScreenController";
+    public static String rejudgeScreenFile="fxmlFiles/Rejudge.fxml";
 
     public static FramesController loadScreens(){
         FramesController framesController=new FramesController();

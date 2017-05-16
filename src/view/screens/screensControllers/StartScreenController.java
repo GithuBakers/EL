@@ -61,8 +61,7 @@ public class StartScreenController implements ControlledFrame {
 
     @FXML
     public void toSetting(){
-//        framesController.addScreen(FramesLoader.startScreenID,FramesLoader.settingScreenID,AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
-        framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.rejudgeScreenID,AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
+        framesController.addScreen(FramesLoader.startScreenID,FramesLoader.settingScreenID,AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
 
     }
 
