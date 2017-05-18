@@ -24,4 +24,13 @@ public class SettingInGameScreenController implements ControlledFrame {
         framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.rejudgeScreenID,AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
 
     }
+
+    public void settingMouseEntered(){}
+    public void settingMousePressed(){}
+
+    public void changeTheBGMMusic(){}
+    public void changeTheGameMusic(){}
+    public void changeTheButtonMusic(){}
+    public void changeTheMainMusic(){}
+
 }

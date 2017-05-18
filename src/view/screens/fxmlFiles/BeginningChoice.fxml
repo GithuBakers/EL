@@ -20,7 +20,7 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Button layoutX="457.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#start" text="LET'S START" />
+      <Button layoutX="457.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#start" onMouseEntered="#beginningChoiceMouseEntered" onMousePressed="#beginningChoiceMousePressed" text="LET'S START" />
       <Label layoutX="446.0" layoutY="348.0" text="EXPECT BALABALA" />
    </children>
 </AnchorPane>

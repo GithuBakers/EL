@@ -18,4 +18,7 @@ public class BeginningChoiceScreenController implements ControlledFrame {
     public void start(){
         framesController.removeScreen(FramesLoader.classicScreenID,FramesLoader.beginningChoiceScreenID, AnimatorSetting.ANIMATOR_SLIDEINTODOWN);
     }
+
+    public void beginningChoiceMouseEntered(){}
+    public void beginningChoiceMousePressed(){}
 }

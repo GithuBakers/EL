@@ -7,12 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.RejudgeScreenController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1d1ff" height="346.0" layoutX="314.0" layoutY="227.0" stroke="WHITE" strokeType="INSIDE" width="373.0" />
-      <Button layoutX="453.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#backToStart" text="EXITTOSTART" />
-      <Button layoutX="468.0" layoutY="411.0" mnemonicParsing="false" text="RETURN" />
+      <Button layoutX="453.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#backToStart" onMouseEntered="#rejudgeMouseEntered" onMousePressed="#rejudgeMousePressed" text="EXITTOSTART" />
+      <Button layoutX="468.0" layoutY="411.0" mnemonicParsing="false" onMouseClicked="#backToGame" onMouseEntered="#rejudgeMouseEntered" onMousePressed="#rejudgeMousePressed" text="RETURN" />
       <Label layoutX="458.0" layoutY="340.0" text="AREYOUSURE?" />
    </children>
 </AnchorPane>

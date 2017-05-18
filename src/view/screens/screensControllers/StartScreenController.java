@@ -28,6 +28,7 @@ public class StartScreenController implements ControlledFrame {
 
     @FXML
     public void toClassic(){
+
         AnchorPane anchorPane=(AnchorPane) framesController.getScreen(FramesLoader.classicScreenID);
         AnchorPane grid=(AnchorPane)anchorPane.lookup("#grid");
         AnchorPane upPane=(AnchorPane)anchorPane.lookup("#upPane");
@@ -76,4 +77,14 @@ public class StartScreenController implements ControlledFrame {
     public void setControlledFrame(FramesController framesController) {
         this.framesController=framesController;
     }
+
+    public void startMouseEntered(){
+//        鼠标移入音效
+
+    }
+    public void startMousePressed(){
+//        鼠标点击
+    }
+
+
 }
