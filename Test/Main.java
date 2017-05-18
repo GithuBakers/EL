@@ -117,7 +117,29 @@ public class Main {
                 {'d', 'b', 'e', 'd', 'd', 'f', 'd', 'd'},
                 {'a', 'c', 'c', 'd', 'c', 'c', 'a', 'd'},
                 {'a', 'd', 'd', 'a', 'c', 'c', 'a', 'd'}};
-        toTest(sample3);
+        //deal with a problem in UI test
+        char[][] samplexxz = {
+                {'d', 'd', 'a', 'e', 'a', 'a', 'c', 'c'},
+                {'a', 'a', 'b', 'e', 'a', 'a', 'd', 'd'},
+                {'f', 'c', 'a', 'c', 'a', 'd', 'c', 'c'},
+                {'c', 'c', 'f', 'c', 'a', 'f', 'c', 'c'},
+                {'e', 'b', 'b', 'f', 'b', 'd', 'd', 'a'},
+                {'b', 'b', 'b', 'c', 'b', 'd', 'c', 'd'},
+                {'b', 'd', 'b', 'c', 'c', 'e', 'b', 'd'},
+                {'a', 'a', 'd', 'a', 'a', 'd', 'a', 'a'}
+        };
+        char a = 'a', b = 'b', c = 'c', d = 'd', e = 'e', f = 'f';
+        char[][] samplexxz2 = {
+                {a, b, e, c, f, a, a, a},
+                {a, d, b, c, c, a, c, a},
+                {d, b, f, a, d, f, c, c},
+                {a, c, c, f, c, b, e, d},
+                {a, c, b, b, a, a, b, f},
+                {d, e, d, f, d, a, d, d},
+                {a, b, e, e, a, e, e, e},
+                {a, d, a, c, c, f, e, d}
+        };
+        toTest(samplexxz2);
 
         //测试特效
 //        Diamond[][] src = BoardInfor.getBoardInformation();

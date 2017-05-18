@@ -41,16 +41,17 @@ public class Judge {
                     case 2: {
                         if (now.kind == state) {
                             cnt++;
+                            return true;
                         } else {
                             cnt = 1;
                             state = now.kind;
                         }
                         break;
                     }
-                    case 3: {
-                        cnt = 0;
-                        return true;
-                    }
+//                    case 3: {
+//                        cnt = 0;
+//                        return true;
+//                    }
                 }
             }
         }
@@ -77,16 +78,14 @@ public class Judge {
                     case 2: {
                         if (now.kind == state) {
                             cnt++;
+                            return true;
                         } else {
                             cnt = 1;
                             state = now.kind;
                         }
                         break;
                     }
-                    case 3: {
-                        cnt = 0;
-                        return true;
-                    }
+
                 }
             }
         }

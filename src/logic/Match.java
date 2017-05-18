@@ -13,6 +13,7 @@ public class Match {
     public static void mark() {
         src = BoardInfor.getBoardInformation();
         markRow();
+        BoardInfor.setBoardInformation(src);
         markColumn();
         BoardInfor.setBoardInformation(src);
     }
@@ -50,10 +51,10 @@ public class Match {
                 case 1: {
                     if (now.kind == state) {
                         cnt++;
-                        loc[1] = i;
+                        loc[i] = i;
                     } else {
                         cnt = 1;
-                        loc[0] = i;
+                        loc = new Integer[5];
                         state = now.kind;
                     }
                     break;
@@ -62,11 +63,10 @@ public class Match {
                 case 2: {
                     if (now.kind == state) {
                         cnt++;
-                        loc[2] = i;
+                        loc[i] = i;
                     } else {
                         cnt = 1;
-                        loc[1] = null;
-                        loc[0] = i;
+                        loc = new Integer[5];
                         state = now.kind;
                     }
                     break;
@@ -75,7 +75,7 @@ public class Match {
                 case 3: {
                     if (now.kind == state) {
                         cnt++;
-                        loc[3] = i;
+                        loc[i] = i;
                     } else {
                         cnt = 9;
                     }
@@ -84,7 +84,7 @@ public class Match {
 
                 case 4: {
                     if (now.kind == state) {
-                        loc[4] = i;
+                        loc[i] = i;
                         cnt = 9;
                     } else {
                         cnt = 9;
@@ -132,10 +132,10 @@ public class Match {
                 case 1: {
                     if (now.kind == state) {
                         cnt++;
-                        loc[1] = i;
+                        loc[i] = i;
                     } else {
                         cnt = 1;
-                        loc[0] = i;
+                        loc = new Integer[5];
                         state = now.kind;
                     }
                     break;
@@ -144,11 +144,10 @@ public class Match {
                 case 2: {
                     if (now.kind == state) {
                         cnt++;
-                        loc[2] = i;
+                        loc[i] = i;
                     } else {
                         cnt = 1;
-                        loc[1] = null;
-                        loc[0] = i;
+                        loc = new Integer[5];
                         state = now.kind;
                     }
                     break;
@@ -157,7 +156,7 @@ public class Match {
                 case 3: {
                     if (now.kind == state) {
                         cnt++;
-                        loc[3] = i;
+                        loc[i] = i;
                     } else {
                         cnt = 9;
                     }
@@ -166,7 +165,7 @@ public class Match {
 
                 case 4: {
                     if (now.kind == state) {
-                        loc[4] = i;
+                        loc[i] = i;
                         cnt = 9;
                     } else {
                         cnt = 9;

@@ -7,13 +7,18 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import logic.BoardManager;
+import logic.Judge;
 import logic.LogicUtilities;
+import logic.Match;
+
+import java.util.ArrayList;
 
 import static data.CD.BOARD_SIZE_X;
 import static data.CD.BOARD_SIZE_Y;
@@ -31,6 +36,8 @@ public class StarGenerator {
     private Diamond[][] src;
     private Diamond[][] old_information;
     private ImageView[][] starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
+    private int[] disapperaCnt;
+    int cntxxz = 0;
 
     public StarGenerator(AnchorPane anchorPane){
         this.anchorPane=anchorPane;
@@ -49,7 +56,7 @@ public class StarGenerator {
         go();
     }
 
-    public void go() {
+    synchronized public void go() {
         src = BoardInfor.getBoardInformation();
         starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
         //TODO:        Button generateNewStars=new Button("Refresh");
@@ -74,14 +81,24 @@ public class StarGenerator {
             moveAStep();
 
         });
+        //TODO:to be deleted
+        anchorPane.setOnMouseClicked(click -> {
+            if (click.getClickCount() == 3) {
+                System.out.println("here");
+                refresh();
+                ObservableList list = anchorPane.getChildren();
+                System.out.println("pause");
+            }
+        });
 
     }
 
-    private void generateNewStars() {
+    synchronized private void generateNewStars() {
         src = BoardInfor.getBoardInformation();
-
+        ArrayList<Timeline> timeline = new ArrayList<>();
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = CD.BOARD_SIZE_Y - 1; j >= 0; j--) {
+
                 //如果被消除了或不存在
                 if (src[i][j] == null) {
                     BoardManager.generateOne(i, j);
@@ -90,42 +107,69 @@ public class StarGenerator {
                     int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE) - 150;
                     temp.setLayoutY(bias);
                     anchorPane.getChildren().add(temp);
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),
-                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.EASE_BOTH)));
-                    timeline.play();
-                    if (j == 0) {
-                        timeline.setOnFinished(event -> {
-                            anchorPane.getChildren().remove(temp);
-                            refresh();
-                        });
-                    }
+                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(2),
+                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.EASE_BOTH))
+                    ));
+
+                    disapperaCnt[i]--;
+                    System.out.println("the disappear" + i + " is" + disapperaCnt[i]);
+                    timeline.get(0).play();
+
+                    System.out.println(cntxxz++);
+                    timeline.get(0).setOnFinished(event -> {
+
+
+                        System.out.println(anchorPane.getChildren().remove(temp));
+
+                    });
+
+//                    }
                 }
             }
         }
+        int cnt = 0;
+        System.out.println(cnt++);
+        timeline.get(0).setOnFinished(event -> {
+            System.out.println(anchorPane.getChildren().remove(anchorPane.getChildren().size() - 1));
+            System.out.println("count here");
+            refresh();
+            if (Judge.isUnfinished()) {
+                Match.mark();
+                moveAnimator();
+            }
+        });
+
     }
 
-    private void refresh() {
+    synchronized private void refresh() {
+        System.out.println("fresh has been called");
         src = BoardInfor.getBoardInformation();
+        print(src);
+//        anchorPane.getChildren().remove(1,anchorPane.getChildren().size());
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
-                anchorPane.getChildren().remove(starViews[i][j]);
+                anchorPane.getChildren().removeAll(starViews[i][j]);
+
+//                System.out.println("I've removed "+i+"#"+j);
+
                 starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                 anchorPane.getChildren().add(starViews[i][j]);
             }
         }
+
     }
 
-    private void setBegin(Point2D point2D) {
+    synchronized private void setBegin(Point2D point2D) {
         begin = point2D;
     }
 
-    private void setEnd(Point2D point2D) {
+    synchronized private void setEnd(Point2D point2D) {
         end = point2D;
     }
 
-    private void moveAStep() {
+    synchronized private void moveAStep() {
         int x1 = (int) begin.getX(), y1 = (int) begin.getY();
         int x2 = (int) end.getX(), y2 = (int) end.getY();
         int dx = (int) (end.getX() - begin.getX()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
@@ -136,7 +180,7 @@ public class StarGenerator {
                         new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateYProperty(), dy, Interpolator.EASE_BOTH),
                         new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateXProperty(), -dx, Interpolator.EASE_BOTH),
                         new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateYProperty(), -dy, Interpolator.EASE_BOTH)));
-        timeline1.play();
+
         if (!LogicUtilities.move(x1, CD.BOARD_SIZE_Y - 1 - y1, x2, CD.BOARD_SIZE_Y - 1 - y2)) {
             timeline1.setAutoReverse(true);
             timeline1.setCycleCount(2);
@@ -149,7 +193,6 @@ public class StarGenerator {
                 ImageView temp = starViews[x1][CD.BOARD_SIZE_Y - 1 - y1];
                 starViews[x1][CD.BOARD_SIZE_Y - 1 - y1] = starViews[x2][CD.BOARD_SIZE_Y - 1 - y2];
                 starViews[x2][CD.BOARD_SIZE_Y - 1 - y2] = temp;
-                disappear();
                 moveAnimator();
             });
 
@@ -158,7 +201,7 @@ public class StarGenerator {
         }
     }
 
-    private void copyOldInformation() {
+    synchronized private void copyOldInformation() {
         old_information = new Diamond[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
@@ -168,12 +211,14 @@ public class StarGenerator {
     }
 
 
-    private void disappear() {
+    synchronized private void disappear() {
         src = BoardInfor.getBoardInformation();
+        disapperaCnt = new int[CD.BOARD_SIZE_X];
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            disapperaCnt[i] = 0;
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 if (src[i][j] != null && src[i][j].isMatched() && !src[i][j].isSpecial()) {
-
+                    disapperaCnt[i]++;
                     starViews[i][j].setImage(StarSelector.getImage('x'));
                     System.out.println("I made starView" + i + "#" + j + " black");
 
@@ -182,7 +227,7 @@ public class StarGenerator {
         }
     }
 
-    private void compareAndMove() {
+    synchronized private void compareAndMove() {
         src = BoardInfor.getBoardInformation();
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
@@ -198,7 +243,8 @@ public class StarGenerator {
         }
     }
 
-    private void moveAnimator() {
+    synchronized private void moveAnimator() {
+        disappear();
         copyOldInformation();
         BoardManager.clean();
         compareAndMove();
