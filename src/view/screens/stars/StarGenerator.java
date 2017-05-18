@@ -4,8 +4,9 @@ import data.BoardInfor;
 import data.CD;
 import data.Diamond;
 import javafx.animation.Interpolator;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,9 @@ import static data.CD.BOARD_SIZE_Y;
 /**
  * Created by Bay on 2017/5/15 0015.
  * 贩卖星星与钻石的黑市商人----翔哲
+ *
+ * bugs:Which method will be called when the "start" button is pressed??
+ * There'll be duplicated image in the game board when the START is pressed for the second time.
  */
 public class StarGenerator {
     private AnchorPane anchorPane;
@@ -48,8 +52,7 @@ public class StarGenerator {
     public void go() {
         src = BoardInfor.getBoardInformation();
         starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
-        //TODO:        Button refresh=new Button("Refresh");
-        //        anchorPane.getChildren().add(refresh);
+        //TODO:        Button generateNewStars=new Button("Refresh");
         //*********************
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
@@ -57,7 +60,7 @@ public class StarGenerator {
                 Image image = StarSelector.getImage(src[i][j].kind);
                 starViews[i][j] = new ImageView(image);
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                 anchorPane.getChildren().add(starViews[i][j]);
             }
         }
@@ -74,24 +77,41 @@ public class StarGenerator {
 
     }
 
-    private void fresh() {
+    private void generateNewStars() {
         src = BoardInfor.getBoardInformation();
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
-            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+            for (int j = CD.BOARD_SIZE_Y - 1; j >= 0; j--) {
                 //如果被消除了或不存在
-                if (src[i][j] == null || src[i][j].isMatched()) {
-                    anchorPane.getChildren().remove(starViews[i][j]);
-                    starViews[i][j] = new ImageView(StarSelector.getImage('x'));
-                    starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                    starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
-                    anchorPane.getChildren().add(starViews[i][j]);
-                    continue;
+                if (src[i][j] == null) {
+                    BoardManager.generateOne(i, j);
+                    ImageView temp = new ImageView(StarSelector.getImage(src[i][j].kind));
+                    temp.setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
+                    int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE) - 150;
+                    temp.setLayoutY(bias);
+                    anchorPane.getChildren().add(temp);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),
+                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.EASE_BOTH)));
+                    timeline.play();
+                    if (j == 0) {
+                        timeline.setOnFinished(event -> {
+                            anchorPane.getChildren().remove(temp);
+                            refresh();
+                        });
+                    }
                 }
+            }
+        }
+    }
+
+    private void refresh() {
+        src = BoardInfor.getBoardInformation();
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 anchorPane.getChildren().remove(starViews[i][j]);
                 starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * j);
+                starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                 anchorPane.getChildren().add(starViews[i][j]);
             }
         }
@@ -110,51 +130,79 @@ public class StarGenerator {
         int x2 = (int) end.getX(), y2 = (int) end.getY();
         int dx = (int) (end.getX() - begin.getX()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
         int dy = (int) (end.getY() - begin.getY()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
-        TranslateTransition translate1 = new TranslateTransition(Duration.seconds(2), starViews[x1][y1]);
-        TranslateTransition translate2 = new TranslateTransition(Duration.seconds(2), starViews[x2][y2]);
-        translate1.setFromX(starViews[x1][y1].getX());
-        translate1.setFromY(starViews[x1][y1].getY());
-        translate1.setByX(dx);
-        translate1.setByY(dy);
-//        translate1.play();
-        translate2.setFromX(starViews[x2][y2].getX());
-        translate2.setFromY(starViews[x2][y2].getY());
-        translate2.setByX(-dx);
-        translate2.setByY(-dy);
-        translate1.setInterpolator(Interpolator.SPLINE(.7, .1, .7, .1));
-//        translate2.play();
-        ParallelTransition parallelTransition = new ParallelTransition(translate1, translate2);
-        print(src);
-        if (!LogicUtilities.move(x1, y1, x2, y2)) {
-            System.out.println("here");
-            parallelTransition.setAutoReverse(true);
-            parallelTransition.setCycleCount(2);
-            parallelTransition.play();
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.seconds(2),
+                        new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateXProperty(), dx, Interpolator.EASE_BOTH),
+                        new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateYProperty(), dy, Interpolator.EASE_BOTH),
+                        new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateXProperty(), -dx, Interpolator.EASE_BOTH),
+                        new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateYProperty(), -dy, Interpolator.EASE_BOTH)));
+        timeline1.play();
+        if (!LogicUtilities.move(x1, CD.BOARD_SIZE_Y - 1 - y1, x2, CD.BOARD_SIZE_Y - 1 - y2)) {
+            timeline1.setAutoReverse(true);
+            timeline1.setCycleCount(2);
+            timeline1.play();
         } else {
-            parallelTransition.play();
-            parallelTransition.setOnFinished(event ->
+            timeline1.play();
+            timeline1.setOnFinished(event ->
             {
-                fresh();
-                //TODO:Animator here,record boardInformation
+//              Exchange the reference of the first diamond and the second one
+                ImageView temp = starViews[x1][CD.BOARD_SIZE_Y - 1 - y1];
+                starViews[x1][CD.BOARD_SIZE_Y - 1 - y1] = starViews[x2][CD.BOARD_SIZE_Y - 1 - y2];
+                starViews[x2][CD.BOARD_SIZE_Y - 1 - y2] = temp;
+                disappear();
                 moveAnimator();
-                BoardManager.clean();
-                fresh();
-//                print(src);
-//                BoardManager.generateSpace();
-//                printProperties(src);
-//                System.out.println("one step is over");
-//                print(src);
-//                fresh();
             });
 
-//            print(src);
 
 
         }
     }
 
-    private void moveAnimator() {
+    private void copyOldInformation() {
+        old_information = new Diamond[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                old_information[i][j] = src[i][j];
+            }
+        }
+    }
 
+
+    private void disappear() {
+        src = BoardInfor.getBoardInformation();
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                if (src[i][j] != null && src[i][j].isMatched() && !src[i][j].isSpecial()) {
+
+                    starViews[i][j].setImage(StarSelector.getImage('x'));
+                    System.out.println("I made starView" + i + "#" + j + " black");
+
+                }
+            }
+        }
+    }
+
+    private void compareAndMove() {
+        src = BoardInfor.getBoardInformation();
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                for (int k = 0; k < CD.BOARD_SIZE_Y; k++) {
+                    if (old_information[i][j].equals(src[i][k])) {
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),
+                                new KeyValue(starViews[i][j].translateYProperty(),
+                                        (int) (starViews[i][j].getTranslateY() + (j - k) * (CD.DIAMOND_SIZE + CD.INTERVAL)), Interpolator.EASE_BOTH)));
+                        timeline.play();
+                    }
+                }
+            }
+        }
+    }
+
+    private void moveAnimator() {
+        copyOldInformation();
+        BoardManager.clean();
+        compareAndMove();
+        generateNewStars();
     }
     //下面几个方法都是测试用的
     public static void print(Diamond[][] src) {
