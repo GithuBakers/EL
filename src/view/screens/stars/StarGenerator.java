@@ -3,7 +3,10 @@ package view.screens.stars;
 import data.BoardInfor;
 import data.CD;
 import data.Diamond;
-import javafx.animation.*;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -78,24 +81,33 @@ public class StarGenerator {
         src = BoardInfor.getBoardInformation();
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
-            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+            for (int j = CD.BOARD_SIZE_Y - 1; j >= 0; j--) {
                 //如果被消除了或不存在
                 if (src[i][j] == null) {
-                    anchorPane.getChildren().remove(starViews[i][j]);
                     BoardManager.generateOne(i, j);
-                    starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
-                    starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                    starViews[i][j].setLayoutY(0);
-                    anchorPane.getChildren().add(starViews[i][j]);
-                    TranslateTransition transition = new TranslateTransition(Duration.seconds(2), starViews[i][j]);
-                    System.out.println("starVs.getY=" + starViews[i][j].getY());
-                    transition.setFromY(starViews[i][j].getY());
-                    transition.setByY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
-                    transition.setInterpolator(Interpolator.TANGENT(Duration.seconds(1), 1));
-                    transition.play();
-                    transition.setOnFinished(event -> System.out.println("finish"));
-                    continue;
+                    ImageView temp = new ImageView(StarSelector.getImage(src[i][j].kind));
+                    temp.setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
+                    int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE) - 150;
+                    temp.setLayoutY(bias);
+                    anchorPane.getChildren().add(temp);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),
+                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.EASE_BOTH)));
+                    timeline.play();
+                    if (j == 0) {
+                        timeline.setOnFinished(event -> {
+                            anchorPane.getChildren().remove(temp);
+                            refresh();
+                        });
+                    }
                 }
+            }
+        }
+    }
+
+    private void refresh() {
+        src = BoardInfor.getBoardInformation();
+        for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+            for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 anchorPane.getChildren().remove(starViews[i][j]);
                 starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
@@ -176,7 +188,6 @@ public class StarGenerator {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 for (int k = 0; k < CD.BOARD_SIZE_Y; k++) {
                     if (old_information[i][j].equals(src[i][k])) {
-                        System.out.println("I moved" + i + "#" + j);
                         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),
                                 new KeyValue(starViews[i][j].translateYProperty(),
                                         (int) (starViews[i][j].getTranslateY() + (j - k) * (CD.DIAMOND_SIZE + CD.INTERVAL)), Interpolator.EASE_BOTH)));
@@ -189,9 +200,9 @@ public class StarGenerator {
 
     private void moveAnimator() {
         copyOldInformation();
-        printProperties(src);
         BoardManager.clean();
         compareAndMove();
+        generateNewStars();
     }
     //下面几个方法都是测试用的
     public static void print(Diamond[][] src) {
