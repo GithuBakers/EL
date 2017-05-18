@@ -19,4 +19,12 @@ public class SettingScreenController implements ControlledFrame {
     public void back(){
         framesController.removeScreen(FramesLoader.startScreenID,FramesLoader.settingScreenID, AnimatorSetting.ANIMATOR_SLIDEINTODOWN);
     }
+
+    public void settingMouseEntered(){}
+    public void settingMousePressed(){}
+
+    public void changeTheBGMMusic(){}
+    public void changeTheGameMusic(){}
+    public void changeTheButtonMusic(){}
+    public void changeTheMainMusic(){}
 }

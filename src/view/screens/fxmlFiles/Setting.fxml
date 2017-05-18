@@ -11,8 +11,14 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.SettingScreenController">
    <children>
       <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#65b1f8" height="471.0" layoutX="27.0" layoutY="-36.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
-      <Button layoutX="173.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#back" text="DONE" />
-      <Label layoutX="116.0" layoutY="173.0" text="MUSIC" />
-      <ToggleButton ellipsisString="dvag" layoutX="231.0" layoutY="169.0" mnemonicParsing="false" text="ToggleButton" textOverrun="CLIP" />
+      <Button layoutX="173.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#back" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="DONE" />
+      <Label layoutX="116.0" layoutY="173.0" text="BGMMUSIC" />
+      <Button layoutX="254.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#changeTheBGMMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
+      <Label layoutX="112.0" layoutY="234.0" text="GAMEMUSIC" />
+      <Button layoutX="254.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#changeTheGameMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
+      <Label layoutX="105.0" layoutY="110.0" onMouseClicked="#changeTheButtonMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="BUTTONMUSIC" />
+      <Button layoutX="254.0" layoutY="106.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="113.0" layoutY="300.0" text="MAINMUSIC" />
+      <Button layoutX="254.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#changeTheMainMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
    </children>
 </Pane>

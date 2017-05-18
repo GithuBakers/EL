@@ -29,7 +29,7 @@
       <AnchorPane fx:id="downPane" layoutY="720.0" prefHeight="79.0" prefWidth="1000.0">
          <children>
             <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#78ffa1" height="122.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-            <Button fx:id="backButton" layoutX="808.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#toStart" prefHeight="23.0" prefWidth="132.0" text="I AM EVERYTHING" />
+            <Button fx:id="backButton" layoutX="808.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#toStart" onMouseEntered="#classicMouseEntered" onMousePressed="#classicMousePressed" prefHeight="23.0" prefWidth="132.0" text="I AM EVERYTHING" />
          </children>
       </AnchorPane>
    </children>

@@ -28,4 +28,11 @@ public class RejudgeScreenController implements ControlledFrame {
         timeline.play();
 
     }
+
+    public void backToGame(){
+        framesController.removeScreen(FramesLoader.classicScreenID,FramesLoader.rejudgeScreenID, AnimatorSetting.ANIMATOR_SLIDEINTODOWN);
+    }
+
+    public void rejudgeMouseEntered(){}
+    public void rejudgeMousePressed(){}
 }

@@ -18,67 +18,6 @@ import view.screens.loader.FramesLoader;
 public class ClassicScreenController implements ControlledFrame {
     private FramesController framesController;
 
-    @FXML
-    Button backButton;
-
-    @FXML
-    AnchorPane classicPane;
-
-    @FXML
-    Pane pane12;
-
-    @FXML
-    AnchorPane grid;
-
-    @FXML
-    Button fuck;
-
-
-//    辣鸡一舟，完成下面四个方法
-
-    public void playMusic(){
-//    播放
-        GaussianBlur gaussianBlur=new GaussianBlur();
-        gaussianBlur.setRadius(10);
-        classicPane.setEffect(gaussianBlur);
-
-    }
-
-    public void stop(){
-//    停止
-
-    }
-
-    public void upper(){
-//    增大音量
-
-
-//        Animators animator=new Animators();
-//        animator.setAnimation();
-//        Timeline timeline=animator.showTime(framesController.getScreen(FramesLoader.settingScreenID),300);
-//        timeline.play();
-
-    }
-
-    public void lower(){
-//    减小音量
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void toStart(){
 //        framesController.setScreen(FramesLoader.classicScreenID,FramesLoader.startScreenID,AnimatorSetting.ANIMATOR_FADEIN);
@@ -90,4 +29,6 @@ public class ClassicScreenController implements ControlledFrame {
         this.framesController=framesController;
     }
 
+    public void classicMouseEntered(){}
+    public void classicMousePressed(){}
 }
