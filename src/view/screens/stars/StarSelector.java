@@ -1,5 +1,6 @@
 package view.screens.stars;
 
+import data.CD;
 import javafx.scene.image.Image;
 
 /**
@@ -12,25 +13,25 @@ public class StarSelector {
     public static Image getImage(char a){
         switch (a) {
             case 'a':
-                myImage=new Image("/view/resources/starYellow1.PNG");
+                myImage=new Image("/view/resources/star-1-normal.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'b':
-                myImage=new Image("/view/resources/starRed1.PNG");
+                myImage=new Image("/view/resources/star-2-normal.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'c':
-                myImage=new Image("/view/resources/starGreen1.PNG");
+                myImage=new Image("/view/resources/star-3-normal.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'd':
-                myImage=new Image("/view/resources/starBlue1.PNG");
+                myImage=new Image("/view/resources/star-4-normal.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'e':
-                myImage=new Image("/view/resources/starPink1.PNG");
+                myImage=new Image("/view/resources/star-5-normal.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'f':
-                myImage=new Image("/view/resources/starBrown1.PNG");
+                myImage=new Image("/view/resources/star-6-normal.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             default:
-                myImage=new Image("/view/resources/starBlackSpecial.PNG");
+                myImage=new Image("/view/resources/starBlackSpecial.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
         }
         return myImage;
@@ -39,25 +40,25 @@ public class StarSelector {
     public static Image getModifiedImage(char a){
         switch (a){
             case 'a':
-                myImage=new Image("/view/resources/starYellow2.PNG");
+                myImage=new Image("/view/resources/star-1-hover.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'b':
-                myImage=new Image("/view/resources/starRed2.PNG");
+                myImage=new Image("/view/resources/star-2-hover.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'c':
-                myImage=new Image("/view/resources/starGreen2.PNG");
+                myImage=new Image("/view/resources/star-3-hover.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'd':
-                myImage=new Image("/view/resources/starBlue2.PNG");
+                myImage=new Image("/view/resources/star-4-hover.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'e':
-                myImage=new Image("/view/resources/starPink2.PNG");
+                myImage=new Image("/view/resources/star-5-hover.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             case 'f':
-                myImage=new Image("/view/resources/starBrown2.PNG");
+                myImage=new Image("/view/resources/star-6-hover.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
             default:
-                myImage=new Image("/view/resources/starBlackSpecial.PNG");
+                myImage=new Image("/view/resources/starBlackSpecial.PNG", CD.DIAMOND_SIZE,CD.DIAMOND_SIZE,true,true);
                 break;
         }
         return myImage;

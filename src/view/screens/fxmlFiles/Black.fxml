@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="800.0" fitWidth="1000.0">
          <image>
-            <Image url="@../../resources/blackScreen.PNG" />
+            <Image url="@../../resources/STAR-1.PNG" />
          </image>
       </ImageView>
    </children>

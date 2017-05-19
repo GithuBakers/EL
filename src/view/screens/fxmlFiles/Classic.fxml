@@ -11,9 +11,14 @@
 
 <AnchorPane fx:id="classicPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.ClassicScreenController">
    <children>
+      <ImageView fitHeight="800.0" fitWidth="1000.0">
+         <image>
+            <Image url="@../../resources/darkbluebackground.PNG" />
+         </image>
+      </ImageView>
       <AnchorPane fx:id="grid" layoutX="242.0" layoutY="142.0" prefHeight="490.0" prefWidth="490.0">
          <children>
-            <ImageView fitHeight="510.0" fitWidth="510.0" layoutX="7.0" layoutY="7.0">
+            <ImageView fitHeight="510.0" fitWidth="510.0" layoutX="7.0" layoutY="7.0" visible="false">
                <image>
                   <Image url="@../../resources/grid.png" />
                </image>
