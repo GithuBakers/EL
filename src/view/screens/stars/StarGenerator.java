@@ -57,6 +57,7 @@ public class StarGenerator {
     }
 
     synchronized public void go() {
+//        anchorPane.setCursor(new ImageCursor(new Image());
         src = BoardInfor.getBoardInformation();
         starViews = new ImageView[CD.BOARD_SIZE_X][CD.BOARD_SIZE_Y];
         //TODO:        Button generateNewStars=new Button("Refresh");
