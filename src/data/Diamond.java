@@ -11,7 +11,7 @@ public class Diamond {
     private int y;
     private int special = 0;
     private int condition = 0;
-
+    private boolean thisTime = false;
     public Diamond(char c, int xx, int yy) {
         x = xx;
         y = yy;
@@ -31,6 +31,9 @@ public class Diamond {
     }
 
     public void makeSpecial(int a) {
+        if (a != CD.FIRED) {
+            thisTime = true;
+        }
         special = special | a;
     }
 
@@ -39,7 +42,7 @@ public class Diamond {
     }
 
     public void matchMe() {
-        if (condition == 0) {
+        if (condition == 0 && !thisTime) {
             int temp = special & 0xff0;
             special &= 0xf00f;
             switch (temp) {
@@ -125,6 +128,9 @@ public class Diamond {
         condition = 0;
     }
 
+    public void cleanThisTime() {
+        thisTime = false;
+    }
 //    @Override
 //    public boolean equals(Object o) {
 //        return ((Diamond) o).kind == this.kind;

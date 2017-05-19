@@ -3,7 +3,7 @@ import data.CD;
 import data.Diamond;
 import logic.BoardManager;
 import logic.Judge;
-import logic.Match;
+import logic.LogicUtilities;
 
 import static data.CD.BOARD_SIZE_X;
 import static data.CD.BOARD_SIZE_Y;
@@ -139,7 +139,18 @@ public class Main {
                 {a, b, e, e, a, e, e, e},
                 {a, d, a, c, c, f, e, d}
         };
-        toTest(samplexxz2);
+
+        char[][] samplexxz3 = {
+                {a, b, e, c, f, b, d, d},
+                {a, d, b, c, c, a, b, c},
+                {d, b, f, a, a, b, d, e},
+                {a, b, a, c, e, c, f, e},
+                {a, c, b, c, c, b, c, d},
+                {d, b, d, b, f, b, e, e},
+                {a, c, e, d, a, f, d, e},
+                {a, d, a, c, c, e, a, f}
+        };
+        toTest(samplexxz3);
 
         //测试特效
 //        Diamond[][] src = BoardInfor.getBoardInformation();
@@ -150,7 +161,7 @@ public class Main {
 
         System.out.println(Judge.isUnfinished());
 //        printProperties(BoardInfor.getBoardInformation());
-        Match.mark();
+        LogicUtilities.move(3, 5, 4, 5);
         printProperties(BoardInfor.getBoardInformation());
 //        print(BoardInfor.getBoardInformation());
 //        printProperties(BoardInfor.getBoardInformation());

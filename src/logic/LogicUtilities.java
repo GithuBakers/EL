@@ -34,7 +34,9 @@ public class LogicUtilities {
             Diamond temp;
             temp = src[ax][ay];
             src[ax][ay] = src[bx][by];
+            src[ax][ay].changeLocation(ax, ay);
             src[bx][by] = temp;
+            src[bx][by].changeLocation(bx, by);
             BoardInfor.setBoardInformation(src);
 
             //标记操作当前操作的，并mark，可以识别五连的特效
