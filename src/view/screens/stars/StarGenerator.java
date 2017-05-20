@@ -105,12 +105,12 @@ public class StarGenerator {
                     BoardManager.generateOne(i, j);
                     ImageView temp = new ImageView(StarSelector.getImage(src[i][j].kind));
                     temp.setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
-                    int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE) - 150;
+                    int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE);
                     temp.setLayoutY(bias);
                     anchorPane.getChildren().add(temp);
-                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(2),
-                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.EASE_BOTH))
-                    ));
+                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(3),
+                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.TANGENT(Duration.seconds(1), -1))
+                    )));
 
                     disapperaCnt[i]--;
                     System.out.println("the disappear" + i + " is" + disapperaCnt[i]);
@@ -176,7 +176,7 @@ public class StarGenerator {
         int dx = (int) (end.getX() - begin.getX()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
         int dy = (int) (end.getY() - begin.getY()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
         Timeline timeline1 = new Timeline(
-                new KeyFrame(Duration.seconds(2),
+                new KeyFrame(Duration.seconds(0.5),
                         new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateXProperty(), dx, Interpolator.EASE_BOTH),
                         new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateYProperty(), dy, Interpolator.EASE_BOTH),
                         new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateXProperty(), -dx, Interpolator.EASE_BOTH),
@@ -234,7 +234,7 @@ public class StarGenerator {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 for (int k = 0; k < CD.BOARD_SIZE_Y; k++) {
                     if (old_information[i][j].equals(src[i][k])) {
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1),
                                 new KeyValue(starViews[i][j].translateYProperty(),
                                         (int) (starViews[i][j].getTranslateY() + (j - k) * (CD.DIAMOND_SIZE + CD.INTERVAL)), Interpolator.EASE_BOTH)));
                         timeline.play();

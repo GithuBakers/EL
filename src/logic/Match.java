@@ -336,7 +336,7 @@ public class Match {
                 src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag4 = true;
             }
-            if (!markFlag4) {
+            if (!markFlag4 && (i == 0)) {
                 src[x - i][y].makeSpecial(CD.FOURC);
                 src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag4 = true;
@@ -418,7 +418,7 @@ public class Match {
                 src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag5 = true;
             }
-            if (!markFlag5) {
+            if (!markFlag5 && (i == 0)) {
                 src[x - i][y].makeSpecial(CD.FIVE);
                 src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag5 = true;

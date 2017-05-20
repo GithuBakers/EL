@@ -43,7 +43,7 @@ public class Diamond {
 
     public void matchMe() {
         if (condition == 0 && !thisTime) {
-            int temp = special & 0xff0;
+            int temp = special & 0xfff0;
             special &= 0xf00f;
             switch (temp) {
                 case 0x210: {
@@ -111,6 +111,18 @@ public class Diamond {
                     Diamond[][] src = BoardInfor.getBoardInformation();
                     for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
                         src[x][i].matchMe();
+                    }
+                    break;
+                }
+                case CD.FIVE: {
+                    special &= 0x0fff;
+                    Diamond[][] src = BoardInfor.getBoardInformation();
+                    for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
+                        for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
+                            if (src[i][j].kind == kind) {
+                                src[i][j].matchMe();
+                            }
+                        }
                     }
                     break;
                 }
