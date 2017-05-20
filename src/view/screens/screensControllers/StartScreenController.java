@@ -8,9 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import music.BGM;
 import view.animations.AnimatorSetting;
 import view.screens.FramesController;
 import view.screens.frameInterface.ControlledFrame;
@@ -18,9 +21,11 @@ import view.screens.loader.FramesLoader;
 import view.screens.stars.StarGenerator;
 
 import javax.swing.text.html.ImageView;
+import java.util.Random;
 
 /**
  * Created by 15852 on 2017/5/7 0007.
+ * developed by xu on 2017/5/15
  */
 public class StartScreenController implements ControlledFrame {
     private FramesController framesController;
@@ -77,14 +82,70 @@ public class StartScreenController implements ControlledFrame {
     public void setControlledFrame(FramesController framesController) {
         this.framesController=framesController;
     }
-
-    public void startMouseEntered(){
+    BGM bgm=new BGM();
+    public void startMouseEntered() {
 //        鼠标移入音效
-
+        boolean flag = bgm.isFlagButton();
+        if (flag) {
+            Random random = new Random();
+            int mark = random.nextInt(4);
+            Media media = new Media(bgm.getUrl1());
+            switch (mark) {
+                case 0: {
+                    media = new Media(bgm.getUrl1());
+                    break;
+                }
+                case 1: {
+                    media = new Media(bgm.getUrl2());
+                    break;
+                }
+                case 2: {
+                    media = new Media(bgm.getUrl3());
+                    break;
+                }
+                case 3: {
+                    media = new Media(bgm.getUrl4());
+                    break;
+                }
+            }
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setVolume(0.3);
+            mediaPlayer.play();
+        }
     }
-    public void startMousePressed(){
+    public void startMousePressed() {
 //        鼠标点击
+        boolean flag = bgm.isFlagButton();
+        if (flag) {
+            Random random = new Random();
+            int mark = random.nextInt(5);
+            Media media = new Media(bgm.getUrl5());
+            switch (mark) {
+                case 0: {
+                    media = new Media(bgm.getUrl5());
+                    break;
+                }
+                case 1: {
+                    media = new Media(bgm.getUrl6());
+                    break;
+                }
+                case 2: {
+                    media = new Media(bgm.getUrl7());
+                    break;
+                }
+                case 3: {
+                    media = new Media(bgm.getUrl8());
+                    break;
+                }
+                case 4: {
+                    media = new Media(bgm.getUrl9());
+                    break;
+                }
+            }
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setVolume(0.3);
+            mediaPlayer.play();
+        }
     }
-
 
 }
