@@ -17,7 +17,6 @@ import java.util.Random;
 public class SettingScreenController implements ControlledFrame {
     private FramesController framesController;
 
-    @Override
     public void setControlledFrame(FramesController framesController) {
         this.framesController=framesController;
     }
@@ -93,13 +92,9 @@ public class SettingScreenController implements ControlledFrame {
 
     public void changeTheBGMMusic(){
         boolean flag=bgm.isFlagBGM();
-        Media media=new Media(bgm.getUrl());
-        MediaPlayer mediaPlayer=new MediaPlayer(media);
         if(flag){
-        mediaPlayer.play();
         bgm.setFlagBGM(false);
         }else{
-            mediaPlayer.stop();
             bgm.setFlagBGM(true);
         }
     }

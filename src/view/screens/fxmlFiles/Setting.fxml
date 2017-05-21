@@ -13,8 +13,8 @@
       <Button layoutX="254.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#changeTheBGMMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
       <Label layoutX="112.0" layoutY="234.0" text="GAMEMUSIC" />
       <Button layoutX="254.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#changeTheGameMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
-      <Label layoutX="105.0" layoutY="110.0" onMouseClicked="#changeTheButtonMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="BUTTONMUSIC" />
-      <Button layoutX="254.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#changeTheButtonMusic" onMouseEntered="#settingMouseEntered" text="Button" />
+      <Label layoutX="105.0" layoutY="110.0" text="BUTTONMUSIC" />
+      <Button layoutX="254.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#changeTheButtonMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
       <Label layoutX="113.0" layoutY="300.0" text="MAINMUSIC" />
       <Button layoutX="254.0" layoutY="296.0" mnemonicParsing="false" onMouseClicked="#changeTheMainMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" text="Button" />
    </children>
