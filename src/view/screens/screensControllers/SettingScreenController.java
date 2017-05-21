@@ -96,9 +96,7 @@ public class SettingScreenController implements ControlledFrame {
         Media media=new Media(bgm.getUrl());
         MediaPlayer mediaPlayer=new MediaPlayer(media);
         if(flag){
-        mediaPlayer.setVolume(0.3);
         mediaPlayer.play();
-        mediaPlayer.setCycleCount(1000000000);
         bgm.setFlagBGM(false);
         }else{
             mediaPlayer.stop();
