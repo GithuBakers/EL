@@ -26,7 +26,7 @@ public class SettingScreenController implements ControlledFrame {
     }
     BGM bgm=new BGM();
     public void settingMouseEntered() {
-        boolean flag = bgm.isFlagButton();
+        boolean flag = BGM.isFlagButton();
         if (flag) {
             Random random = new Random();
             int mark = random.nextInt(4);
@@ -55,7 +55,7 @@ public class SettingScreenController implements ControlledFrame {
         }
     }
     public void settingMousePressed(){
-        boolean flag=bgm.isFlagButton();
+        boolean flag=BGM.isFlagButton();
         if(flag){
         Random random=new Random();
         int mark=random.nextInt(5);
@@ -91,35 +91,40 @@ public class SettingScreenController implements ControlledFrame {
 
 
     public void changeTheBGMMusic(){
-        boolean flag=bgm.isFlagBGM();
+        boolean flag=BGM.isFlagBGM();
         if(flag){
-        bgm.setFlagBGM(false);
+            BGM.BGMastop();
+        BGM.setFlagBGM(false);
         }else{
-            bgm.setFlagBGM(true);
+            BGM.BGMaplay();
+           BGM.setFlagBGM(true);
         }
     }
     public void changeTheGameMusic(){
-        boolean flag=bgm.isFlagGame();
+        boolean flag=BGM.isFlagGame();
         if(flag){
-            bgm.setFlagGame(false);
+            BGM.setFlagGame(false);
         }else{
-           bgm.setFlagGame(true);
+           BGM.setFlagGame(true);
         }
     }
     public void changeTheButtonMusic(){
-        boolean flag=bgm.isFlagButton();
+        boolean flag=BGM.isFlagButton();
         if(flag){
-            bgm.setFlagButton(false);
+            BGM.setFlagButton(false);
         }else{
-            bgm.setFlagButton(true);
+            BGM.setFlagButton(true);
         }
     }
     public void changeTheMainMusic(){
-        boolean flag=bgm.isFlagMain();
-        if(flag){
-            bgm.setFlagMain(false);
+        if(BGM.isFlagBGM()==false&&BGM.isFlagButton()==false){
+            BGM.setFlagBGM(true);
+            BGM.setFlagButton(true);
+            BGM.BGMaplay();
         }else{
-            bgm.setFlagMain(true);
+            BGM.setFlagBGM(false);
+            BGM.setFlagButton(false);
+            BGM.BGMastop();
         }
     }
 

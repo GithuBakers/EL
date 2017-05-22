@@ -27,10 +27,10 @@ public class SettingInGameScreenController implements ControlledFrame {
     public void backToStart(){
         framesController.removeScreen(FramesLoader.classicScreenID,FramesLoader.settingInGameScreenID, AnimatorSetting.ANIMATOR_SLIDETORIGHT);
         framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.rejudgeScreenID,AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
-
     }
     BGM bgm=new BGM();
-    public void settingMouseEntered(){ boolean flag = bgm.isFlagButton();
+    public void settingMouseEntered(){
+        boolean flag = BGM.isFlagButton();
         if (flag) {
             Random random = new Random();
             int mark = random.nextInt(4);
@@ -59,7 +59,7 @@ public class SettingInGameScreenController implements ControlledFrame {
         }
     }
     public void settingMousePressed(){
-        boolean flag=bgm.isFlagButton();
+        boolean flag=BGM.isFlagButton();
         if(flag){
             Random random=new Random();
             int mark=random.nextInt(5);
@@ -89,43 +89,44 @@ public class SettingInGameScreenController implements ControlledFrame {
             MediaPlayer mediaPlayer=new MediaPlayer(media);
             mediaPlayer.setVolume(0.3);
             mediaPlayer.play();
-        }}
+        }
+    }
 
     public void changeTheBGMMusic(){
-        boolean flag=bgm.isFlagBGM();
-        Media media=new Media(bgm.getUrl());
-        MediaPlayer mediaPlayer=new MediaPlayer(media);
+        boolean flag=BGM.isFlagBGM();
         if(flag){
-            mediaPlayer.play();
-            mediaPlayer.setCycleCount(1000000000);
-            bgm.setFlagBGM(false);
+            BGM.BGMbstop();
+            BGM.setFlagBGM(false);
         }else{
-            mediaPlayer.stop();
-            bgm.setFlagBGM(true);
+            BGM.BGMbplay();
+            BGM.setFlagBGM(true);
         }
     }
     public void changeTheGameMusic(){
-        boolean flag=bgm.isFlagGame();
+        boolean flag=BGM.isFlagGame();
         if(flag){
-            bgm.setFlagGame(false);
+            BGM.setFlagGame(false);
         }else{
-            bgm.setFlagGame(true);
+            BGM.setFlagGame(true);
         }
     }
     public void changeTheButtonMusic(){
-        boolean flag=bgm.isFlagButton();
+        boolean flag=BGM.isFlagButton();
         if(flag){
-            bgm.setFlagButton(false);
+            BGM.setFlagButton(false);
         }else{
-            bgm.setFlagButton(true);
+            BGM.setFlagButton(true);
         }
     }
     public void changeTheMainMusic(){
-        boolean flag=bgm.isFlagMain();
-        if(flag){
-            bgm.setFlagMain(false);
+        if(BGM.isFlagBGM()==false&&BGM.isFlagButton()==false){
+            BGM.setFlagBGM(true);
+            BGM.setFlagButton(true);
+            BGM.BGMbplay();
         }else{
-            bgm.setFlagMain(true);
+            BGM.setFlagBGM(false);
+            BGM.setFlagButton(false);
+            BGM.BGMbstop();
         }
     }
 

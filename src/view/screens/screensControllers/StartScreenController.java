@@ -4,14 +4,10 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import music.BGM;
 import view.animations.AnimatorSetting;
@@ -20,7 +16,6 @@ import view.screens.frameInterface.ControlledFrame;
 import view.screens.loader.FramesLoader;
 import view.screens.stars.StarGenerator;
 
-import javax.swing.text.html.ImageView;
 import java.util.Random;
 
 /**
@@ -63,6 +58,13 @@ public class StartScreenController implements ControlledFrame {
 
 
 
+
+
+//        lajixiaobai
+        if(BGM.isFlagBGM()){
+            BGM.BGMastop();
+            BGM.BGMbplay();
+        }
     }
 
     @FXML

@@ -1,5 +1,7 @@
 package music;
 
+import javafx.scene.media.MediaPlayer;
+
 /**
  * Created by lenovo on 2017/5/18.
  */
@@ -13,12 +15,12 @@ public class BGM {
     String url7=getClass().getClassLoader().getResource("music/button7.wav").toString();
     String url8=getClass().getClassLoader().getResource("music/button8.wav").toString();
     String url9=getClass().getClassLoader().getResource("music/button9.wav").toString();
-    String url=getClass().getClassLoader().getResource("music/startBGM.wav").toString();
+    String urla =getClass().getClassLoader().getResource("music/startBGM.wav").toString();
+    String urlb=getClass().getClassLoader().getResource("music/gameBGM.wav").toString();
 
-    boolean flagBGM=true;
-    boolean flagGame=true;
-    boolean flagButton=true;
-    boolean flagMain=true;
+    static boolean flagBGM=true;
+    static boolean flagGame=true;
+    static boolean flagButton=true;
     public String getUrl1() {
         return url1;
     }
@@ -53,39 +55,57 @@ public class BGM {
         return url9;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrla() {
+        return urla;
     }
 
-    public boolean isFlagBGM() {
+    public String getUrlb() {
+        return urlb;
+    }
+
+    public static boolean isFlagBGM() {
         return flagBGM;
     }
 
-    public boolean isFlagButton() {
+    public static boolean isFlagButton() {
         return flagButton;
     }
 
-    public boolean isFlagGame() {
+    public static boolean isFlagGame() {
         return flagGame;
     }
 
-    public boolean isFlagMain() {
-        return flagMain;
+
+    public static void setFlagButton(boolean flag) {
+        flagButton = flag;
     }
 
-    public void setFlagButton(boolean flagButton) {
-        this.flagButton = flagButton;
+    public static void setFlagGame(boolean flag) {
+        flagGame = flag;
     }
 
-    public void setFlagGame(boolean flagGame) {
-        this.flagGame = flagGame;
+    public static void setFlagBGM(boolean flag) {
+        flagBGM = flag;
     }
-
-    public void setFlagMain(boolean flagMain) {
-        this.flagMain = flagMain;
+    static BGM bgm=new BGM();
+    static javafx.scene.media.Media mediaa=new javafx.scene.media.Media(bgm.getUrla());
+    static MediaPlayer mediaPlayera=new MediaPlayer(mediaa);
+    public static void BGMaplay(){
+        mediaPlayera.setVolume(0.3);
+        mediaPlayera.play();
+        mediaPlayera.setCycleCount(1000000000);
     }
-
-    public void setFlagBGM(boolean flagBGM) {
-        this.flagBGM = flagBGM;
+    public static void BGMastop(){
+        mediaPlayera.stop();
+    }
+    static javafx.scene.media.Media mediab=new javafx.scene.media.Media(bgm.getUrlb());
+    static MediaPlayer mediaPlayerb=new MediaPlayer(mediab);
+    public static void BGMbplay(){
+        mediaPlayerb.setVolume(0.3);
+        mediaPlayerb.play();
+        mediaPlayerb.setCycleCount(1000000000);
+    }
+    public static void BGMbstop(){
+        mediaPlayerb.stop();
     }
 }
