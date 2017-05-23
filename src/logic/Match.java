@@ -10,6 +10,8 @@ import data.Diamond;
 public class Match {
     private static Diamond src[][];
 
+    private static boolean markFlag4, markFlag5;
+
     public static void mark() {
         src = BoardInfor.getBoardInformation();
         markRow();
@@ -287,17 +289,13 @@ public class Match {
 
     private static void mark4R(int x, int y) {
         int cnt = 0;
-        boolean zf, onef, lastf, last2f, markFlag = false;
+        boolean zf, onef, lastf, last2f;
+        markFlag4 = false;
         for (int i = 3; i >= 0; i--, cnt = 0) {
             if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FOURR);
                 src[x][y - i].makeSpecial(true, 0xfff0);
-                markFlag = true;
-            }
-            if (!markFlag) {
-                src[x][y - i].makeSpecial(CD.FOURR);
-                src[x][y - i].makeSpecial(true, 0xfff0);
-                markFlag = true;
+                markFlag4 = true;
             }
             src[x][y - i].matchMe();
             zf = (x == 0);
@@ -331,17 +329,17 @@ public class Match {
 
     private static void mark4C(int x, int y) {
         int cnt;
-        boolean zf, onef, lastf, last2f, markFlag = false;
+        boolean zf, onef, lastf, last2f;
         for (int i = 3; i >= 0; i--) {
             if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
                 src[x - i][y].makeSpecial(CD.FOURC);
                 src[x - i][y].makeSpecial(true, 0xfff0);
-                markFlag = true;
+                markFlag4 = true;
             }
-            if (!markFlag) {
+            if (!markFlag4 && (i == 0)) {
                 src[x - i][y].makeSpecial(CD.FOURC);
                 src[x - i][y].makeSpecial(true, 0xfff0);
-                markFlag = true;
+                markFlag4 = true;
             }
             src[x - i][y].matchMe();
             //查看是否能形成L等图形
@@ -376,18 +374,15 @@ public class Match {
 
     private static void mark5R(int x, int y) {
         int cnt = 0;
-        boolean zf, onef, lastf, last2f, markFlag = false;
+        boolean zf, onef, lastf, last2f;
+        markFlag5 = false;
         for (int i = 4; i >= 0; i--, cnt = 0) {
             if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
                 src[x][y - i].makeSpecial(CD.FIVE);
                 src[x][y - i].makeSpecial(true, 0xfff0);
-                markFlag = true;
+                markFlag5 = true;
             }
-            if (!markFlag) {
-                src[x][y - i].makeSpecial(CD.FIVE);
-                src[x][y - i].makeSpecial(true, 0xfff0);
-                markFlag = true;
-            }
+
             src[x][y - i].matchMe();
             zf = (x == 0);
             onef = (x == 1);
@@ -416,17 +411,17 @@ public class Match {
 
     private static void mark5C(int x, int y) {
         int cnt;
-        boolean zf, onef, lastf, last2f, markFlag = false;
+        boolean zf, onef, lastf, last2f;
         for (int i = 4; i >= 0; i--) {
             if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
                 src[x - i][y].makeSpecial(CD.FIVE);
                 src[x - i][y].makeSpecial(true, 0xfff0);
-                markFlag = true;
+                markFlag5 = true;
             }
-            if (!markFlag) {
+            if (!markFlag5 && (i == 0)) {
                 src[x - i][y].makeSpecial(CD.FIVE);
                 src[x - i][y].makeSpecial(true, 0xfff0);
-                markFlag = true;
+                markFlag5 = true;
             }
             src[x - i][y].matchMe();
             //查看是否能形成L等图形

@@ -150,7 +150,7 @@ public class Main {
                 {a, c, e, d, a, f, d, e},
                 {a, d, a, c, c, e, a, f}
         };
-        toTest(samplexxz3);
+        toTest(sample1);
 
         //测试特效
 //        Diamond[][] src = BoardInfor.getBoardInformation();
@@ -161,7 +161,7 @@ public class Main {
 
         System.out.println(Judge.isUnfinished());
 //        printProperties(BoardInfor.getBoardInformation());
-        LogicUtilities.move(3, 5, 4, 5);
+        LogicUtilities.move(2, 6, 2, 7);
         printProperties(BoardInfor.getBoardInformation());
 //        print(BoardInfor.getBoardInformation());
 //        printProperties(BoardInfor.getBoardInformation());
