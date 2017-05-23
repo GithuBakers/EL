@@ -65,7 +65,7 @@ public class StarGenerator {
 
         for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
-                Image image = StarSelector.getImage(src[i][j].kind);
+                Image image = StarSelector.getImage(src[i][j]);
                 starViews[i][j] = new ImageView(image);
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
@@ -103,7 +103,7 @@ public class StarGenerator {
                 //如果被消除了或不存在
                 if (src[i][j] == null) {
                     BoardManager.generateOne(i, j);
-                    ImageView temp = new ImageView(StarSelector.getImage(src[i][j].kind));
+                    ImageView temp = new ImageView(StarSelector.getImage(src[i][j]));
                     temp.setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                     int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE);
                     temp.setLayoutY(bias);
@@ -156,7 +156,7 @@ public class StarGenerator {
 
 //                System.out.println("I've removed "+i+"#"+j);
 
-                starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j].kind));
+                starViews[i][j] = new ImageView(StarSelector.getImage(src[i][j]));
                 starViews[i][j].setLayoutX(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * i);
                 starViews[i][j].setLayoutY(CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j));
                 anchorPane.getChildren().add(starViews[i][j]);
@@ -223,7 +223,7 @@ public class StarGenerator {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 if (src[i][j] != null && src[i][j].isMatched() && !src[i][j].isSpecial()) {
                     disapperaCnt[i]++;
-                    starViews[i][j].setImage(StarSelector.getImage('x'));
+                    starViews[i][j].setImage(StarSelector.getModifiedImage(src[i][j].kind));
                     System.out.println("I made starView" + i + "#" + j + " black");
 
                 }
