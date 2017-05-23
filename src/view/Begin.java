@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import logic.BoardManager;
+import music.BGM;
 import view.screens.loader.FramesLoader;
 
 /**
@@ -28,6 +29,7 @@ public class Begin extends Application {
         primaryStage.setScene(scene);
 //        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
+        BGM.BGMaplay();
     }
 
 }
