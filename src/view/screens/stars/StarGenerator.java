@@ -108,9 +108,12 @@ public class StarGenerator {
                     int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE);
                     temp.setLayoutY(bias);
                     anchorPane.getChildren().add(temp);
-                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(3),
-                            new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.TANGENT(Duration.seconds(1), -1))
-                    )));
+                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(1),
+                            new KeyValue(temp.translateYProperty(), 8 - bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.TANGENT(Duration.seconds(1), -1))
+                    ),
+                            new KeyFrame(Duration.seconds(1.3),
+                                    new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.TANGENT(Duration.seconds(1), -1)))
+                    ));
 
                     disapperaCnt[i]--;
                     System.out.println("the disappear" + i + " is" + disapperaCnt[i]);
