@@ -100,14 +100,14 @@ public class Diamond {
                     BoardManager.generateAll();
                     break;
                 }
-                case 0x40: {
+                case CD.FOURR: {
                     Diamond[][] src = BoardInfor.getBoardInformation();
                     for (int i = 0; i < CD.BOARD_SIZE_X; i++) {
                         src[i][y].matchMe();
                     }
                     break;
                 }
-                case 0x240: {
+                case CD.FOURC: {
                     Diamond[][] src = BoardInfor.getBoardInformation();
                     for (int i = 0; i < CD.BOARD_SIZE_Y; i++) {
                         src[x][i].matchMe();

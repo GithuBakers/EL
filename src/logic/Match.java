@@ -289,12 +289,17 @@ public class Match {
 
     private static void mark4R(int x, int y) {
         int cnt = 0;
-        boolean zf, onef, lastf, last2f;
+        boolean zf, onef, lastf, last2f, markFlag4 = false;
         markFlag4 = false;
         for (int i = 3; i >= 0; i--, cnt = 0) {
             if ((src[x][y - i].getSpecial() & 0xf) == CD.FIRED) {
-                src[x][y - i].makeSpecial(CD.FOURR);
+                src[x][y - i].makeSpecial(CD.FOURC);
                 src[x][y - i].makeSpecial(true, 0xfff0);
+                markFlag4 = true;
+            }
+            if (!markFlag4 && (i == 0)) {
+                src[x - i][y].makeSpecial(CD.FOURC);
+                src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag4 = true;
             }
             src[x][y - i].matchMe();
@@ -329,15 +334,15 @@ public class Match {
 
     private static void mark4C(int x, int y) {
         int cnt;
-        boolean zf, onef, lastf, last2f;
+        boolean zf, onef, lastf, last2f, markFlag4 = false;
         for (int i = 3; i >= 0; i--) {
             if ((src[x - i][y].getSpecial() & 0xf) == CD.FIRED) {
-                src[x - i][y].makeSpecial(CD.FOURC);
+                src[x - i][y].makeSpecial(CD.FOURR);
                 src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag4 = true;
             }
             if (!markFlag4 && (i == 0)) {
-                src[x - i][y].makeSpecial(CD.FOURC);
+                src[x - i][y].makeSpecial(CD.FOURR);
                 src[x - i][y].makeSpecial(true, 0xfff0);
                 markFlag4 = true;
             }

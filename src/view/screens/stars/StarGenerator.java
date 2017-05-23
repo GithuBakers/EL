@@ -42,7 +42,7 @@ public class StarGenerator {
     public StarGenerator(AnchorPane anchorPane){
         this.anchorPane=anchorPane;
 
-
+        anchorPane.getChildren().remove(0, anchorPane.getChildren().size());
         char[][] sample1 = {
                 {'a', 'b', 'b', 'e', 'c', 'f', 'a', 'd'},
                 {'a', 'd', 'b', 'b', 'c', 'c', 'a', 'd'},
@@ -108,10 +108,10 @@ public class StarGenerator {
                     int bias = -j * (CD.INTERVAL + CD.DIAMOND_SIZE);
                     temp.setLayoutY(bias);
                     anchorPane.getChildren().add(temp);
-                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(1),
+                    timeline.add(0, new Timeline(new KeyFrame(Duration.seconds(0.5),
                             new KeyValue(temp.translateYProperty(), 8 - bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.TANGENT(Duration.seconds(1), -1))
                     ),
-                            new KeyFrame(Duration.seconds(1.3),
+                            new KeyFrame(Duration.seconds(0.7),
                                     new KeyValue(temp.translateYProperty(), -bias + CD.LAYOUT_INTERVAL + (CD.DIAMOND_SIZE + CD.INTERVAL) * (CD.BOARD_SIZE_Y - 1 - j), Interpolator.TANGENT(Duration.seconds(1), -1)))
                     ));
 
@@ -179,11 +179,11 @@ public class StarGenerator {
         int dx = (int) (end.getX() - begin.getX()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
         int dy = (int) (end.getY() - begin.getY()) * (CD.DIAMOND_SIZE + CD.INTERVAL);
         Timeline timeline1 = new Timeline(
-                new KeyFrame(Duration.seconds(0.5),
-                        new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateXProperty(), dx, Interpolator.EASE_BOTH),
-                        new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateYProperty(), dy, Interpolator.EASE_BOTH),
-                        new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateXProperty(), -dx, Interpolator.EASE_BOTH),
-                        new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateYProperty(), -dy, Interpolator.EASE_BOTH)));
+                new KeyFrame(Duration.seconds(0.3),
+                        new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateXProperty(), dx, Interpolator.TANGENT(Duration.seconds(1), -1)),
+                        new KeyValue(starViews[x1][CD.BOARD_SIZE_Y - 1 - y1].translateYProperty(), dy, Interpolator.TANGENT(Duration.seconds(1), -1)),
+                        new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateXProperty(), -dx, Interpolator.TANGENT(Duration.seconds(1), -1)),
+                        new KeyValue(starViews[x2][CD.BOARD_SIZE_Y - 1 - y2].translateYProperty(), -dy, Interpolator.TANGENT(Duration.seconds(1), -1))));
 
         if (!LogicUtilities.move(x1, CD.BOARD_SIZE_Y - 1 - y1, x2, CD.BOARD_SIZE_Y - 1 - y2)) {
             timeline1.setAutoReverse(true);
@@ -237,7 +237,7 @@ public class StarGenerator {
             for (int j = 0; j < CD.BOARD_SIZE_Y; j++) {
                 for (int k = 0; k < CD.BOARD_SIZE_Y; k++) {
                     if (old_information[i][j].equals(src[i][k])) {
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1),
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5),
                                 new KeyValue(starViews[i][j].translateYProperty(),
                                         (int) (starViews[i][j].getTranslateY() + (j - k) * (CD.DIAMOND_SIZE + CD.INTERVAL)), Interpolator.EASE_BOTH)));
                         timeline.play();
@@ -248,6 +248,7 @@ public class StarGenerator {
     }
 
     synchronized private void moveAnimator() {
+        refresh();
         disappear();
         copyOldInformation();
         BoardManager.clean();
