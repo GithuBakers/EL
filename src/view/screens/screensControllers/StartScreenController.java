@@ -5,6 +5,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -25,6 +27,9 @@ import java.util.Random;
 public class StartScreenController implements ControlledFrame {
     private FramesController framesController;
     private int time=2000;
+
+    @FXML
+    private Button btmQuit;
 
     @FXML
     public void toClassic(){
@@ -51,7 +56,14 @@ public class StartScreenController implements ControlledFrame {
                 new KeyFrame(Duration.millis(time+700),
                         new KeyValue(upPane.translateYProperty(),0),
                         new KeyValue(downPane.translateYProperty(),0)),
-                new KeyFrame(Duration.millis(time+400),event -> framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.beginningChoiceScreenID, AnimatorSetting.ANIMATOR_SLIDEINFROMUP))
+                new KeyFrame(Duration.millis(time+400),event -> {
+                    framesController.addScreen(FramesLoader.classicScreenID,FramesLoader.beginningChoiceScreenID, AnimatorSetting.ANIMATOR_SLIDEINFROMUP);
+
+                    FXMLLoader settingLoader=framesController.getFXMLLoader(FramesLoader.settingScreenID);
+                    SettingScreenController settingScreenController=settingLoader.getController();
+                    settingScreenController.fresh();
+                }
+                )
         );
         timeline.play();
 
@@ -65,6 +77,11 @@ public class StartScreenController implements ControlledFrame {
             BGM.BGMastop();
             BGM.BGMbplay();
         }
+    }
+
+    public void quit(){
+
+        System.exit(0);
     }
 
     @FXML

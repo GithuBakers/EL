@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -8,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.BeginningChoiceScreenController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" snapToPixel="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.BeginningChoiceScreenController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4d1fc" height="276.0" layoutX="316.0" layoutY="262.0" strokeType="INSIDE" width="369.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4d1fc" height="689.0" layoutX="184.0" layoutY="68.0" strokeType="INSIDE" visible="false" width="687.0">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0" proportional="false">
                <stops>
@@ -20,7 +22,21 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Button layoutX="457.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#start" onMouseEntered="#beginningChoiceMouseEntered" onMousePressed="#beginningChoiceMousePressed" text="LET'S START" />
-      <Label layoutX="446.0" layoutY="348.0" text="EXPECT BALABALA" />
+      <ImageView fitHeight="800.0" fitWidth="1000.0">
+         <image>
+            <Image url="@../../resources/LEVEL-1-try.PNG" />
+         </image>
+      </ImageView>
+      <Button layoutX="383.0" layoutY="519.0" mnemonicParsing="false" onMouseClicked="#start" onMouseEntered="#beginningChoiceMouseEntered" onMousePressed="#beginningChoiceMousePressed" style="-fx-background-color: transparent;" styleClass="go-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="200.0">
+               <image>
+                  <Image url="@../../resources/expectation/GO-1.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <Glow />
+         </effect></Button>
    </children>
 </AnchorPane>

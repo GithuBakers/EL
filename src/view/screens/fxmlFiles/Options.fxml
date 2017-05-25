@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../css/Start.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.SettingScreenController">
+    <children>
+      <Circle fill="DODGERBLUE" layoutX="498.0" layoutY="471.0" radius="318.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+        <ImageView fitHeight="800.0" fitWidth="1000.0">
+            <image>
+                <Image url="@../../resources/options/OPTION-PANE.PNG" />
+            </image>
+        </ImageView>
+        <Button fx:id="all" contentDisplay="CENTER" ellipsisString="" layoutX="563.0" layoutY="442.0" mnemonicParsing="false" onMouseClicked="#changeTheMainMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" style="-fx-background-color: transparent;" styleClass="on-button" stylesheets="@../css/Start.css" textAlignment="CENTER" />
+        <Button fx:id="btm" contentDisplay="CENTER" ellipsisString="" layoutX="563.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#changeTheButtonMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" style="-fx-background-color: transparent;" styleClass="on-button" stylesheets="@../css/Start.css" textAlignment="CENTER">
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+        </Button>
+        <Button fx:id="gam" contentDisplay="CENTER" ellipsisString="" layoutX="563.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#changeTheGameMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" style="-fx-background-color: transparent;" styleClass="on-button" stylesheets="@../css/Start.css" textAlignment="CENTER">
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+        </Button>
+        <Button fx:id="bgmB" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" defaultButton="true" ellipsisString="" layoutX="563.0" layoutY="339.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#changeTheBGMMusic" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" style="-fx-background-color: transparent; -fx-alignment: center; -fx-background-position: center;" styleClass="on-button" stylesheets="@../css/Start.css" textAlignment="CENTER" />
+        <Button layoutX="435.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#back" onMouseEntered="#settingMouseEntered" onMousePressed="#settingMousePressed" style="-fx-background-color: transparent;" styleClass="back-button" stylesheets="@../css/Start.css">
+            <graphic>
+                <ImageView>
+                    <image>
+                        <Image url="@../../resources/options/BACK-1.PNG" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+
+</AnchorPane>

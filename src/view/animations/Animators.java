@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.effect.Lighting;
 import javafx.util.Duration;
 
 /**
@@ -113,15 +114,15 @@ public class Animators {
 
     public Timeline slideFromRight(Node screen1,Node screen2,int durMillis){
         screen2.translateXProperty().set(1000);
-        GaussianBlur gaussianBlur=new GaussianBlur();
-        gaussianBlur.setRadius(0);
-        screen1.setEffect(gaussianBlur);
+        Lighting lighting=new Lighting();
+        screen1.setEffect(lighting);
+        lighting.diffuseConstantProperty().set(2);
         Timeline slideFromRight=new Timeline(
                 new KeyFrame(Duration.millis(durMillis),
-                        new KeyValue(gaussianBlur.radiusProperty(),10),
-                        new KeyValue(screen2.translateXProperty(),0)),
+                        new KeyValue(screen2.translateXProperty(),200),
+                        new KeyValue(lighting.diffuseConstantProperty(),0.5)),
                 new KeyFrame(Duration.ZERO,
-                        new KeyValue(gaussianBlur.radiusProperty(),0),
+                        new KeyValue(lighting.diffuseConstantProperty(),2),
                         new KeyValue(screen2.translateXProperty(),1000,Interpolator.TANGENT(Duration.millis(95),10)))
         );
         return slideFromRight;
@@ -130,15 +131,17 @@ public class Animators {
 
     public Timeline slideToRight(Node screen1,Node screen2,int durMillis){
 //        screen2.translateXProperty().set(0);
-        GaussianBlur gaussianBlur=new GaussianBlur();
-        screen1.setEffect(gaussianBlur);
+        Lighting lighting=new Lighting();
+        screen1.setEffect(lighting);
+        lighting.diffuseConstantProperty().set(0.5);
+
         Timeline slideToRight=new Timeline(
                 new KeyFrame(Duration.millis(durMillis),
-                        new KeyValue(gaussianBlur.radiusProperty(),0),
+                        new KeyValue(lighting.diffuseConstantProperty(),2),
                         new KeyValue(screen2.translateXProperty(),1000,Interpolator.TANGENT(Duration.millis(95),10))),
                 new KeyFrame(Duration.ZERO,
-                        new KeyValue(gaussianBlur.radiusProperty(),10),
-                        new KeyValue(screen2.translateXProperty(),0))
+                        new KeyValue(lighting.diffuseConstantProperty(),0.5),
+                        new KeyValue(screen2.translateXProperty(),200))
         );
         return slideToRight;
     }
@@ -163,31 +166,36 @@ public class Animators {
     public Timeline slideInFromUp(Node screen1,Node screen2,int durMillis){
         screen2.translateYProperty().set(-600);
 
-        GaussianBlur gaussianBlur=new GaussianBlur();
-        screen1.setEffect(gaussianBlur);
+
+        Lighting lighting=new Lighting();
+        screen1.setEffect(lighting);
+        lighting.diffuseConstantProperty().set(2);
 
         Timeline slideInFromUp=new Timeline(
                 new KeyFrame(Duration.millis(durMillis),
                         new KeyValue(screen2.translateYProperty(),0),
-                        new KeyValue(gaussianBlur.radiusProperty(),10)),
+                        new KeyValue(lighting.diffuseConstantProperty(),0.4)),
                 new KeyFrame(Duration.ZERO,
                         new KeyValue(screen2.translateYProperty(),-600,Interpolator.TANGENT(Duration.millis(95),10)),
-                        new KeyValue(gaussianBlur.radiusProperty(),0))
+                        new KeyValue(lighting.diffuseConstantProperty(),2)
+                )
         );
         return slideInFromUp;
     }
 
     public Timeline slideInToDown(Node screen1,Node screen2,int durMillis){
-        GaussianBlur gaussianBlur=new GaussianBlur();
-        screen1.setEffect(gaussianBlur);
+
+        Lighting lighting=new Lighting();
+        lighting.diffuseConstantProperty().set(0.4);
+        screen1.setEffect(lighting);
 
         Timeline slideInToDown=new Timeline(
                 new KeyFrame(Duration.ZERO,
-                        new KeyValue(screen2.translateYProperty(),0),
-                        new KeyValue(gaussianBlur.radiusProperty(),10)),
+                        new KeyValue(lighting.diffuseConstantProperty(),0.4),
+                        new KeyValue(screen2.translateYProperty(),0)),
                 new KeyFrame(Duration.millis(durMillis),
                         new KeyValue(screen2.translateYProperty(),1000,Interpolator.TANGENT(Duration.millis(95),10)),
-                        new KeyValue(gaussianBlur.radiusProperty(),0))
+                        new KeyValue(lighting.diffuseConstantProperty(),2))
         );
         return slideInToDown;
     }

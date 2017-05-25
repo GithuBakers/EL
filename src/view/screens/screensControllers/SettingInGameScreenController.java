@@ -1,5 +1,7 @@
 package view.screens.screensControllers;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import music.BGM;
@@ -15,10 +17,59 @@ import java.util.Random;
  */
 public class SettingInGameScreenController implements ControlledFrame {
     private FramesController framesController;
+    @FXML
+    private Button bgmB;
+    @FXML
+    private Button btm;
+    @FXML
+    private Button gam;
+    @FXML
+    private Button all;
+
+
     @Override
     public void setControlledFrame(FramesController framesController) {
         this.framesController=framesController;
+        fresh();
     }
+
+    public void fresh() {
+        bgmB.getStyleClass().remove(0, bgmB.getStyleClass().size());
+        btm.getStyleClass().remove(0, btm.getStyleClass().size());
+        gam.getStyleClass().remove(0, gam.getStyleClass().size());
+        all.getStyleClass().remove(0, all.getStyleClass().size());
+        if (BGM.isFlagBGM()) {
+            bgmB.getStyleClass().add("on-button");
+        } else {
+            bgmB.getStyleClass().add("off-button");
+        }
+        if (BGM.isFlagButton()) {
+            btm.getStyleClass().add("on-button");
+        } else {
+            btm.getStyleClass().add("off-button");
+        }
+        if (BGM.isFlagGame()) {
+            gam.getStyleClass().add("on-button");
+        } else {
+            gam.getStyleClass().add("off-button");
+        }
+
+
+
+        if(BGM.isFlagBGM()==false&&BGM.isFlagButton()==false){
+            all.getStyleClass().add("off-button");
+            gam.getStyleClass().remove(0,gam.getStyleClass().size());
+            gam.getStyleClass().add("off-button");
+            bgmB.getStyleClass().remove(0,gam.getStyleClass().size());
+            bgmB.getStyleClass().add("off-button");
+            btm.getStyleClass().remove(0,btm.getStyleClass().size());
+            btm.getStyleClass().add("off-button");
+        }else {
+            all.getStyleClass().add("on-button");
+        }
+    }
+
+
 
     public void backToGame(){
         framesController.removeScreen(FramesLoader.classicScreenID,FramesLoader.settingInGameScreenID, AnimatorSetting.ANIMATOR_SLIDETORIGHT);
@@ -101,6 +152,7 @@ public class SettingInGameScreenController implements ControlledFrame {
             BGM.BGMbplay();
             BGM.setFlagBGM(true);
         }
+        fresh();
     }
     public void changeTheGameMusic(){
         boolean flag=BGM.isFlagGame();
@@ -109,6 +161,7 @@ public class SettingInGameScreenController implements ControlledFrame {
         }else{
             BGM.setFlagGame(true);
         }
+        fresh();
     }
     public void changeTheButtonMusic(){
         boolean flag=BGM.isFlagButton();
@@ -117,6 +170,7 @@ public class SettingInGameScreenController implements ControlledFrame {
         }else{
             BGM.setFlagButton(true);
         }
+        fresh();
     }
     public void changeTheMainMusic(){
         if(BGM.isFlagBGM()==false&&BGM.isFlagButton()==false){
@@ -128,6 +182,7 @@ public class SettingInGameScreenController implements ControlledFrame {
             BGM.setFlagButton(false);
             BGM.BGMbstop();
         }
+        fresh();
     }
 
 }

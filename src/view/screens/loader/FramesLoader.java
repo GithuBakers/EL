@@ -12,7 +12,7 @@ public class FramesLoader {
     public static String startScreenID="startScreen";
     public static String startScreenFile="fxmlFiles/Start.fxml";
     public static String settingScreenID="settingScreen";
-    public static String settingScreenFile="fxmlFiles/Setting.fxml";
+    public static String settingScreenFile="fxmlFiles/Options.fxml";
     public static String blackScreenID="blackScreen";
     public static String blackScreenFile="fxmlFiles/Black.fxml";
     public static String beginningChoiceScreenID="beginningChoice";

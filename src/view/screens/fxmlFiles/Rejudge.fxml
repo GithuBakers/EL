@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,9 +10,27 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.screens.screensControllers.RejudgeScreenController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1d1ff" height="346.0" layoutX="314.0" layoutY="227.0" stroke="WHITE" strokeType="INSIDE" width="373.0" />
-      <Button layoutX="453.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#backToStart" onMouseEntered="#rejudgeMouseEntered" onMousePressed="#rejudgeMousePressed" text="EXITTOSTART" />
-      <Button layoutX="468.0" layoutY="411.0" mnemonicParsing="false" onMouseClicked="#backToGame" onMouseEntered="#rejudgeMouseEntered" onMousePressed="#rejudgeMousePressed" text="RETURN" />
-      <Label layoutX="458.0" layoutY="340.0" text="AREYOUSURE?" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1d1ff" height="346.0" layoutX="314.0" layoutY="227.0" stroke="WHITE" strokeType="INSIDE" visible="false" width="373.0" />
+      <ImageView fitHeight="800.0" fitWidth="1000.0">
+         <image>
+            <Image url="@../../resources/rejudge/AREYOUSURE.PNG" />
+         </image>
+      </ImageView>
+      <Button layoutX="463.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#backToGame" onMouseEntered="#rejudgeMouseEntered" onMousePressed="#rejudgeMousePressed" style="-fx-background-color: transparent;" styleClass="no-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView>
+               <image>
+                  <Image url="@../../resources/rejudge/NO-1.PNG" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="340.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#backToStart" onMouseEntered="#rejudgeMouseEntered" onMousePressed="#rejudgeMousePressed" style="-fx-background-color: transparent;" styleClass="yes-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView>
+               <image>
+                  <Image url="@../../resources/rejudge/YES-1.PNG" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>

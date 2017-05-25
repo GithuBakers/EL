@@ -16,12 +16,35 @@
             <Image url="@../../resources/startBackground.gif" />
          </image>
       </ImageView>
-      <Button layoutX="492.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#toClassic" onMouseEntered="#startMouseEntered" onMousePressed="#startMousePressed" style="-fx-background-color: transparent;" styleClass="start-button" stylesheets="@../css/Start.css" />
-      <Button layoutX="750.0" layoutY="722.0" mnemonicParsing="false" onMouseClicked="#toSetting" onMouseEntered="#startMouseEntered" onMousePressed="#startMousePressed" text="Setting" />
-      <ImageView fitHeight="80.0" fitWidth="200.0" layoutX="26.0" layoutY="611.0">
+      <ImageView fitHeight="800.0" fitWidth="1000.0">
          <image>
-            <Image url="@../../resources/startButtonsBlack.PNG" />
+            <Image url="@../../resources/STAR-Main.PNG" />
          </image>
       </ImageView>
+      <Button layoutX="338.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#toClassic" onMouseEntered="#startMouseEntered" onMousePressed="#startMousePressed" style="-fx-background-color: transparent;" styleClass="start-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="309.0">
+               <image>
+                  <Image url="@../../resources/startbutton/STARTBUTTON-1.PNG" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="338.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#toSetting" onMouseEntered="#startMouseEntered" onMousePressed="#startMousePressed" style="-fx-background-color: transparent;" styleClass="option-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="309.0">
+               <image>
+                  <Image url="@../../resources/startbutton/OPTIONS-1.PNG" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btmQuit" layoutX="338.0" layoutY="487.0" mnemonicParsing="false" onMouseClicked="#quit" onMouseEntered="#startMouseEntered" onMousePressed="#startMousePressed" style="-fx-background-color: transparent;" styleClass="quit-button" stylesheets="@../css/Start.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="309.0">
+               <image>
+                  <Image url="@../../resources/startbutton/QUITE-1.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

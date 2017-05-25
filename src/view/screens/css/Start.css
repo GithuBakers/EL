@@ -1,6 +1,81 @@
+/*START*/
 .start-button{
-    -fx-graphic: url("/view/resources/startButtonsBlack.PNG");
+    -fx-graphic: url("/view/resources/startbutton/STARTBUTTON-1.PNG");
 }
 .start-button:hover{
-    -fx-graphic: url("/view/resources/startButtonsBlack3.gif");
+    -fx-graphic: url("/view/resources/startbutton/STARTBUTTON-2.PNG");
 }
+
+
+.option-button{
+    -fx-graphic: url("/view/resources/startbutton/OPTIONS-1.PNG");
+}
+.option-button:hover{
+    -fx-graphic: url("/view/resources/startbutton/OPTIONS-2.PNG");
+}
+
+
+.quit-button{
+    -fx-graphic: url("/view/resources/startbutton/QUITE-1.PNG");
+}
+.quit-button:hover{
+    -fx-graphic: url("/view/resources/startbutton/QUITE-2.PNG");
+}
+
+/*OPTIONS*/
+.back-button{
+    -fx-graphic: url("/view/resources/options/BACK-1.PNG");
+}
+.back-button:hover{
+    -fx-graphic: url("/view/resources/options/BACK-2.PNG");
+}
+
+.on-button{
+    -fx-graphic: url("/view/resources/options/ON-1.PNG");
+}
+.on-button:hover{
+    -fx-graphic: url("/view/resources/options/ON-2.PNG");
+}
+
+.off-button{
+    -fx-graphic: url("/view/resources/options/OFF-1.PNG");
+}
+.off-button:hover{
+    -fx-graphic: url("/view/resources/options/OFF-2.PNG");
+}
+
+.go-button{
+    -fx-graphic: url("/view/resources/expectation/GO-1.PNG");
+}
+.go-button:hover{
+    -fx-graphic: url("/view/resources/expectation/GO-2.PNG");
+}
+
+.backInGame-button{
+    -fx-graphic: url("/view/resources/OPTION-INGAME/BACK-GAME-1.PNG");
+}
+.backInGame-button:hover{
+    -fx-graphic: url("/view/resources/OPTION-INGAME/BACK-GAME-2.PNG");
+}
+
+.continue-button{
+    -fx-graphic: url("/view/resources/OPTION-INGAME/CONTINUE-1.PNG");
+}
+.continue-button:hover{
+    -fx-graphic: url("/view/resources/OPTION-INGAME/CONTINUE-2.PNG");
+}
+
+.yes-button{
+    -fx-graphic: url("/view/resources/rejudge/YES-1.PNG");
+}
+.yes-button:hover{
+    -fx-graphic: url("/view/resources/rejudge/YES-2.PNG");
+}
+
+.no-button{
+    -fx-graphic: url("/view/resources/rejudge/NO-1.PNG");
+}
+.no-button:hover{
+    -fx-graphic: url("/view/resources/rejudge/NO-2.PNG");
+}
+

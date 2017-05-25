@@ -37,14 +37,23 @@
       </AnchorPane>
       <AnchorPane fx:id="upPane" layoutY="-14.0" prefHeight="79.0" prefWidth="1000.0">
          <children>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#74bcff" height="122.0" layoutY="-43.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-            <Label layoutX="57.0" layoutY="32.0" text="THIS IS SCORE" />
+            <ImageView fitHeight="74.0" fitWidth="1000.0" layoutY="14.0">
+               <image>
+                  <Image url="@../../resources/classic/target.PNG" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="downPane" layoutY="720.0" prefHeight="79.0" prefWidth="1000.0">
          <children>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" fill="#78ffa1" height="122.0" layoutY="4.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-            <Button fx:id="backButton" layoutX="808.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#toStart" onMouseEntered="#classicMouseEntered" onMousePressed="#classicMousePressed" prefHeight="23.0" prefWidth="132.0" text="I AM EVERYTHING" />
+            <Button fx:id="backButton" layoutX="681.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#toStart" onMouseEntered="#classicMouseEntered" onMousePressed="#classicMousePressed" prefHeight="23.0" prefWidth="132.0" style="-fx-background-color: transparent;" styleClass="option-button" stylesheets="@../css/Start.css">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="309.0">
+                     <image>
+                        <Image url="@../../resources/startbutton/OPTIONS-1.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </AnchorPane>
    </children>
